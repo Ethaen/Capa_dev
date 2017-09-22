@@ -42,7 +42,7 @@ twig:
 doctrine:
     dbal:
         driver:   'pdo_mysql'
-        host:     '164.132.109.122'
+        host:     'localhost'
         port:     '3306'
         dbname:   'Capa'
         user:     'root'
