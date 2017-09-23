@@ -505,3 +505,8 @@
 [2017-09-24 03:02:03] security.DEBUG: Read existing security token from the session. {"key":"_security_main"} []
 [2017-09-24 03:02:03] security.DEBUG: User was reloaded from a user provider. {"username":"user","provider":"Symfony\\Component\\Security\\Core\\User\\InMemoryUserProvider"} []
 [2017-09-24 03:02:04] security.DEBUG: Stored the security token in the session. {"key":"_security_main"} []
+[2017-09-24 03:13:39] doctrine.DEBUG: SHOW FULL TABLES WHERE Table_type = 'BASE TABLE' [] []
+[2017-09-24 03:13:39] console.DEBUG: Command "doctrine:schema:update" exited with code "1" {"command":"doctrine:schema:update","code":1} []
+[2017-09-24 03:13:55] doctrine.DEBUG: SHOW FULL TABLES WHERE Table_type = 'BASE TABLE' [] []
+[2017-09-24 03:13:55] doctrine.DEBUG: SHOW FULL TABLES WHERE Table_type = 'BASE TABLE' [] []
+[2017-09-24 03:13:55] doctrine.DEBUG: CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, salt VARCHAR(255) NOT NULL, roles LONGTEXT NOT NULL COMMENT '(DC2Type:array)', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB [] []
