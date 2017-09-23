@@ -17,6 +17,7 @@
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
+      <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -60,9 +61,14 @@
         <parameter key="namespace">Sensio\Bundle\FrameworkExtraBundle</parameter>
       </parameter>
       <parameter key="AppBundle" type="collection">
-        <parameter key="parent">null</parameter>
+        <parameter key="parent">FOSUserBundle</parameter>
         <parameter key="path">/var/www/html/Capa_dev/src/AppBundle</parameter>
         <parameter key="namespace">AppBundle</parameter>
+      </parameter>
+      <parameter key="FOSUserBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/var/www/html/Capa_dev/vendor/friendsofsymfony/user-bundle</parameter>
+        <parameter key="namespace">FOS\UserBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -99,7 +105,7 @@
     <parameter key="database_password">dffro78c</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">164.132.109.122</parameter>
-    <parameter key="mailer_user">null</parameter>
+    <parameter key="mailer_user">guidiv7@gmail.com</parameter>
     <parameter key="mailer_password">null</parameter>
     <parameter key="secret">cbd48c3c5970babc83bee9f9552b336c026ea287</parameter>
     <parameter key="locale">en</parameter>
@@ -205,7 +211,7 @@
     <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.port">25</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.host">164.132.109.122</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.username">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.username">guidiv7@gmail.com</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.password">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
@@ -342,6 +348,48 @@
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
+    <parameter key="fos_user.backend_type_orm">true</parameter>
+    <parameter key="fos_user.security.interactive_login_listener.class">FOS\UserBundle\EventListener\LastLoginListener</parameter>
+    <parameter key="fos_user.security.login_manager.class">FOS\UserBundle\Security\LoginManager</parameter>
+    <parameter key="fos_user.resetting.email.template">@FOSUser/Resetting/email.txt.twig</parameter>
+    <parameter key="fos_user.registration.confirmation.template">@FOSUser/Registration/email.txt.twig</parameter>
+    <parameter key="fos_user.storage">orm</parameter>
+    <parameter key="fos_user.firewall_name">main</parameter>
+    <parameter key="fos_user.model_manager_name">null</parameter>
+    <parameter key="fos_user.model.user.class">AppBundle\Entity\User</parameter>
+    <parameter key="fos_user.profile.form.type">FOS\UserBundle\Form\Type\ProfileFormType</parameter>
+    <parameter key="fos_user.profile.form.name">fos_user_profile_form</parameter>
+    <parameter key="fos_user.profile.form.validation_groups" type="collection">
+      <parameter>Profile</parameter>
+      <parameter>Default</parameter>
+    </parameter>
+    <parameter key="fos_user.registration.confirmation.from_email" type="collection">
+      <parameter key="guidiv7@gmail.com">guidiv7@gmail.com</parameter>
+    </parameter>
+    <parameter key="fos_user.registration.confirmation.enabled">false</parameter>
+    <parameter key="fos_user.registration.form.type">AppBundle\Form\RegistrationType</parameter>
+    <parameter key="fos_user.registration.form.name">fos_user_registration_form</parameter>
+    <parameter key="fos_user.registration.form.validation_groups" type="collection">
+      <parameter>Registration</parameter>
+      <parameter>Default</parameter>
+    </parameter>
+    <parameter key="fos_user.change_password.form.type">FOS\UserBundle\Form\Type\ChangePasswordFormType</parameter>
+    <parameter key="fos_user.change_password.form.name">fos_user_change_password_form</parameter>
+    <parameter key="fos_user.change_password.form.validation_groups" type="collection">
+      <parameter>ChangePassword</parameter>
+      <parameter>Default</parameter>
+    </parameter>
+    <parameter key="fos_user.resetting.email.from_email" type="collection">
+      <parameter key="guidiv7@gmail.com">guidiv7@gmail.com</parameter>
+    </parameter>
+    <parameter key="fos_user.resetting.retry_ttl">7200</parameter>
+    <parameter key="fos_user.resetting.token_ttl">86400</parameter>
+    <parameter key="fos_user.resetting.form.type">FOS\UserBundle\Form\Type\ResettingFormType</parameter>
+    <parameter key="fos_user.resetting.form.name">fos_user_resetting_form</parameter>
+    <parameter key="fos_user.resetting.form.validation_groups" type="collection">
+      <parameter>ResetPassword</parameter>
+      <parameter>Default</parameter>
+    </parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -610,7 +658,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>gKUraaIPysgq8IwH0JKTZM</argument>
+      <argument>2IlCaEIqeqg2qXpOC25cVu</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -620,7 +668,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>gKUraaIPysgq8IwH0JKTZM</argument>
+      <argument>2IlCaEIqeqg2qXpOC25cVu</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -739,7 +787,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.ceb8bbb9f48e8bfd1c8ec2d209eabdca"/>
+      <argument type="service" id="service_locator.61ce42ee314d3459d7339b36d3fecf2a"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.http_foundation"/>
@@ -1027,6 +1075,7 @@
       <call method="addXmlMappings">
         <argument type="collection">
           <argument>/var/www/html/Capa_dev/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</argument>
+          <argument>/var/www/html/Capa_dev/vendor/friendsofsymfony/user-bundle/Resources/config/validation.xml</argument>
         </argument>
       </call>
       <call method="enableAnnotationMapping">
@@ -1038,7 +1087,11 @@
       <call method="addObjectInitializers">
         <argument type="collection">
           <argument type="service" id="doctrine.orm.validator_initializer"/>
+          <argument type="service" id="fos_user.validator.initializer"/>
         </argument>
+      </call>
+      <call method="addXmlMapping">
+        <argument>/var/www/html/Capa_dev/vendor/friendsofsymfony/user-bundle/DependencyInjection/Compiler/../../Resources/config/storage-validation/orm.xml</argument>
       </call>
       <factory class="Symfony\Component\Validator\Validation" method="createValidatorBuilder"/>
     </service>
@@ -1384,6 +1437,14 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
+        <argument>console.command</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument type="service" id="router_listener"/>
@@ -1532,6 +1593,126 @@
         <argument type="collection">
           <argument type="service" id="sensio_framework_extra.security.listener"/>
           <argument>onKernelController</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.security.implicit_login</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.security.interactive_login_listener"/>
+          <argument>onImplicitLogin</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>security.interactive_login</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.security.interactive_login_listener"/>
+          <argument>onSecurityInteractiveLogin</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.registration.completed</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.authentication"/>
+          <argument>authenticate</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.registration.confirmed</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.authentication"/>
+          <argument>authenticate</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.resetting.reset.completed</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.authentication"/>
+          <argument>authenticate</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.change_password.edit.completed</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.flash"/>
+          <argument>addSuccessFlash</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.group.create.completed</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.flash"/>
+          <argument>addSuccessFlash</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.group.delete.completed</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.flash"/>
+          <argument>addSuccessFlash</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.group.edit.completed</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.flash"/>
+          <argument>addSuccessFlash</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.profile.edit.completed</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.flash"/>
+          <argument>addSuccessFlash</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.registration.completed</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.flash"/>
+          <argument>addSuccessFlash</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.resetting.reset.completed</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.flash"/>
+          <argument>addSuccessFlash</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.resetting.reset.initialize</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.resetting"/>
+          <argument>onResettingResetInitialize</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.resetting.reset.success</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.resetting"/>
+          <argument>onResettingResetSuccess</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>fos_user.resetting.reset.request</argument>
+        <argument type="collection">
+          <argument type="service" id="fos_user.listener.resetting"/>
+          <argument>onResettingResetRequest</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -2275,12 +2456,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>59c57e8061cc70.60924195</argument>
+      <argument>59c6b052ad2a38.36103332</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>59c57e8061cc70.60924195</argument>
+      <argument>59c6b052ad2a38.36103332</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -2461,6 +2642,10 @@
         <argument>Doctrine</argument>
       </call>
       <call method="addPath">
+        <argument>/var/www/html/Capa_dev/vendor/friendsofsymfony/user-bundle/Resources/views</argument>
+        <argument>FOSUser</argument>
+      </call>
+      <call method="addPath">
         <argument>/var/www/html/Capa_dev/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
         <argument>Debug</argument>
       </call>
@@ -2603,6 +2788,10 @@
         <argument>Doctrine</argument>
       </call>
       <call method="addPath">
+        <argument>/var/www/html/Capa_dev/vendor/friendsofsymfony/user-bundle/Resources/views</argument>
+        <argument>FOSUser</argument>
+      </call>
+      <call method="addPath">
         <argument>/var/www/html/Capa_dev/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
         <argument>Debug</argument>
       </call>
@@ -2738,7 +2927,7 @@
         <argument type="service" id="3_f756800d3d7835a73b36092e3e3efa543288d3f3d9ab2c9a0737da8c850576a6"/>
       </argument>
       <call method="setUsername">
-        <argument>null</argument>
+        <argument>guidiv7@gmail.com</argument>
       </call>
       <call method="setPassword">
         <argument>null</argument>
@@ -2868,6 +3057,9 @@
     </service>
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager" public="false">
       <argument type="service" id="service_container"/>
+      <call method="addEventSubscriber">
+        <argument type="service" id="fos_user.user_listener"/>
+      </call>
       <call method="addEventListener">
         <argument type="collection">
           <argument>loadClassMetadata</argument>
@@ -2930,7 +3122,9 @@
     <service id="doctrine.orm.quote_strategy.ansi" class="Doctrine\ORM\Mapping\AnsiQuoteStrategy" public="false"/>
     <service id="doctrine.orm.default_configuration" class="Doctrine\ORM\Configuration" public="false">
       <call method="setEntityNamespaces">
-        <argument type="collection"/>
+        <argument type="collection">
+          <argument key="AppBundle">AppBundle\Entity</argument>
+        </argument>
       </call>
       <call method="setMetadataCacheImpl">
         <argument type="service" id="doctrine_cache.providers.doctrine.orm.default_metadata_cache"/>
@@ -2969,7 +3163,33 @@
         <argument type="service" id="doctrine.orm.default_entity_listener_resolver"/>
       </call>
     </service>
-    <service id="doctrine.orm.default_metadata_driver" class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false"/>
+    <service id="doctrine.orm.default_annotation_metadata_driver" class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+      <argument type="service" id="annotations.cached_reader"/>
+      <argument type="collection">
+        <argument>/var/www/html/Capa_dev/src/AppBundle/Entity</argument>
+      </argument>
+    </service>
+    <service id="doctrine.orm.default_metadata_driver" class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
+      <call method="addDriver">
+        <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
+        <argument>AppBundle\Entity</argument>
+      </call>
+      <call method="addDriver">
+        <argument type="service">
+          <service class="Doctrine\ORM\Mapping\Driver\XmlDriver">
+            <argument type="service">
+              <service class="Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator">
+                <argument type="collection">
+                  <argument key="/var/www/html/Capa_dev/vendor/friendsofsymfony/user-bundle/Resources/config/doctrine-mapping">FOS\UserBundle\Model</argument>
+                </argument>
+                <argument>.orm.xml</argument>
+              </service>
+            </argument>
+          </service>
+        </argument>
+        <argument>FOS\UserBundle\Model</argument>
+      </call>
+    </service>
     <service id="doctrine_cache.providers.doctrine.orm.default_metadata_cache" class="Doctrine\Common\Cache\ArrayCache">
       <call method="setNamespace">
         <argument>sf2orm_default_9a70d6e46abc95f4d854dcf0fa1c369ff9b170c5be28737427a501a63c4cd742</argument>
@@ -3071,6 +3291,167 @@
       <argument type="service" id="security.authorization_checker" on-invalid="null"/>
     </service>
     <service id="sensio_framework_extra.security.expression_language.default" class="Sensio\Bundle\FrameworkExtraBundle\Security\ExpressionLanguage" public="false"/>
+    <service id="fos_user.user_manager.default" class="FOS\UserBundle\Doctrine\UserManager" public="false">
+      <argument type="service" id="fos_user.util.password_updater"/>
+      <argument type="service" id="fos_user.util.canonical_fields_updater"/>
+      <argument type="service" id="fos_user.object_manager"/>
+      <argument>AppBundle\Entity\User</argument>
+    </service>
+    <service id="fos_user.object_manager" class="Doctrine\Common\Persistence\ObjectManager" public="false">
+      <argument>null</argument>
+      <factory service="doctrine" method="getManager"/>
+    </service>
+    <service id="fos_user.user_listener" class="FOS\UserBundle\Doctrine\UserListener" public="false">
+      <tag name="doctrine.event_subscriber"/>
+      <argument type="service" id="fos_user.util.password_updater"/>
+      <argument type="service" id="fos_user.util.canonical_fields_updater"/>
+    </service>
+    <service id="fos_user.validator.initializer" class="FOS\UserBundle\Validator\Initializer" public="false">
+      <tag name="validator.initializer"/>
+      <argument type="service" id="fos_user.util.canonical_fields_updater"/>
+    </service>
+    <service id="fos_user.security.interactive_login_listener" class="FOS\UserBundle\EventListener\LastLoginListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="fos_user.user_manager.default"/>
+    </service>
+    <service id="fos_user.security.login_manager" class="FOS\UserBundle\Security\LoginManager">
+      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="security.user_checker"/>
+      <argument type="service" id="security.authentication.session_strategy"/>
+      <argument type="service" id="request_stack"/>
+      <argument>null</argument>
+    </service>
+    <service id="fos_user.user_provider.username" class="FOS\UserBundle\Security\UserProvider" public="false">
+      <argument type="service" id="fos_user.user_manager.default"/>
+    </service>
+    <service id="fos_user.user_provider.username_email" class="FOS\UserBundle\Security\EmailUserProvider" public="false">
+      <argument type="service" id="fos_user.user_manager.default"/>
+    </service>
+    <service id="fos_user.util.canonicalizer.default" class="FOS\UserBundle\Util\Canonicalizer" public="false"/>
+    <service id="fos_user.util.user_manipulator" class="FOS\UserBundle\Util\UserManipulator">
+      <argument type="service" id="fos_user.user_manager.default"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id="request_stack"/>
+    </service>
+    <service id="fos_user.util.token_generator.default" class="FOS\UserBundle\Util\TokenGenerator" public="false"/>
+    <service id="fos_user.util.password_updater" class="FOS\UserBundle\Util\PasswordUpdater" public="false">
+      <argument type="service" id="security.encoder_factory.generic"/>
+    </service>
+    <service id="fos_user.util.canonical_fields_updater" class="FOS\UserBundle\Util\CanonicalFieldsUpdater" public="false">
+      <argument type="service" id="fos_user.util.canonicalizer.default"/>
+      <argument type="service" id="fos_user.util.canonicalizer.default"/>
+    </service>
+    <service id="fos_user.mailer.default" class="FOS\UserBundle\Mailer\Mailer" public="false">
+      <argument type="service" id="swiftmailer.mailer.default"/>
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="templating.engine.twig"/>
+      <argument type="collection">
+        <argument key="confirmation.template">@FOSUser/Registration/email.txt.twig</argument>
+        <argument key="resetting.template">@FOSUser/Resetting/email.txt.twig</argument>
+        <argument key="from_email" type="collection">
+          <argument key="confirmation" type="collection">
+            <argument key="guidiv7@gmail.com">guidiv7@gmail.com</argument>
+          </argument>
+          <argument key="resetting" type="collection">
+            <argument key="guidiv7@gmail.com">guidiv7@gmail.com</argument>
+          </argument>
+        </argument>
+      </argument>
+    </service>
+    <service id="fos_user.mailer.twig_swift" class="FOS\UserBundle\Mailer\TwigSwiftMailer" public="false">
+      <argument type="service" id="swiftmailer.mailer.default"/>
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="twig"/>
+      <argument type="collection">
+        <argument key="template" type="collection">
+          <argument key="confirmation">@FOSUser/Registration/email.txt.twig</argument>
+          <argument key="resetting">@FOSUser/Resetting/email.txt.twig</argument>
+        </argument>
+        <argument key="from_email" type="collection">
+          <argument key="confirmation" type="collection">
+            <argument key="guidiv7@gmail.com">guidiv7@gmail.com</argument>
+          </argument>
+          <argument key="resetting" type="collection">
+            <argument key="guidiv7@gmail.com">guidiv7@gmail.com</argument>
+          </argument>
+        </argument>
+      </argument>
+    </service>
+    <service id="fos_user.mailer.noop" class="FOS\UserBundle\Mailer\NoopMailer" public="false"/>
+    <service id="fos_user.listener.authentication" class="FOS\UserBundle\EventListener\AuthenticationListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="fos_user.security.login_manager"/>
+      <argument>main</argument>
+    </service>
+    <service id="fos_user.listener.flash" class="FOS\UserBundle\EventListener\FlashListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="session"/>
+      <argument type="service" id="translator"/>
+    </service>
+    <service id="fos_user.username_form_type" class="FOS\UserBundle\Form\Type\UsernameFormType">
+      <tag name="form.type" alias="fos_user_username"/>
+      <argument type="service" id="fos_user.user_to_username_transformer"/>
+    </service>
+    <service id="fos_user.user_to_username_transformer" class="FOS\UserBundle\Form\DataTransformer\UserToUsernameTransformer" public="false">
+      <argument type="service" id="fos_user.user_manager.default"/>
+    </service>
+    <service id="fos_user.profile.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
+      <argument type="service" id="form.factory"/>
+      <argument>fos_user_profile_form</argument>
+      <argument>FOS\UserBundle\Form\Type\ProfileFormType</argument>
+      <argument type="collection">
+        <argument>Profile</argument>
+        <argument>Default</argument>
+      </argument>
+    </service>
+    <service id="fos_user.profile.form.type" class="FOS\UserBundle\Form\Type\ProfileFormType">
+      <tag name="form.type" alias="fos_user_profile"/>
+      <argument>AppBundle\Entity\User</argument>
+    </service>
+    <service id="fos_user.registration.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
+      <argument type="service" id="form.factory"/>
+      <argument>fos_user_registration_form</argument>
+      <argument>AppBundle\Form\RegistrationType</argument>
+      <argument type="collection">
+        <argument>Registration</argument>
+        <argument>Default</argument>
+      </argument>
+    </service>
+    <service id="fos_user.registration.form.type" class="FOS\UserBundle\Form\Type\RegistrationFormType">
+      <tag name="form.type" alias="fos_user_registration"/>
+      <argument>AppBundle\Entity\User</argument>
+    </service>
+    <service id="fos_user.change_password.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
+      <argument type="service" id="form.factory"/>
+      <argument>fos_user_change_password_form</argument>
+      <argument>FOS\UserBundle\Form\Type\ChangePasswordFormType</argument>
+      <argument type="collection">
+        <argument>ChangePassword</argument>
+        <argument>Default</argument>
+      </argument>
+    </service>
+    <service id="fos_user.change_password.form.type" class="FOS\UserBundle\Form\Type\ChangePasswordFormType">
+      <tag name="form.type" alias="fos_user_change_password"/>
+      <argument>AppBundle\Entity\User</argument>
+    </service>
+    <service id="fos_user.resetting.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
+      <argument type="service" id="form.factory"/>
+      <argument>fos_user_resetting_form</argument>
+      <argument>FOS\UserBundle\Form\Type\ResettingFormType</argument>
+      <argument type="collection">
+        <argument>ResetPassword</argument>
+        <argument>Default</argument>
+      </argument>
+    </service>
+    <service id="fos_user.resetting.form.type" class="FOS\UserBundle\Form\Type\ResettingFormType">
+      <tag name="form.type" alias="fos_user_resetting"/>
+      <argument>AppBundle\Entity\User</argument>
+    </service>
+    <service id="fos_user.listener.resetting" class="FOS\UserBundle\EventListener\ResettingListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="router.default"/>
+      <argument>86400</argument>
+    </service>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="var_dumper.cloner"/>
@@ -3256,9 +3637,14 @@
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
-    <service id="service_locator.ceb8bbb9f48e8bfd1c8ec2d209eabdca" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.61ce42ee314d3459d7339b36d3fecf2a" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="FOS\UserBundle\Form\Type\ChangePasswordFormType" type="service" id="fos_user.change_password.form.type"/>
+        <argument key="FOS\UserBundle\Form\Type\ProfileFormType" type="service" id="fos_user.profile.form.type"/>
+        <argument key="FOS\UserBundle\Form\Type\RegistrationFormType" type="service" id="fos_user.registration.form.type"/>
+        <argument key="FOS\UserBundle\Form\Type\ResettingFormType" type="service" id="fos_user.resetting.form.type"/>
+        <argument key="FOS\UserBundle\Form\Type\UsernameFormType" type="service" id="fos_user.username_form_type"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service" id="form.type.form"/>
@@ -3468,7 +3854,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>-MdCzYsgvb</argument>
       <argument>0</argument>
-      <argument>gKUraaIPysgq8IwH0JKTZM</argument>
+      <argument>2IlCaEIqeqg2qXpOC25cVu</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3476,7 +3862,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>NI6Miu+eoD</argument>
       <argument>0</argument>
-      <argument>gKUraaIPysgq8IwH0JKTZM</argument>
+      <argument>2IlCaEIqeqg2qXpOC25cVu</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3484,7 +3870,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>I+PR34YyEy</argument>
       <argument>0</argument>
-      <argument>gKUraaIPysgq8IwH0JKTZM</argument>
+      <argument>2IlCaEIqeqg2qXpOC25cVu</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3492,7 +3878,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>i3z1T1CH8s</argument>
       <argument>0</argument>
-      <argument>gKUraaIPysgq8IwH0JKTZM</argument>
+      <argument>2IlCaEIqeqg2qXpOC25cVu</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3586,6 +3972,12 @@
     <service id="doctrine.orm.default_query_cache" alias="doctrine_cache.providers.doctrine.orm.default_query_cache"/>
     <service id="doctrine.orm.default_entity_manager.event_manager" alias="doctrine.dbal.default_connection.event_manager" public="false"/>
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default" public="false"/>
+    <service id="fos_user.doctrine_registry" alias="doctrine" public="false"/>
+    <service id="fos_user.mailer" alias="fos_user.mailer.default"/>
+    <service id="fos_user.util.email_canonicalizer" alias="fos_user.util.canonicalizer.default"/>
+    <service id="fos_user.util.username_canonicalizer" alias="fos_user.util.canonicalizer.default"/>
+    <service id="fos_user.util.token_generator" alias="fos_user.util.token_generator.default"/>
+    <service id="fos_user.user_manager" alias="fos_user.user_manager.default"/>
     <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
     <service id="Symfony\Bundle\FrameworkBundle\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
     <service id="console.command.symfony_bundle_securitybundle_command_userpasswordencodercommand" alias="security.console.user_password_encoder_command"/>
