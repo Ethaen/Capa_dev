@@ -25,6 +25,9 @@ class DefaultController extends Controller
        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
          return $this->redirectToRoute('app');
        }
+       else {
+         echo 'NON IDENTIFIED';
+       }
 
        // Le service authentication_utils permet de récupérer le nom d'utilisateur
        // et l'erreur dans le cas où le formulaire a déjà été soumis mais était invalide
