@@ -9,7 +9,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-       if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'))  {
+       if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'))  {
         return $this->render('EpiDevAdminBundle:Default:index.html.twig');
       }
       else {
