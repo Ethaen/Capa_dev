@@ -5,5 +5,4 @@ app/cache/*
 app/logs/*
 build/
 vendor/
-bin/
 var
