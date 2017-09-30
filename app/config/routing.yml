@@ -31,3 +31,9 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+#AdminBundle
+actuality:
+    path: /admin/actuality
+    defaults:
+      _controller: EpiDevAdminBundle:Admin:actuality
