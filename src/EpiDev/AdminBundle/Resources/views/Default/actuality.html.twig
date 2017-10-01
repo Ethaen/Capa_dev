@@ -140,22 +140,27 @@
 {% for actuality in actualities %}
 
 <figure class="white">
+<a href="{{ path('modifyActuality', {'id': actuality.id}) }}">
 	<img src="img/actuality/psd-4.jpg" alt="" />
-</a>
-						<div id="wrapper-part-info">
-							 <div id="part-info">Actuality name</a></div>
-						</div>
-</figure>
+	</a>
+							<div id="wrapper-part-info">
+								 <div id="part-info">Actuality name</a></div>
+							</div>
+	</figure>
+
 {% endfor %}
+
 <!--
 						<figure class="white">
-									<img src="img/actuality/psd-4.jpg" alt="" />
+							<a href="details.html">
+								<img src="img/actuality/psd-4.jpg" alt="" />
 							</a>
                             <div id="wrapper-part-info">
                             	 <div id="part-info">Actuality name</a></div>
 							              </div>
             </figure>
 -->
+
 <!-- End Display -->
 					</section>
 
