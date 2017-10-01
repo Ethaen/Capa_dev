@@ -4,7 +4,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Platz - Free Grid Wordpress Theme</title>
+<title>Admin | Actualités</title>
 
 <!-- Behavioral Meta Data -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
 <a name="ancre"></a>
 
 <!-- CACHE -->
@@ -33,6 +32,27 @@
         <div id="stripes"></div>
     </div>
 </div>
+
+<!-- Select form -->
+<center>
+<select id="agency" style="width:200px; height:40px;">
+  <option value="agence">Agence</option>
+  <option value="volvo" align="center">Volvo</option>
+  <option value="saab" align="center">Saab</option>
+  <option value="mercedes" align="center">Mercedes</option>
+  <option value="audi" align="center">Audi</option>
+</select>
+
+<select id="agency" style="width:200px; height:40px;">
+  <option value="activity" align="center">Secteur d'activité</option>
+  <option value="volvo" align="center">Volvo</option>
+  <option value="saab" align="center">Saab</option>
+  <option value="mercedes" align="center">Mercedes</option>
+  <option value="audi" align="center">Audi</option>
+</select>
+<button type="button" style="height:40px;">Filtrer</button>
+</center>
+<!-- Select form -->
 
 <!-- NAVBAR
 
@@ -117,21 +137,25 @@
 
 					<section class="work">
 <!-- Display of actualities -->
+{% for actuality in actualities %}
+<li>
+<a href="{{ path('oc_platform_view', {'id': advert.id}) }}">
+{{ advert.title }}
+</a>
+</li>
+
+<figure class="white">
+
+{% endfor %}
 						<figure class="white">
-							<a href="details.html">
+							<a href="/admin/modify">
 								<img src="img/actuality/psd-4.jpg" alt="" />
 							</a>
                             <div id="wrapper-part-info">
-                            	<div class="part-info-image"><img src="img/actuality/icon-psd.svg" alt="" width="28" height="28"/></div>
-                            	<div id="part-info">Wordpress theme</div>
+                            	 <div id="part-info">Actuality name</a></div>
 							              </div>
             </figure>
 <!-- End Display -->
-<p>
-  <br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br>
-</p>
 					</section>
 
 				</div>

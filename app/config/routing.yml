@@ -37,3 +37,8 @@ actuality:
     path: /admin/actuality
     defaults:
       _controller: EpiDevAdminBundle:Admin:actuality
+
+modifyActuality:
+    path: /admin/modify
+    defaults:
+      _controller: EpiDevAdminBundle:Actuality:modify
