@@ -8,8 +8,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class AdminController extends Controller
 {
-    public function modifyAction(Request $request)
+    public function actualityAction()
     {
-      return $this->render('EpiDevAdminBundle:Default:modify.html.twig');
+      $em = $this->getDoctrine()->getManager();
+
+      $actualities = $em->getRepository('EpiDevAdminBundle:Actuality')->findAll();
+
+       return $this->render('EpiDevAdminBundle:Default:actuality.html.twig', array('actualities' => $actualities) );
     }
+
 }
