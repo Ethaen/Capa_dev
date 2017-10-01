@@ -156,4 +156,3 @@ class Actuality
         return $this->img;
     }
 }
-

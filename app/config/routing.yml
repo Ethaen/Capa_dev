@@ -42,3 +42,13 @@ modifyActuality:
     path: /admin/modify
     defaults:
       _controller: EpiDevAdminBundle:Actuality:modify
+
+agency:
+    path: /admin/agency
+    defaults:
+      _controller: EpiDevAdminBundle:Agency:agency
+
+offer:
+    path: /admin/offer
+    defaults:
+      _controller: EpiDevAdminBundle:Offer:offer
