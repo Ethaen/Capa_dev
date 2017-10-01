@@ -138,23 +138,25 @@
 					<section class="work">
 <!-- Display of actualities -->
 {% for actuality in actualities %}
-<li>
-<a href="{{ path('oc_platform_view', {'id': advert.id}) }}">
-{{ advert.title }}
-</a>
-</li>
 
 <figure class="white">
-
+	<img src="img/actuality/psd-4.jpg" alt="" />
+</a>
+						<div id="wrapper-part-info">
+							 <div id="part-info">Actuality name</a></div>
+						</div>
+</figure>
 {% endfor %}
+<!--
 						<figure class="white">
-							<a href="/admin/modify">
-								<img src="img/actuality/psd-4.jpg" alt="" />
+							<a href="{{ path('oc_platform_view', {'id': advert.id}) }}">
+									<img src="img/actuality/psd-4.jpg" alt="" />
 							</a>
                             <div id="wrapper-part-info">
                             	 <div id="part-info">Actuality name</a></div>
 							              </div>
             </figure>
+-->
 <!-- End Display -->
 					</section>
 
