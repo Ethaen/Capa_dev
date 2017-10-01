@@ -34,24 +34,6 @@
 </div>
 
 <!-- Select form -->
-<center>
-<select id="agency" style="width:200px; height:40px;">
-  <option value="agence">Agence</option>
-  <option value="Paris" align="center">Paris</option>
-  <option value="Rennes" align="center">Rennes</option>
-  <option value="Marseille" align="center">Marseille</option>
-  <option value="Nanterre" align="center">Nanterre</option>
-</select>
-
-<select id="agency" style="width:200px; height:40px;">
-  <option value="activity" align="center">Secteur d'activité</option>
-  <option value="Restauration" align="center">Restauration</option>
-  <option value="Hotellerie" align="center">Hotellerie</option>
-  <option value="Batiment" align="center">Batiment</option>
-  <option value="Immobilier" align="center">Immobilier</option>
-</select>
-<button type="button" style="height:40px;">Filtrer</button>
-</center>
 <!-- Select form -->
 
 <!-- NAVBAR
@@ -141,10 +123,10 @@
 
 <figure class="white">
 <a href="{{ path('modifyActuality', {'id': actuality.id}) }}">
-	<img src="img/actuality/psd-4.jpg" alt="" />
+	<img src="{{ asset( 'img/actuality/' ~ actuality.img ) }}"  alt=""/>
 	</a>
 							<div id="wrapper-part-info">
-								 <div id="part-info">Actuality name</a></div>
+								 <div id="part-info">{{ actuality.Title }}</a></div>
 							</div>
 	</figure>
 
