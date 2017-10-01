@@ -13,9 +13,7 @@ class DefaultController extends Controller
        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'))  {
         return $this->render('EpiDevAdminBundle:Default:index.html.twig');
       }
-      else {
-        echo ('NON AUTH');
-      }
+        return $this->redirectToRoute('fos_user_security_login');
     }
 
 }
