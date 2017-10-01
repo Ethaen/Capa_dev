@@ -10,6 +10,8 @@ class ActualityController extends Controller
 {
     public function modifyAction(Request $request)
     {
+      echo 'ID : ' . $request->query->get('id');
+
       return $this->render('EpiDevAdminBundle:Default:modify.html.twig');
     }
 }
