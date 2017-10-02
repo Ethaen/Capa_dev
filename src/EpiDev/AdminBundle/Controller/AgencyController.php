@@ -11,9 +11,15 @@ class AgencyController extends Controller
     public function agencyAction(Request $request)
     {
       $em = $this->getDoctrine()->getManager();
-      $agencies = $em->getRepository('AppBundle:Agency')->findAll();
 
-      return $this->render('EpiDevAdminBundle:Default:agency.html.twig', array('agencies' => $agencies) );
+      $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+      $emails = $em->getRepository('EpiDevAdminBundle:email')->findAll();
+
+      return $this->render('EpiDevAdminBundle:Default:agency.html.twig', array('agencies' => $agencies, 'emails' => $emails) );
     }
 
+    public function addAction(Request $request)
+    {
+      return $this->render('EpiDevAdminBundle:Default:add_agency.html.twig');
+    }
 }

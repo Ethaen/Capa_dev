@@ -43,11 +43,20 @@ modifyActuality:
     defaults:
       _controller: EpiDevAdminBundle:Actuality:modify
 
+saveActuality:
+    path: /admin/saveActuality
+    defaults:
+      _controller: EpiDevAdminBundle:Actuality:saveActuality
+
 agency:
     path: /admin/agency
     defaults:
       _controller: EpiDevAdminBundle:Agency:agency
 
+add_agency:
+    path: /admin/add/agency
+    defaults:
+      _controller: EpiDevAdminBundle:Agency:add
 offer:
     path: /admin/offer
     defaults:
