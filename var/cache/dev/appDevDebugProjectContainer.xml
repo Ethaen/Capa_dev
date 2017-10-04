@@ -667,7 +667,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>3o0TmXdLJ4Mbj9yxsghMNm</argument>
+      <argument>5B1O4grkArbzvnuvgwbMzo</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -677,7 +677,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>3o0TmXdLJ4Mbj9yxsghMNm</argument>
+      <argument>5B1O4grkArbzvnuvgwbMzo</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -2494,12 +2494,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>59d188ea789570.48634644</argument>
+      <argument>59d557c6693272.06448039</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>59d188ea789570.48634644</argument>
+      <argument>59d557c6693272.06448039</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3280,17 +3280,17 @@
     </service>
     <service id="doctrine_cache.providers.doctrine.orm.default_metadata_cache" class="Doctrine\Common\Cache\ArrayCache">
       <call method="setNamespace">
-        <argument>sf2orm_default_9a70d6e46abc95f4d854dcf0fa1c369ff9b170c5be28737427a501a63c4cd742</argument>
+        <argument>sf_orm_default_c96a1e08023dd9c1f01a013039aae380a39eaa797a0b48f5585917b3276d3d7c</argument>
       </call>
     </service>
     <service id="doctrine_cache.providers.doctrine.orm.default_result_cache" class="Doctrine\Common\Cache\ArrayCache">
       <call method="setNamespace">
-        <argument>sf2orm_default_9a70d6e46abc95f4d854dcf0fa1c369ff9b170c5be28737427a501a63c4cd742</argument>
+        <argument>sf_orm_default_c96a1e08023dd9c1f01a013039aae380a39eaa797a0b48f5585917b3276d3d7c</argument>
       </call>
     </service>
     <service id="doctrine_cache.providers.doctrine.orm.default_query_cache" class="Doctrine\Common\Cache\ArrayCache">
       <call method="setNamespace">
-        <argument>sf2orm_default_9a70d6e46abc95f4d854dcf0fa1c369ff9b170c5be28737427a501a63c4cd742</argument>
+        <argument>sf_orm_default_c96a1e08023dd9c1f01a013039aae380a39eaa797a0b48f5585917b3276d3d7c</argument>
       </call>
     </service>
     <service id="doctrine.orm.default_entity_listener_resolver" class="Doctrine\Bundle\DoctrineBundle\Mapping\ContainerAwareEntityListenerResolver">
@@ -3943,7 +3943,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>-MdCzYsgvb</argument>
       <argument>0</argument>
-      <argument>3o0TmXdLJ4Mbj9yxsghMNm</argument>
+      <argument>5B1O4grkArbzvnuvgwbMzo</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3951,7 +3951,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>NI6Miu+eoD</argument>
       <argument>0</argument>
-      <argument>3o0TmXdLJ4Mbj9yxsghMNm</argument>
+      <argument>5B1O4grkArbzvnuvgwbMzo</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3959,7 +3959,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>I+PR34YyEy</argument>
       <argument>0</argument>
-      <argument>3o0TmXdLJ4Mbj9yxsghMNm</argument>
+      <argument>5B1O4grkArbzvnuvgwbMzo</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3967,7 +3967,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>i3z1T1CH8s</argument>
       <argument>0</argument>
-      <argument>3o0TmXdLJ4Mbj9yxsghMNm</argument>
+      <argument>5B1O4grkArbzvnuvgwbMzo</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4050,6 +4050,7 @@
     <service id="Swift_Transport" alias="swiftmailer.mailer.default.transport.spool" public="false"/>
     <service id="mailer" alias="swiftmailer.mailer.default"/>
     <service id="Doctrine\DBAL\Driver\Connection" alias="doctrine.dbal.default_connection" public="false"/>
+    <service id="Doctrine\DBAL\Connection" alias="doctrine.dbal.default_connection" public="false"/>
     <service id="Doctrine\Common\Persistence\ManagerRegistry" alias="doctrine" public="false"/>
     <service id="database_connection" alias="doctrine.dbal.default_connection"/>
     <service id="doctrine.dbal.event_manager" alias="doctrine.dbal.default_connection.event_manager" public="false"/>

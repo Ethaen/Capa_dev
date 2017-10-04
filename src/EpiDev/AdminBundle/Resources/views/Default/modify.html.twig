@@ -48,7 +48,12 @@
   <div>
     <p>Contenu :</p>
     <div id="contentEditor" style="height: 30%;">
-      {{ entity.Texte }}
+    </div>
+    <div id="old_content">
+    {{ entity.Texte }}
+    </div>
+    <div id="old_content2">
+    {{- entity.Texte | striptags -}}
     </div>
     <script>
     var quill = new Quill('#contentEditor', {
@@ -56,6 +61,11 @@
         toolbar: toolbarOptions
       }
     });
+    var without_html_length = document.getElementById('old_content2').innerHTML.length;
+    var txt_html = document.getElementById('old_content').innerHTML;
+    console.log(without_html_length);
+    console.log(txt_html);
+    quill.clipboard.dangerouslyPasteHTML(without_html_length, txt_html);
     </script>
   </div>
 
