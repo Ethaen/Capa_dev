@@ -5,6 +5,13 @@ namespace EpiDev\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class ActualityController extends Controller
 {
@@ -19,11 +26,10 @@ class ActualityController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
     $actuality = $em->getRepository('EpiDevAdminBundle:Actuality')->find($request->query->get('id'));
-    $title = $request->query->get('title');
-    $content = $request->query->get('content');
 
-    $actuality->setTitle($title);
-    $actuality->setTexte($content);
+    $actuality->setTitle($request->query->get('title'));
+    $actuality->setTexte($request->query->get('content'));
+    $actuality->setDate(new \DateTime($request->query->get('date')));
     $em->flush();
     return $this->redirectToRoute('actuality');
   }
