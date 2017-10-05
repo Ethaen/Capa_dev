@@ -2,9 +2,17 @@
 
 namespace EpiDev\AdminBundle\Controller;
 
+use EpiDev\AdminBundle\Entity\Agency;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class AgencyController extends Controller
 {
@@ -20,6 +28,18 @@ class AgencyController extends Controller
 
     public function addAction(Request $request)
     {
-      return $this->render('EpiDevAdminBundle:Default:add_agency.html.twig');
+      $agency = new Agency();
+
+        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $agency);
+      $formBuilder
+     ->add('name',      TextType::class)
+     ->add('adresse',     TextType::class)
+     ->add('city',   TextType::class)
+     ->add('telephone',    TextType::class)
+     ->add('save',      SubmitType::class);
+
+      $form = $formBuilder->getForm();
+      return $this->render('EpiDevAdminBundle:Default:add_agency.html.twig', array(
+      'form' => $form->createView()));
     }
 }

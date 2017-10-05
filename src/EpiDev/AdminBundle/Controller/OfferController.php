@@ -56,7 +56,43 @@ class OfferController extends Controller
         // Do not filter
         $offers = $em->getRepository('EpiDevAdminBundle:Offer')->findAll();
       }
-      return $this->render('EpiDevAdminBundle:Default:offer.html.twig', array('offers' => $offers) );
+
+      $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+      $domains = $em->getRepository('EpiDevAdminBundle:Domain')->findAll();
+      return $this->render('EpiDevAdminBundle:Default:offer.html.twig', array('offers' => $offers, 'agencies' => $agencies, 'domains' => $domains) );
     }
 
+    public function addAction()
+    {
+      return $this->render('EpiDevAdminBundle:Default:add_offer.html.twig');
+    }
+
+    public function editAction(Request $request)
+    {
+      return $this->render('EpiDevAdminBundle:Default:edit_offer.html.twig');
+    }
+
+    public function duplicateAction(Request $request)
+    {
+      $id = $request->query->get('id');
+
+      $em = $this->getDoctrine()->getManager();
+      $offer = $em->getRepository('EpiDevAdminBundle:Offer')->find($id);
+
+      $offer_copy = clone $offer;
+      $em->persist($offer_copy);
+      $em->flush();
+      return $this->redirectToRoute('offer');
+    }
+
+    public function deleteAction(Request $request)
+    {
+      $id = $request->query->get('id');
+      $em = $this->getDoctrine()->getManager();
+      $offer = $em->getRepository('EpiDevAdminBundle:Offer')->find($id);
+
+      $em->remove($offer);
+      $em->flush();
+      return $this->redirectToRoute('offer');
+    }
 }

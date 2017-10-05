@@ -37,12 +37,10 @@ actuality:
     path: /admin/actuality
     defaults:
       _controller: EpiDevAdminBundle:Admin:actuality
-
 modifyActuality:
     path: /admin/modify
     defaults:
       _controller: EpiDevAdminBundle:Actuality:modify
-
 saveActuality:
     path: /admin/saveActuality
     defaults:
@@ -52,12 +50,28 @@ agency:
     path: /admin/agency
     defaults:
       _controller: EpiDevAdminBundle:Agency:agency
-
 add_agency:
     path: /admin/add/agency
     defaults:
       _controller: EpiDevAdminBundle:Agency:add
+
 offer:
     path: /admin/offer
     defaults:
       _controller: EpiDevAdminBundle:Offer:offer
+add_offer:
+  path: /admin/add_offer
+  defaults:
+    _controller: EpiDevAdminBundle:Offer:add
+edit_offer:
+  path: /admin/edit_offer
+  defaults:
+    _controller: EpiDevAdminBundle:Offer:edit
+duplicate_offer:
+  path: /admin/duplicate_offer
+  defaults:
+    _controller: EpiDevAdminBundle:Offer:duplicate
+delete_offer:
+  path: /admin/delete_offer
+  defaults:
+    _controller: EpiDevAdminBundle:Offer:delete
