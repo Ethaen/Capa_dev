@@ -5,12 +5,12 @@ namespace EpiDev\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * MonthlyWorker
+ * Application
  *
- * @ORM\Table(name="monthly_worker")
- * @ORM\Entity(repositoryClass="EpiDev\AdminBundle\Repository\MonthlyWorkerRepository")
+ * @ORM\Table(name="application")
+ * @ORM\Entity(repositoryClass="EpiDev\AdminBundle\Repository\ApplicationRepository")
  */
-class MonthlyWorker
+class Application
 {
     /**
      * @var int
@@ -38,23 +38,16 @@ class MonthlyWorker
     /**
      * @var string
      *
-     * @ORM\Column(name="age", type="string", length=255)
+     * @ORM\Column(name="offer_name", type="string", length=255)
      */
-    private $age;
+    private $offerName;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="info", type="text")
+     * @ORM\Column(name="application_date", type="datetime")
      */
-    private $info;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="img", type="string", length=255)
-     */
-    private $img;
+    private $applicationDate;
 
 
     /**
@@ -72,7 +65,7 @@ class MonthlyWorker
      *
      * @param string $name
      *
-     * @return MonthlyWorker
+     * @return Application
      */
     public function setName($name)
     {
@@ -96,7 +89,7 @@ class MonthlyWorker
      *
      * @param string $firstname
      *
-     * @return MonthlyWorker
+     * @return Application
      */
     public function setFirstname($firstname)
     {
@@ -116,74 +109,50 @@ class MonthlyWorker
     }
 
     /**
-     * Set age
+     * Set offerName
      *
-     * @param string $age
+     * @param string $offerName
      *
-     * @return MonthlyWorker
+     * @return Application
      */
-    public function setAge($age)
+    public function setOfferName($offerName)
     {
-        $this->age = $age;
+        $this->offerName = $offerName;
 
         return $this;
     }
 
     /**
-     * Get age
+     * Get offerName
      *
      * @return string
      */
-    public function getAge()
+    public function getOfferName()
     {
-        return $this->age;
+        return $this->offerName;
     }
 
     /**
-     * Set info
+     * Set applicationDate
      *
-     * @param string $info
+     * @param \DateTime $applicationDate
      *
-     * @return MonthlyWorker
+     * @return Application
      */
-    public function setInfo($info)
+    public function setApplicationDate($applicationDate)
     {
-        $this->info = $info;
+        $this->applicationDate = $applicationDate;
 
         return $this;
     }
 
     /**
-     * Get info
+     * Get applicationDate
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getInfo()
+    public function getApplicationDate()
     {
-        return $this->info;
-    }
-
-    /**
-     * Set img
-     *
-     * @param string $img
-     *
-     * @return MonthlyWorker
-     */
-    public function setImg($img)
-    {
-        $this->img = $img;
-
-        return $this;
-    }
-
-    /**
-     * Get img
-     *
-     * @return string
-     */
-    public function getImg()
-    {
-        return $this->img;
+        return $this->applicationDate;
     }
 }

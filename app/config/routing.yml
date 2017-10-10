@@ -6,7 +6,7 @@ epi_dev_admin:
 home:
     path: /
     defaults:
-      _controller: AppBundle:Default:index
+      _controller: AppBundle:Home:index
 
 app:
     path: /default
@@ -75,3 +75,26 @@ delete_offer:
   path: /admin/delete_offer
   defaults:
     _controller: EpiDevAdminBundle:Offer:delete
+
+application:
+  path: /admin/application
+  defaults:
+    _controller: EpiDevAdminBundle:Application:view
+add_application:
+  path: /admin/add_application
+  defaults:
+    _controller: EpiDevAdminBundle:Application:add
+edit_application:
+  path: /admin/edit_application
+  defaults:
+    _controller: EpiDevAdminBundle:Application:edit
+duplicate_application:
+  path: /admin/duplicate_application
+  defaults:
+    _controller: EpiDevAdminBundle:Application:duplicate
+delete_application:
+  path: /admin/delete_application
+  defaults:
+    _controller: EpiDevAdminBundle:Application:delete
+
+# Public

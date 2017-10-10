@@ -63,3 +63,4 @@ class Domain
         return $this->name;
     }
 }
+
