@@ -30,6 +30,10 @@ class ActualityController extends Controller
     $actuality->setTitle($request->query->get('title'));
     $actuality->setTexte($request->query->get('content'));
     $actuality->setDate(new \DateTime($request->query->get('date')));
+    if ($request->query->get('image_id') && $request->query->get('image_name')) {
+      $actuality->setImgId("/admin/img/actuality/".$request->query->get('image_id'));
+      $actuality->setImgName($request->query->get('image_name'));
+    }
     $em->flush();
     return $this->redirectToRoute('actuality');
   }

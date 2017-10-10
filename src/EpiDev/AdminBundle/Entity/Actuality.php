@@ -45,9 +45,16 @@ class Actuality
     /**
      * @var string
      *
-     * @ORM\Column(name="img", type="string", length=255)
+     * @ORM\Column(name="img_id", type="string", length=255)
      */
-    private $img;
+    private $img_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="img_name", type="string", length=255)
+     */
+    private $img_name;
 
 
     /**
@@ -133,26 +140,50 @@ class Actuality
     }
 
     /**
-     * Set img
+     * Set img_id
      *
-     * @param string $img
+     * @param string $img_id
      *
      * @return Actuality
      */
-    public function setImg($img)
+    public function setImgId($img_id)
     {
-        $this->img = $img;
+        $this->img_id = $img_id;
 
         return $this;
     }
 
     /**
-     * Get img
+     * Get img_id
      *
      * @return string
      */
-    public function getImg()
+    public function getImgId()
     {
-        return $this->img;
+        return $this->img_id;
+    }
+
+    /**
+     * Set img_name
+     *
+     * @param string $img_name
+     *
+     * @return Actuality
+     */
+    public function setImgName($img_name)
+    {
+        $this->img_name = $img_name;
+
+        return $this;
+    }
+
+    /**
+     * Get img_name
+     *
+     * @return string
+     */
+    public function getImgName()
+    {
+        return $this->img_name;
     }
 }

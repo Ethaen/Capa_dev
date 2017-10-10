@@ -30,7 +30,23 @@
   </div>
 
   <div align="right">
-    <img src="img/actuality/{{ entity.Img }}" height="15%"/>
+    <img id="image" src="{{ entity.ImgId }}" height="15%">
+    <div>
+      <input type="file" id="upload" accept="image/*" style="margin-top: 2%;">
+      <script>
+      file = "";
+      image_name = "";
+      image_id = "";
+      $('#upload').change(
+        function(event) {
+          file = event.target.files[0];
+          image_name = document.getElementById('upload').files[0].name;
+          extension = "."+image_name.split('.').pop();
+          $("#image").fadeIn("fast").attr('src', URL.createObjectURL(event.target.files[0]));
+        }
+      );
+      </script>
+    </div>
   </div>
 
   <div>
@@ -50,16 +66,42 @@
   <div>
     <button onclick="save()" style="margin-top: 2%;">Save</button>
     <script type="text/javascript">
-    function save() {
-      bkLib.onDomLoaded(nicEditors.allTextAreas);
+    function save()
+    {
       var title = document.getElementById('title').innerText;
       var content = $('#content_area').find('.nicEdit-main').html();
       var date = document.getElementById('datepicker').value;
       var id = "{{ entity.id }}";
-      var path = "{{ path('saveActuality') }}"+"?title="+title+"&content="+content+"&date="+date+"&id="+id;
 
-      window.location.replace(path);
+      if (file) {
+        image_id = makeId()+extension;
+        var form_data = new FormData();
+        form_data.append('file', file);
+        form_data.append('image_id', image_id);
+        $.ajax({
+          url: '/admin/upload.php',
+          dataType: 'text',
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data,
+          type: 'post',
+        });
+      }
+
+      window.location.replace("{{ path('saveActuality') }}"+"?title="+title+"&image_id="+image_id+"&image_name="+image_name+"&content="+content+"&date="+date+"&id="+id);
     }
+    function makeId()
+    {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random()*possible.length));
+
+      return text;
+    }
+
     </script>
   </div>
 
