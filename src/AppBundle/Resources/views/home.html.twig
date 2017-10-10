@@ -1,1 +1,36 @@
- 
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+Availaible offer :
+{{ available_offer }}
+
+<br>
+
+{% for offer in last_offers %}
+Id : {{ offer.id }}
+<br>
+{% endfor %}
+
+
+{% for worker in month_workers %}
+<br>
+Name : {{ worker.name }}
+{% endfor %}
+
+<br>
+Actualities : 
+{% for actuality in actualities %}
+<br>
+Name : {{ actuality.title }}
+{% endfor %}
+
+</body>
+
+
+</html>

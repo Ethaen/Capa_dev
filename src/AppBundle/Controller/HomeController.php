@@ -8,13 +8,41 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * @Route("/", name="homepage")
-     */
+
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('home.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $available_offer = 0;
+        $offers = $em->getRepository('EpiDevAdminBundle:Offer')->findAll();
+
+        foreach ($offers as $offer)
+        {
+          if ( $offer->getActive())
+            $available_offer++;
+        }
+        $query = $em->createQuery(
+            'SELECT p
+            FROM EpiDevAdminBundle:Offer p
+                        ORDER BY p.id DESC'
+        )->setMaxResults(3);
+        $last_offers = $query->getResult();
+
+        $query = $em->createQuery(
+            'SELECT p
+            FROM EpiDevAdminBundle:MonthlyWorker p'
+        )->setMaxResults(3);
+        $month_workers = $query->getResult();
+
+        $query = $em->createQuery(
+            'SELECT p
+            FROM EpiDevAdminBundle:Actuality p
+            ORDER BY p.id DESC'
+        )->setMaxResults(3);
+        $actualities = $query->getResult();
+
+        return $this->render('AppBundle::home.html.twig', array('available_offer' => $available_offer,
+                             'last_offers' => $last_offers, 'month_workers' => $month_workers,
+                             'actualities' => $actualities) );
     }
 
     public function loginAction(Request $request)
