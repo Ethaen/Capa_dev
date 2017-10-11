@@ -13,4 +13,8 @@ class AccountfrontController extends Controller
         return $this->render('AppBundle::personnal_space.html.twig');
     }
 
+    public function login_registerAction(Request $request)
+    {
+      return $this->render('AppBundle::login_register.html.twig');
+    }
 }

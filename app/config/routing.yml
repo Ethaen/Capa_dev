@@ -142,3 +142,8 @@ personnal_space:
     path: /personnal_space
     defaults:
       _controller: AppBundle:Accountfront:personnal_space
+
+login_register:
+    path: /login.html
+    defaults:
+        _controller: AppBundle:Accountfront:login_register
