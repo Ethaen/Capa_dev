@@ -104,7 +104,22 @@ list_offers:
     defaults:
       _controller: AppBundle:Offerfront:list
 
+offer_details:
+    path: /offer_details
+    defaults:
+      _controller: AppBundle:Offerfront:details
+
 list_actuality:
     path: /list_actuality
     defaults:
       _controller: AppBundle:Actualityfront:list
+
+contact:
+    path: /contact
+    defaults:
+      _controller: AppBundle:Contactfront:index
+
+spontaneous_application:
+    path: /spontaneous_application
+    defaults:
+      _controller: AppBundle:Applicationfront:index

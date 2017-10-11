@@ -11,9 +11,12 @@ class OfferfrontController extends Controller
 
     public function listAction(Request $request)
     {
-
-
       return $this->render('AppBundle::offer.html.twig');
+    }
+
+    public function detailsAction(Request $request)
+    {
+      return $this->render('AppBundle::offer_details.html.twig');
     }
 
 }

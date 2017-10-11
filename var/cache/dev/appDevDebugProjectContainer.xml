@@ -483,6 +483,12 @@
     <service id="AppBundle\Controller\ActualityfrontController" class="AppBundle\Controller\ActualityfrontController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
+    <service id="AppBundle\Controller\ApplicationfrontController" class="AppBundle\Controller\ApplicationfrontController" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
+    <service id="AppBundle\Controller\ContactfrontController" class="AppBundle\Controller\ContactfrontController" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
     <service id="AppBundle\Controller\HomeController" class="AppBundle\Controller\HomeController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
@@ -505,7 +511,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id="service_locator.1c9285faf4e5fa15257446a7bfcb942e"/>
+      <argument type="service" id="service_locator.51639d61a7c960465b81752a7b08cf9c"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -673,7 +679,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>Mwt44HsHWBnILM1w4ZW++m</argument>
+      <argument>kHWGZszue931KL6m1q+8X6</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -683,7 +689,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>Mwt44HsHWBnILM1w4ZW++m</argument>
+      <argument>kHWGZszue931KL6m1q+8X6</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -2492,12 +2498,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>59dd9ce7131782.32892306</argument>
+      <argument>59dda7f4250df7.80938582</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>59dd9ce7131782.32892306</argument>
+      <argument>59dda7f4250df7.80938582</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3715,11 +3721,23 @@
     </service>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\ActualityfrontController" class="AppBundle\Controller\ActualityfrontController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\ActualityfrontController" class="AppBundle\Controller\ActualityfrontController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\ApplicationfrontController" class="AppBundle\Controller\ApplicationfrontController" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\ApplicationfrontController" class="AppBundle\Controller\ApplicationfrontController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\ContactfrontController" class="AppBundle\Controller\ContactfrontController" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\ContactfrontController" class="AppBundle\Controller\ContactfrontController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\HomeController" class="AppBundle\Controller\HomeController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\HomeController" class="AppBundle\Controller\HomeController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\OfferfrontController" class="AppBundle\Controller\OfferfrontController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\OfferfrontController" class="AppBundle\Controller\OfferfrontController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="service_locator.2eb612094fae32a921ede247e30813e6" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
+    <service id="service_locator.a3b88308b319dd93736e8221ebdbe945" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
+    <service id="service_locator.84a3c571cd70d5f3295fc0657fa2b8fa" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
@@ -3731,7 +3749,7 @@
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
-    <service id="service_locator.1c9285faf4e5fa15257446a7bfcb942e" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.51639d61a7c960465b81752a7b08cf9c" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
@@ -3953,7 +3971,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>-MdCzYsgvb</argument>
       <argument>0</argument>
-      <argument>Mwt44HsHWBnILM1w4ZW++m</argument>
+      <argument>kHWGZszue931KL6m1q+8X6</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3961,7 +3979,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>NI6Miu+eoD</argument>
       <argument>0</argument>
-      <argument>Mwt44HsHWBnILM1w4ZW++m</argument>
+      <argument>kHWGZszue931KL6m1q+8X6</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3969,7 +3987,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>I+PR34YyEy</argument>
       <argument>0</argument>
-      <argument>Mwt44HsHWBnILM1w4ZW++m</argument>
+      <argument>kHWGZszue931KL6m1q+8X6</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3977,7 +3995,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>i3z1T1CH8s</argument>
       <argument>0</argument>
-      <argument>Mwt44HsHWBnILM1w4ZW++m</argument>
+      <argument>kHWGZszue931KL6m1q+8X6</argument>
       <argument>/var/www/html/Capa_dev/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>

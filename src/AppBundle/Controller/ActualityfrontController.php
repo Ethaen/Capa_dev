@@ -13,7 +13,6 @@ class ActualityfrontController extends Controller
         $em = $this->getDoctrine()->getManager();
         $actualities = $em->getRepository('EpiDevAdminBundle:Actuality')->findAll();
 
-        var_dump($actualities);
         return $this->render('AppBundle::actuality.html.twig', array('actualities' => $actualities));
     }
 

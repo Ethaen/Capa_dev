@@ -146,7 +146,7 @@ class Actuality
      *
      * @return Actuality
      */
-    public function setImgId($img_id)
+    public function setImg_id($img_id)
     {
         $this->img_id = $img_id;
 
@@ -158,7 +158,7 @@ class Actuality
      *
      * @return string
      */
-    public function getImgId()
+    public function getImg_id()
     {
         return $this->img_id;
     }
