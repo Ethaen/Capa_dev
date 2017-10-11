@@ -27,4 +27,19 @@ class AccountfrontController extends Controller
     {
       return $this->render('AppBundle::lost_password.html.twig');
     }
+
+    public function my_informationsAction(Request $request)
+    {
+      return $this->render('AppBundle::my_informations.html.twig');
+    }
+
+    public function my_alertsAction(Request $request)
+    {
+      return $this->render('AppBundle::my_alerts.html.twig');
+    }
+
+    public function modify_infoAction(Request $request)
+    {
+      return $this->render('AppBundle::modify_info.html.twig');
+    }
 }

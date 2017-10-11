@@ -157,3 +157,18 @@ lost_password:
     path: /lost_password.html
     defaults:
         _controller: AppBundle:Accountfront:lost_password
+
+my_informations:
+    path: /my_informations
+    defaults:
+        _controller: AppBundle:Accountfront:my_informations
+
+information_modify:
+    path: /modify_info
+    defaults:
+        _controller: AppBundle:Accountfront:modify_info
+
+my_alerts:
+    path: /my_alerts
+    defaults:
+        _controller: AppBundle:Accountfront:my_alerts
