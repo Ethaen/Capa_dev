@@ -147,3 +147,8 @@ login_register:
     path: /login.html
     defaults:
         _controller: AppBundle:Accountfront:login_register
+
+lost_password:
+    path: /lost_password.html
+    defaults:
+        _controller: AppBundle:Accountfront:lost_password

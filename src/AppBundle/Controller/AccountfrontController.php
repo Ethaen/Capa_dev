@@ -22,4 +22,9 @@ class AccountfrontController extends Controller
 
       return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs, 'agencies' => $agencies));
     }
+
+    public function lost_passwordAction(Request $request)
+    {
+      return $this->render('AppBundle::lost_password.html.twig');
+    }
 }
