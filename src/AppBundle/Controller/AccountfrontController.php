@@ -15,6 +15,11 @@ class AccountfrontController extends Controller
 
     public function login_registerAction(Request $request)
     {
-      return $this->render('AppBundle::login_register.html.twig');
+      $em = $this->getDoctrine()->getManager();
+      $domain_activity = $em->getRepository('EpiDevAdminBundle:Domain')->findAll();
+      $jobs = $em->getRepository('EpiDevAdminBundle:Job')->findAll();
+      $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+
+      return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs, 'agencies' => $agencies));
     }
 }
