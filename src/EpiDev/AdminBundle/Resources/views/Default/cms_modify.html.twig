@@ -1,0 +1,90 @@
+<html>
+<head>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+
+  <center style="margin-bottom: 2%;">
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+    <br><br><br>HEADER<br><br><br>
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+  </center>
+
+  <b>Général</b>
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Nom :</p>
+    <div id="name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{ entity.name }}
+    </div>
+  </div>
+
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Titre de l'article :</p>
+    <div id="article_title" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{ entity.articleTitle }}
+    </div>
+  </div>
+
+  <div>
+    <p>Contenu :</p>
+    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+    <script type="text/javascript">
+    bkLib.onDomLoaded(function() { nicEditors.allTextAreas({buttonList : ['fontSize','bold','italic','underline']}) });
+    </script>
+    <form id="content">
+      <textarea style="width: 100%; height: 20%;">{{ entity.content }}</textarea>
+    </form>
+  </div>
+
+  <br><br><b>Référencement</b>
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Nom dans l'URL :</p>
+    <div id="url_name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{ entity.urlName }}
+    </div>
+  </div>
+
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Titre :</p>
+    <div id="meta_title" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{ entity.metaTitle }}
+    </div>
+  </div>
+
+  <div>
+    <p>Description :</p>
+    <div id="description" contenteditable="true" style="height: 15%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{ entity.description }}
+    </div>
+  </div>
+
+  <div>
+    Indexer<input type="checkbox" id="indexed">
+  </div>
+
+  <div>
+    <button onclick="save()" style="margin-top: 2%;">Save</button>
+    <script type="text/javascript">
+    function save()
+    {
+      var name = document.getElementById('name').innerText;
+      var article_title = document.getElementById('article_title').innerText;
+      var content = $('#content').find('.nicEdit-main').html();
+      var url_name = document.getElementById('url_name').innerText;
+      var meta_title = document.getElementById('meta_title').innerText;
+      var description = document.getElementById('description').innerText;
+      var indexed = document.getElementById('indexed').checked ? 1 : 0;
+      var id = "{{ entity.id }}";
+
+      window.location.replace("{{ path('saveCMS') }}"+"?name="+name+"&article_title="+article_title+"&content="+content+"&url_name="+url_name+"&meta_title="+meta_title+"&description="+description+"&indexed="+indexed+"&id="+id);
+    }
+    </script>
+  </div>
+
+
+</body>
+
+</html>

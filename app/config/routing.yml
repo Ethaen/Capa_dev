@@ -41,6 +41,20 @@ saveActuality:
     defaults:
       _controller: EpiDevAdminBundle:Actuality:saveActuality
 
+cms:
+  path: /admin/cms
+  defaults:
+    _controller: EpiDevAdminBundle:Admin:cms
+modifyCMS:
+  path: /admin/modifyCMS
+  defaults:
+    _controller: EpiDevAdminBundle:CMS:modifyCMS
+saveCMS:
+  path: /admin/saveCMS
+  defaults:
+    _controller: EpiDevAdminBundle:CMS:saveCMS
+
+
 agency:
     path: /admin/agency
     defaults:
