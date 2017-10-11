@@ -1,0 +1,858 @@
+/*
+
+Website: Capa Intérim
+Author: Zeste d'Idées
+Author URI: https://www.zeste-didees.com
+Version: 1.0
+
+*/
+
+body {
+    
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #1c4360;
+    line-height: normal;
+
+}
+
+a, a:hover, a:focus {
+    color: #1c4360;
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+a.btn.btn-default {
+    background-color: #1c4360;
+    border: none;
+    color: #FFF;
+    border-radius: 0;
+    text-transform: uppercase;
+    padding: 15px 40px;
+    margin-bottom: 20px;
+    line-height: normal;
+}
+
+a.btn.btn-default.yellow {
+    margin: 20px 0;
+    background-color: #e2a41a;
+}
+
+a.btn.btn-default.yellow:hover, #results .annonce a.more:hover {
+    background-color: #a0a0a0;
+}
+
+
+a.btn.btn-default:hover {
+    background-color: #e2a41a;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#offres a:hover, #interimaires a:hover, #partners a:hover, #team a:hover, #actus a:hover {
+    text-decoration: none;
+}
+
+.box a:hover {text-decoration: none;}
+
+h1, h2, h3, h4 {
+    font-family: 'gobold_thinregular';
+    text-align: center;
+    display: inline-block;
+    color: #1c4360;
+    text-transform: uppercase;
+    line-height: normal;
+}
+
+h1 {
+    font-size: 40px; color: #FFF;
+    margin: 10px 0;
+}
+
+h2 {
+    font-size: 28px;
+    border-bottom: 5px solid #e2a41a;
+    padding-bottom: 10px;
+    margin: 0 0 30px 0;
+}
+
+h3 {font-size: 18px;}
+
+h3, h4 { font-family: 'goboldregular'; }
+
+
+
+/* Menu */
+
+#menu .navbar {
+    background-color: #FFF;
+    padding: 20px 0;
+    margin-bottom: 0;
+    border: none;
+}
+
+#menu .navbar-nav {float: right;}
+
+#menu .navbar-nav .active a {background: none;}
+
+
+
+#menu .navbar-nav li a {
+    font-family: 'gobold_thinregular';
+    font-size: 17px;
+    color: #1c4360;
+    text-transform: uppercase;
+    padding:0;
+    position: relative;
+}
+
+#menu .navbar-nav li {padding:30px 25px 15px 25px;}
+
+#menu .navbar-nav li a:after {
+    display:block;
+    padding-top: 10px;
+    content: '';
+    border-bottom: solid 5px #f5a600;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+}
+
+#menu .navbar-nav li a:hover:after, #menu .navbar-nav li.active a:after  {
+    transform: scaleX(1);
+}
+
+#menu .navbar-nav li.active a:after {
+    border-bottom: solid 5px #f5a600;  
+}
+
+
+#menu .navbar-nav li a.compte {color: #f5a600!important;}
+
+#menu .navbar-nav li a.compte:before {
+    
+    font-family: 'FontAwesome';     
+    color: #f5a600;
+    font-size: 18px;
+    content: '\f2c0';
+    margin-right: 5px;
+}
+
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 0;
+  width: auto;
+}
+
+/* */
+
+
+
+#slider img {max-height: 550px; width: 100%; background-size: cover;}
+
+.box {background-color: #FFF; padding: 15px; }
+
+#interimaires, #chiffres, #partners, #team, #actus, footer {padding: 60px 0;}
+
+#search-title, #offres #last, footer, #agences-list {background-color: #1c4360;}
+
+#search-title h2, #offres h2, #chiffres h2, footer h2 {color: #FFFFFF!important;}
+
+.container {text-align: center;}
+
+
+/* Moteur Recherche D'Emploi */
+
+#search-title {padding-top:30px;}
+
+
+#search-form {
+    background-color: #edeceb;
+    padding: 25px 0;
+}
+
+
+a.btn.search {
+    padding: 11px 14px;
+    font-size: 22px;
+    background-color: #e2a41a;
+    margin-bottom: 0;
+    display: block;
+}
+
+#search-form a.btn.search:hover {background-color: #1c4360;}
+
+#search-form input, #search-form select {
+    -moz-box-shadow: 0px 0px 10px 0px #666;
+    -webkit-box-shadow: 0px 0px 10px 0px #666;
+    -o-box-shadow: 0px 0px 10px 0px #666;
+    box-shadow: 0px 0px 10px 0px #666;
+    font-style: italic;
+    font-size: 16px;
+    color: #686868;
+    width:100%;
+    padding: 15px 0;
+    border: none;
+
+}
+
+#search-form #keyword, #search-form #city, #search-form #type, #search-form #activite {
+    position: relative;
+}
+#search-form #keyword:before, #search-form #city:before, #search-form #type:before, #search-form #activite:before {
+    font-family: 'FontAwesome';     
+    position: absolute; 
+    left: 0; 
+    top: 0;
+    z-index: 1;
+    text-align: center;
+    width: 10%;
+    height: 100%;      
+    pointer-events: none;
+    box-sizing: border-box;
+    padding: 10px;
+    color: #e2a41a;
+    font-size: 25px;
+}
+
+#search-form #keyword input, #search-form #activite input {
+    text-indent: 45px;
+}
+
+@-moz-document url-prefix() {
+    select {
+       text-indent: 40px;
+    }
+}
+
+#search-form #city input {
+    text-indent: 40px;
+}
+
+#search-form #type select {
+    border-radius: 0;
+    text-indent: 40px;
+
+}
+
+
+#search-form #keyword:before {
+    content:'\f02c'; 
+}
+
+#search-form #city:before {
+    content:'\f041'; 
+}
+
+#search-form #type:before {
+    content:'\f15c'; 
+}
+
+#search-form #activite:before {
+    content:'\f0b1'; 
+}
+
+
+#search-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    height: 49px; 
+    font-size: 16px;
+}
+
+#search-form #type:after {
+    font-family: 'FontAwesome';     
+    content:'\f0d7'; 
+    position: absolute; 
+    right: 0; 
+    top: 0;
+    z-index: 1;
+    text-align: center;
+    width: 20%;
+    height: 100%;      
+    pointer-events: none;
+    box-sizing: border-box;
+    padding: 10px;
+    color: #e2a41a;
+    font-size: 25px;
+
+}
+
+
+/* Offres D'Emploi */
+
+
+#offres {
+    background: url(../images/map.jpg) no-repeat top right;
+}
+
+#offres #counter span.chiffre {
+    font-family: 'goboldregular';
+    font-size: 70px;
+    color: #FFF;
+    width: 70px;
+    height: 120px;
+    margin:0 5px;
+    display: inline-block;
+    line-height: 120px;
+    text-align: center;
+}
+
+#offres #counter {padding: 50px 0; text-align: left;}
+#offres #counter .col-lg-4 {text-align: right;}
+#offres #counter span.chiffre.bleu { 
+    background: linear-gradient(0deg, #2f526c 50%, #1c4360 50%);
+}
+#offres #counter span.chiffre.jaune {
+        background: linear-gradient(0deg, #e7b33f 50%, #e2a41a 50%);
+}
+
+#offres #counter #arrow {
+    background: url(../images/fleche.png) no-repeat top right;
+    font-family: 'goboldregular';
+    font-size: 50px;
+    color: #1c4360;
+    line-height: 60px;
+    text-transform: uppercase;
+}
+
+#offres #counter a.btn {margin-top:60px;}
+
+#offres #last {padding: 30px;}
+
+#offres .annonce {margin: 30px 10px 0 10px;}
+
+#offres .annonce .box {text-align: left;}
+
+#offres #last .annonce .box h3 {text-align: left; margin: 0 0 10px 0; display: block; }
+
+#offres .annonce .box p {display: inline-block; margin-bottom: 0;}
+#offres .annonce .box p.type {float: right;}
+
+#offres .annonce:hover .box {
+    background-color: #e2a41a;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+
+
+
+
+/* Intérimaires */
+
+#interimaires .personne, #actus .article, #team img {
+    margin-top: 20px;
+    -moz-box-shadow: 0px 0px 15px 0px #666;
+    -webkit-box-shadow: 0px 0px 15px 0px #666;
+    -o-box-shadow: 0px 0px 15px 0px #666;
+    box-shadow: 0px 0px 15px 0px #666;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#666, Direction=NaN, Strength=15);
+}
+
+#interimaires .personne p.name {font-size: 18px; font-weight: 600; margin-bottom: 5px;}
+#interimaires .personne p.age {font-size: 16px; font-weight: 300; font-style: italic; margin-bottom: 0;}
+
+#interimaires .personne a:hover .box {
+    color: #FFF; 
+    background-color: #1c4360;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+/* Chiffres */
+
+#chiffres {
+    background: url(../images/bg-chiffres.jpg) no-repeat center;
+    background-size: cover;
+}
+
+#chiffres .rond {
+    width: 220px;
+    height: 220px;
+    border-radius: 110px;
+    border: 3px solid #e2a41a;
+    background-color: #FFF;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#chiffres .rond:hover {
+    background-color: #e2a41a;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+#chiffres .rond p {
+    text-transform: uppercase;
+    color: #1c4360; 
+    font-size: 18px; 
+    font-weight: 600; 
+    margin-bottom: 0;
+}
+
+#chiffres .rond span.count, #chiffres .rond span.counted { 
+    display: block; 
+    font-family: 'goboldregular';
+    font-size: 70px;
+    font-weight: normal;
+    line-height: normal;
+}
+
+#chiffres .rond span.counted.pourcentage:after {
+    content: '%';
+}
+
+
+/* Partenaires */
+
+#partners .brand p.desc {margin-bottom: 5px;}
+#partners .brand p.city {font-weight: 600;}
+
+#partners .brand, #team .member {margin: 20px 0; text-align: center;}
+
+#partners .brand .img-responsive, #team .member .img-responsive {
+    display:inline-block; 
+    margin-bottom: 20px;
+}
+
+#partners .brand a:hover, #team .member a:hover {
+    color: #e2a41a;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+/* Équipe */
+
+#team {
+    background: #e2e2e2 url(../images/bg-team.png) no-repeat center bottom;
+    padding: 70px 0;
+}
+
+#team img.bleu {border: 5px solid #1c4360;}
+#team img.jaune {border: 5px solid #e2a41a;}
+
+#team p.name {font-size: 20px; font-weight: 600; margin-bottom: 5px;}
+#interimaires .personne p.age {font-size: 18px; font-weight: 300; font-style: italic; margin-bottom: 0;}
+
+
+
+
+/* Actualités */
+
+
+
+#actus .article .box p.date { 
+    text-transform: uppercase; 
+    font-size: 16px; 
+    font-weight: 300; 
+    font-style: italic; 
+}
+
+#actus .article:hover .box {
+    background-color: #e2a41a;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#actus .article .box a.btn:hover {
+    color: #1c4360;
+    background-color: #FFF;
+}
+
+/* Formulaire de contat */
+
+#contact-form {
+    background-color: #FFF;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; 
+    padding: 30px 30px 0 30px;
+}
+
+#contact-form h4 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #282828;
+    margin-top: 0;
+}
+#contact-form h4:after {
+    content: "";
+    height: 10px;
+    width: 50%;
+    border-bottom: 10px solid #e2a41a;
+    display: inline-block;
+}
+
+#contact-form p {
+    color: #474747;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 2px;
+}
+
+footer .col-md-5 a.btn.btn-default.submit {
+    background-color: #e2a41a;
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 18px;
+}
+
+footer .col-md-5 a.btn.btn-default.submit:hover {
+    background-color: #a0a0a0;
+}
+
+#contact-form input, #contact-form textarea {
+    padding: 10px 15px; 
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #a0a0a0;
+    width:100%;
+    font-style: italic;
+    font-size: 14px;
+}
+
+/* Liste Agences */
+
+.agence {
+    text-align: left;
+    margin: 10px 0;
+    padding-left: 10px;    
+}
+
+footer #agences {
+    margin-left: 25px;
+    margin-left: 25px;
+}
+
+footer #agences .col-sm-6:first-child { 
+    border-bottom: 1px solid #e2a41a;
+}
+
+footer #agences .col-sm-6:nth-child(2) {
+    border-left: 1px solid #e2a41a;
+    border-bottom: 1px solid #e2a41a;
+}
+
+footer #agences .col-sm-6:last-child { 
+    border-left: 1px solid #e2a41a;
+}
+
+.agence h3, .agence a {color: #FFF;}
+
+.agence h3 {margin-bottom: 0;}
+
+.agence a {
+    display: block;
+    margin: 10px 0;
+}
+
+.agence a.tel, .agence a.email {line-height: 40px;}
+
+.agence a.adresse {text-transform: uppercase;}
+
+.agence a:before {
+    font-family: 'Glyphicons Halflings';
+    color: #e2a41a;
+    float: left;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.agence a.tel:before {
+    content: '\e182';
+}
+
+.agence a.adresse:before {
+    content:'\e062';
+}
+
+.agence a.email:before {
+    content: '\2709';
+}
+
+#agences-list .agence {
+    border-right: 1px solid #e2a41a;
+    padding-left: 0;
+}
+
+#agences-list .col-sm-6:last-child .agence {
+    border-right: 0 ;
+}
+
+#agences-list h2 {color: #FFF;}
+
+/* Réseaux Sociaux */
+
+#social {padding-top: 30px;}
+
+#social ul {list-style: none; padding-left: 0;}
+#social ul li {display: inline-block;}
+#social ul li a {
+    display: block; 
+    margin: 0 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    color: #FFF;
+    background-color: #e2a41a;
+}
+
+#social ul li a:hover {
+    background-color: #FFF;
+    color: #e2a41a;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+#social ul li a i.fa {
+    font-size: 25px;
+    line-height: 50px;
+}
+
+/* Copyright */
+
+#copyright {background-color: #FFF; padding: 10px 0; font-size: 13px; color: #333;}
+#copyright p {text-align: left; margin:0;}
+#copyright a {color: #333;}
+
+
+/* Content */
+
+#page-title {
+    background-color: #1c4360;
+    padding: 15px 0;
+    border-bottom: 5px solid #e2a41a;
+}
+
+#expertises, #why, #download, #agences-list {padding: 50px 0;}
+
+
+#expertises .metier h3{ padding: 10px 0; font-family: 'gobold_thinregular';
+    background: rgba(28,67,93,0.5); color: #FFF; position: absolute; top: 28%;
+    left: 0; width: 100%; margin: 0;}
+
+#expertises .metier:hover h3 {
+     background: rgba(28,67,93,1);
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+.grey_bg {background-color: #e2e2e2;}
+
+#expertises .metier {margin: 15px 0; position: relative; width: 100%;}
+
+#why .container {text-align: left;}
+#why h2 {border-bottom: 0; margin-bottom: 10px;}
+
+#download #arrow {
+    background: url(../images/fleche.png) no-repeat top right;
+    font-family: 'gobold_thinregular';
+    font-size: 30px;
+    color: #1c4360;
+    text-transform: uppercase;
+    text-align: right;
+    padding-right: 150px;
+}
+
+#download .col-sm-5 {text-align: left;}
+
+#download a.btn {margin-top:30px;}
+
+#social.grey_bg {padding: 30px 0;}
+
+/* Recherche Emploi */
+
+#search {background-color: #1c4360; padding: 50px 0;}
+#search .page-title {background-color: #FFF;padding-top: 30px;}
+
+#search h2 {color: #1c4360;}
+#search #results h2 {color: #FFF;}
+
+/* Résultat Annonces */
+
+#results:before {
+    font-family: 'FontAwesome';     
+    color: #e2a41a;
+    font-size: 100px;
+    content: '\f0d7';
+    -webkit-text-stroke-width: 5px;
+    -webkit-text-stroke-color: #FFF;
+    display: block;
+}
+
+#results:after {
+    font-family: 'FontAwesome';     
+    font-size: 80px;
+    content: '\f0d7';
+    color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #FFF;
+    display: block;
+}
+
+#results .annonce {
+    background-color: #FFF; 
+    text-align: left;
+    margin-bottom: 10px; 
+   display: table;
+}
+
+#results .annonce > [class*="col-"] {
+    display: table-cell;
+    float:none;
+        vertical-align:top;
+
+}
+
+#results .annonce h3 {
+    font-family: 'gobold_thinregular';
+    font-size: 28px; 
+    text-align: left;
+    padding-left: 10px;
+    margin: 15px 0;
+}
+
+#results .annonce .col-sm-4:after {
+    
+    font-family: 'FontAwesome';     
+    color: #e2a41a;
+    font-size: 40px;
+    content: '\f0da';
+    float: right;
+    margin: 18px 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    
+}
+
+#results .annonce .col-md-1.no-padding {
+
+}
+
+#results .annonce p {color: #000; margin: 15px 0;}
+#results .annonce a.more {
+    background-color: #e2a41a; 
+    margin: 0; 
+    padding: 14px 10px; 
+    font-size: 12px; 
+    position: absolute; 
+    width:100%;
+    min-height: 100%;
+}
+
+#results .annonce a.more i.fa {display: block; font-size: 25px;}
+
+
+/* Col 5 */
+
+.col-5 {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 20%;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+    #menu .navbar-nav li {padding:30px 15px 15px 15px;}
+    #offres .annonce .box p {display: block;}
+    #offres .annonce .box p.type {float: none;margin-top: 5px;}
+}
+
+@media (max-width: 768px) {
+    #offres #counter .col-sm-12 {
+        text-align: center;
+    }
+    
+    #offres .annonce {
+        margin: 30px 0 0 0;
+    }
+    
+    #expertises .metier h3 {top:45%;}
+    
+    #search-form input, #search-form select {margin-bottom: 30px;}
+    
+    #agences-list .col-sm-6:nth-child(2) .agence {border-right: none;}
+    
+    .col-5 {width: 100%;}
+    
+    #menu .navbar {text-align: center;}
+    
+    .navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand {float:none;}
+    
+
+}
+
+@media (max-width: 480px) {
+    #menu .navbar-nav {float: none;}
+    h2 {font-size: 26px;}
+    #offres #counter .col-md-4, #download .col-sm-5 {text-align: center;}
+    #offres #counter #arrow, #download #arrow {background: none; text-align: center; margin-top: 30px;}
+    #download #arrow {padding-right: 0;}
+    #offres #counter a.btn {margin-top: 30px;}
+    #interimaires .personne, #chiffres .rond, #actus .article {margin-bottom: 30px;}
+      
+    #agences .col-sm-6 {border: none!important;}
+    #agences .col-sm-6 .agence, #agences-list .agence  {border-top:1px solid #e2a41a; padding:0;margin-bottom: 20px;}
+    #agences-list .agence {border-right: none;}
+    #agences .col-sm-6:first-child .agence, #agences-list .col-sm-6:first-child .agence  {border-top: none;}
+    
+    
+    #results .annonce .col-sm-4:after {content: '';}
+    
+    #why img {margin-bottom: 30px;}
+    
+    #menu .navbar-collapse {margin-top: 20px;}
+    
+    #results .annonce {margin-bottom: 20px; display:block;}
+    a.btn.btn-default {width:100%;}
+    
+    #results .annonce {
+    background-color: #FFF; 
+    text-align: left;
+    margin-bottom: 20px; 
+    display: table;
+    }
+        #results .annonce a.more { position: relative;}
+
+        #results .annonce [class*="col-"] {
+    display: block;
+}
+}
+
+
+
+@media (min-width: 1024px) {.navbar-brand {height: 100%;}}

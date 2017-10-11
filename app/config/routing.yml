@@ -3,11 +3,6 @@ epi_dev_admin:
     defaults:
       _controller: EpiDevAdminBundle:Default:index
 
-home:
-    path: /
-    defaults:
-      _controller: AppBundle:Home:index
-
 app:
     path: /default
     defaults:
@@ -98,3 +93,18 @@ delete_application:
     _controller: EpiDevAdminBundle:Application:delete
 
 # Public
+
+home:
+    path: /
+    defaults:
+      _controller: AppBundle:Home:index
+
+list_offers:
+    path: /list_offers
+    defaults:
+      _controller: AppBundle:Offerfront:list
+
+list_actuality:
+    path: /list_actuality
+    defaults:
+      _controller: AppBundle:Actualityfront:list

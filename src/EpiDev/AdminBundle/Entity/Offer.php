@@ -112,6 +112,12 @@ class Offer
      */
     private $description;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="img_src", type="text")
+     */
+    private $img_src;
 
     /**
      * Get id
@@ -433,5 +439,29 @@ class Offer
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set img_src
+     *
+     * @param string $img_src
+     *
+     * @return Offer
+     */
+    public function setImg_src($img_src)
+    {
+        $this->img_src = $img_src;
+
+        return $this;
+    }
+
+    /**
+     * Get img_src
+     *
+     * @return string
+     */
+    public function getImg_src()
+    {
+        return $this->img_src;
     }
 }
