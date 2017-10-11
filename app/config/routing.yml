@@ -113,6 +113,11 @@ home:
     defaults:
       _controller: AppBundle:Home:index
 
+recruteurs:
+  path: /recruteurs
+  defaults:
+    _controller: AppBundle:Recruteursfront:recruteurs
+
 list_offers:
     path: /list_offers
     defaults:
