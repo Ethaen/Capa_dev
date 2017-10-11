@@ -137,3 +137,8 @@ spontaneous_application:
     path: /spontaneous_application
     defaults:
       _controller: AppBundle:Applicationfront:index
+
+personnal_space:
+    path: /personnal_space
+    defaults:
+      _controller: AppBundle:Accountfront:personnal_space
