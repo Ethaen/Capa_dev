@@ -10,6 +10,9 @@ class RecruteursfrontController extends Controller
 {
   public function recruteursAction(Request $request)
   {
+    $em = $this->getDoctrine()->getManager();
+    $recruteurs = $em->getRepository('EpiDevAdminBundle:CMS')->findAll();
+
     return $this->render('AppBundle::recruteurs.html.twig');
   }
 }
