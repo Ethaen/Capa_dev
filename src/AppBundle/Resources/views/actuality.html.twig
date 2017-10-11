@@ -1,4 +1,6 @@
 {% for actuality in actualities %}
-{{ actuality. }}
+{{ actuality.title }}
+<br>
+{{ actuality.date|date('Y m d') }}
 <br>
 {% endfor %}
