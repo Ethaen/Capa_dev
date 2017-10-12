@@ -59,9 +59,9 @@ class CMS
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="metaDescription", type="text")
      */
-    private $description;
+    private $metaDescription;
 
     /**
      * @var bool
@@ -202,27 +202,27 @@ class CMS
     }
 
     /**
-     * Set description
+     * Set metaDescription
      *
-     * @param string $description
+     * @param string $metaDescription
      *
      * @return CMS
      */
-    public function setDescription($description)
+    public function setMetaDescription($metaDescription)
     {
-        $this->description = $description;
+        $this->metaDescription = $metaDescription;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get metaDescription
      *
      * @return string
      */
-    public function getDescription()
+    public function getMetaDescription()
     {
-        return $this->description;
+        return $this->metaDescription;
     }
 
     /**
@@ -249,4 +249,3 @@ class CMS
         return $this->indexed;
     }
 }
-

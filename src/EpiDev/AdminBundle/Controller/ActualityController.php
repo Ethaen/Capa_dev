@@ -25,14 +25,14 @@ class ActualityController extends Controller
   public function saveActualityAction(Request $request)
   {
     $em = $this->getDoctrine()->getManager();
-    $actuality = $em->getRepository('EpiDevAdminBundle:Actuality')->find($request->query->get('id'));
+    $actuality = $em->getRepository('EpiDevAdminBundle:Actuality')->find($request->request->get('id'));
 
-    $actuality->setTitle($request->query->get('title'));
-    $actuality->setTexte($request->query->get('content'));
-    $actuality->setDate(new \DateTime($request->query->get('date')));
-    if ($request->query->get('image_id') && $request->query->get('image_name')) {
-      $actuality->setImgId("/admin/img/actuality/".$request->query->get('image_id'));
-      $actuality->setImgName($request->query->get('image_name'));
+    $actuality->setTitle($request->request->get('title'));
+    $actuality->setTexte($request->request->get('content'));
+    $actuality->setDate(new \DateTime($request->request->get('date')));
+    if ($request->request->get('image_id') && $request->request->get('image_name')) {
+      $actuality->setImg_id("/admin/img/actuality/".$request->request->get('image_id'));
+      $actuality->setImg_name($request->request->get('image_name'));
     }
     $em->flush();
     return $this->redirectToRoute('actuality');

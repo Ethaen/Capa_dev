@@ -30,7 +30,7 @@
   </div>
 
   <div align="right">
-    <img id="image" src="{{ entity.ImgId }}" height="15%">
+    <img id="image" src="{{ entity.Img_id }}" height="15%">
     <div>
       <input type="file" id="upload" accept="image/*" style="margin-top: 2%;">
       <script>
@@ -90,7 +90,20 @@
         });
       }
 
-      window.location.replace("{{ path('saveActuality') }}"+"?title="+title+"&image_id="+image_id+"&image_name="+image_name+"&content="+content+"&date="+date+"&id="+id);
+      $.ajax({
+        url: '{{ (path('saveActuality')) }}',
+        type: "POST",
+        dataType: "text",
+        data: {
+          "title": title,
+          "content": content,
+          "date": date,
+          "id": id,
+          "image_id": image_id,
+          "image_name": image_name
+        }
+      });
+      window.location.replace("{{ path('actuality') }}");
     }
     function makeId()
     {

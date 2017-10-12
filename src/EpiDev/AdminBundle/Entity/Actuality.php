@@ -146,7 +146,7 @@ class Actuality
      *
      * @return Actuality
      */
-    public function setImgId($img_id)
+    public function setImg_id($img_id)
     {
         $this->img_id = $img_id;
 
@@ -158,7 +158,7 @@ class Actuality
      *
      * @return string
      */
-    public function getImgId()
+    public function getImg_id()
     {
         return $this->img_id;
     }
@@ -170,7 +170,7 @@ class Actuality
      *
      * @return Actuality
      */
-    public function setImgName($img_name)
+    public function setImg_name($img_name)
     {
         $this->img_name = $img_name;
 
@@ -182,7 +182,7 @@ class Actuality
      *
      * @return string
      */
-    public function getImgName()
+    public function getImg_name()
     {
         return $this->img_name;
     }

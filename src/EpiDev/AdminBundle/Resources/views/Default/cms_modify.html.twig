@@ -30,13 +30,11 @@
 
   <div>
     <p>Contenu :</p>
-    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
-    <script type="text/javascript">
-    bkLib.onDomLoaded(function() { nicEditors.allTextAreas({buttonList : ['fontSize','bold','italic','underline']}) });
+    <textarea id="content" contenteditable="true" style="width: 60%; height: 20%; border-style: solid; border-width: 1px; border-color: #c9c9c9;"></textarea>
+    <script>
+    var content = "{{ entity.content }}".replace(/\({ret}\)/g, '\n');
+    document.getElementById("content").innerHTML = content;
     </script>
-    <form id="content">
-      <textarea style="width: 100%; height: 20%;">{{ entity.content }}</textarea>
-    </form>
   </div>
 
   <br><br><b>Référencement</b>
@@ -56,14 +54,17 @@
 
   <div>
     <p>Description :</p>
-    <div id="description" contenteditable="true" style="height: 15%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
-      {{ entity.description }}
+    <div id="meta_description" contenteditable="true" style="height: 15%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{ entity.metaDescription }}
     </div>
   </div>
 
   <div>
     Indexer<input type="checkbox" id="indexed">
   </div>
+  <script>
+  document.getElementById("indexed").checked = "{{ entity.indexed }}";
+  </script>
 
   <div>
     <button onclick="save()" style="margin-top: 2%;">Save</button>
@@ -72,14 +73,30 @@
     {
       var name = document.getElementById('name').innerText;
       var article_title = document.getElementById('article_title').innerText;
-      var content = $('#content').find('.nicEdit-main').html();
+      var content = document.getElementById('content').value;
       var url_name = document.getElementById('url_name').innerText;
       var meta_title = document.getElementById('meta_title').innerText;
-      var description = document.getElementById('description').innerText;
+      var meta_description = document.getElementById('meta_description').innerText;
       var indexed = document.getElementById('indexed').checked ? 1 : 0;
       var id = "{{ entity.id }}";
 
-      window.location.replace("{{ path('saveCMS') }}"+"?name="+name+"&article_title="+article_title+"&content="+content+"&url_name="+url_name+"&meta_title="+meta_title+"&description="+description+"&indexed="+indexed+"&id="+id);
+      content = content.replace(/(?:\r\n|\r|\n)/g, '({ret})');
+      $.ajax({
+        url: '{{ (path('saveCMS')) }}',
+        type: "POST",
+        dataType: "text",
+        data: {
+          "name": name,
+          "article_title": article_title,
+          "content": content,
+          "url_name": url_name,
+          "meta_title": meta_title,
+          "meta_description": meta_description,
+          "indexed": indexed,
+          "id": id
+        }
+      });
+      window.location.replace("{{ path('cms') }}");
     }
     </script>
   </div>

@@ -6,9 +6,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title></title>
+        <title>{{ recruteurs.name }}</title>
 
-        <meta name="description" content="Capa Intérim vous accompagne dans votre recherche d'emploi. Découvrez nos offres d'emploi en intérim, CDD, CDI et alternance en Pays de Loire. ">
+        <meta name="title" content="{{ recruteurs.metaTitle }}">
+        <meta name="description" content="{{ recruteurs.metaDescription }}">
 
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
@@ -20,6 +21,7 @@
 
         <link href="{{ asset('./css/style.css" rel="stylesheet') }}">
 
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
     </head>
 
@@ -57,7 +59,15 @@
 
 </header>
 
-<div id="slider">
+<div id="content"></div>
+<script>
+var parser = new DOMParser;
+var content = "{{ recruteurs.content }}".replace(/\({ret}\)/g, '');
+content = parser.parseFromString(content, 'text/html');
+document.getElementById("content").innerHTML = content.body.textContent;
+</script>
+
+<!-- <div id="slider">
     <img src="{{ asset('./images/recruteurs.jpg') }}" alt="Espace Recruteur" />
 </div>
 
@@ -209,7 +219,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script src="{{ asset('./js/bootstrap.min.js') }}"></script>
-
+-->
 </body>
 
 
