@@ -24,9 +24,9 @@ class UserInfo
     /**
      * @var string
      *
-     * @ORM\Column(name="nationality", type="string", length=255)
+     * @ORM\Column(name="civility", type="string", length=255)
      */
-    private $nationality;
+    private $civility;
 
     /**
      * @var string
@@ -112,6 +112,12 @@ class UserInfo
      */
     private $cv;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="user_id", type="integer")
+     */
+    private $user_id;
 
     /**
      * Get id
@@ -124,27 +130,51 @@ class UserInfo
     }
 
     /**
-     * Set nationality
+     * Get user_id
      *
-     * @param string $nationality
+     * @return int
+     */
+    public function getUser_id()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set user_id
+     *
+     * @param int $user_id
      *
      * @return UserInfo
      */
-    public function setNationality($nationality)
+    public function setUser_id($user_id)
     {
-        $this->nationality = $nationality;
+        $this->user_id = $user_id;
 
         return $this;
     }
 
     /**
-     * Get nationality
+     * Set civility
+     *
+     * @param string $civility
+     *
+     * @return UserInfo
+     */
+    public function setCivility($civility)
+    {
+        $this->civility = $civility;
+
+        return $this;
+    }
+
+    /**
+     * Get civility
      *
      * @return string
      */
-    public function getNationality()
+    public function getCivility()
     {
-        return $this->nationality;
+        return $this->civility;
     }
 
     /**
@@ -435,4 +465,3 @@ class UserInfo
         return $this->cv;
     }
 }
-

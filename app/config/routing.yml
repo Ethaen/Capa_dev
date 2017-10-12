@@ -163,6 +163,11 @@ my_informations:
     defaults:
         _controller: AppBundle:Accountfront:my_informations
 
+get_cv:
+    path: /get_cv
+    defaults:
+      _controller: AppBundle:Accountfront:get_CV
+
 information_modify:
     path: /modify_info
     defaults:

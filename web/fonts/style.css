@@ -94,7 +94,7 @@ h3, h4 { font-family: 'goboldregular'; }
 .modal h4 {color: #f5a600;}
 .modal-body {padding: 15px 25px;}
 
-.modal-body input, #connexion input[type=text], #compte input[type=text] {
+.modal-body input, #connexion input[type=text] {
     padding: 15px;
     width: 100%;
     margin-bottom: 15px;
@@ -166,7 +166,7 @@ h3, h4 { font-family: 'goboldregular'; }
 line-height: 50px;}
 
 #connexion .box p, #compte .box p {margin-bottom: 20px;}
-#connexion .box h3, #compte .box h3, #compte  {margin-top: 0;margin-bottom: 20px;}
+#connexion .box h3, #compte .box h3 {margin-top: 0;margin-bottom: 20px;}
 
 #connexion input[type=text] {width: 100%; padding: 15px; margin-bottom: 15px; color: #1c4360;}
 
@@ -177,10 +177,10 @@ line-height: 50px;}
     background-color: #1c4360; color: #FFF;
 }
 
-#connexion input[type=radio], #compte input[type=radio] 
- {
+#connexion input[type=radio] {
     margin: 0 5px 15px 0;
     padding: 15px;
+    color: #
     
 }
 
@@ -191,24 +191,24 @@ line-height: 50px;}
 #connexion input[type="text"]:-moz-placeholder {color: #1c4360;}
 
 #connexion .box.yellow p.white {color: #FFF; font-style: italic; line-height: 45px;}
-#connexion #type, #compte #type {position: relative;}
+#connexion #type {position: relative;}
 
-#connexion #type select, #compte #type select {
+#connexion #type select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     cursor: pointer;
     height: 50px; 
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: none;
     width: 100%;
     margin-bottom: 15px;
     color: #1c4360;
 }
 
-#connexion #type select, #compte #type select {text-indent: 15px;}
+#connexion #type select {text-indent: 15px;}
 
-#connexion #type:after, #compte #type:after {
+#connexion #type:after {
     font-family: 'FontAwesome';     
     content:'\f0d7'; 
     position: absolute; 
@@ -230,18 +230,15 @@ line-height: 50px;}
 
 
 .alerte {padding: 20px; background-color: #FFF; margin-bottom: 25px;}
+.alerte {padding: 20px; background-color: #FFF; margin-bottom: 25px;}
 
-.alerte:last-of-type {margin-bottom: 0;}
-
-#compte p.activite, #compte p.metier, #compte p.ville, #compte p.agency, #compte p.date, #compte p.title {font-weight: 600;}
+.alerte p.activite, .alerte p.metier, .alerte p.ville, .alerte p.agency, .alerte p.date {font-weight: 600;}
 
 
 #alertes a.delete:before {font-family: 'FontAwesome'; margin-right: 5px; font-size: 14px; content: '\f1f8';}
 
 #alertes a.delete {font-size: 14px;}
 
-#creerAlerte a.btn.btn-default, #compte #profil a.btn.btn-default {margin-top: 0; width: auto;}
-#creerAlerte a.btn.btn-default.yellow, #compte #profil a.btn.btn-default.yellow {margin-left: 20px;}
 /* Menu */
 
 #menu .navbar {
@@ -338,7 +335,7 @@ line-height: 50px;}
     
 }
 
-#offre .box p.date:before, #offre .box p.ref:before, #offre .box p.ville:before, .box p.activite:before, .box p.metier:before, #offre .box p.type:before, #offre .box p.duree:before, #offre .box p.debut:before, #offre p.duree:before, #offre p.exp:before, #offre p.etude:before, #compte  p.ville:before ,#compte  p.activite:before, #compte  p.metier:before, #compte  p.agency:before, #compte  p.date:before {
+#offre .box p.date:before, #offre .box p.ref:before, #offre .box p.ville:before, .box p.activite:before, .box p.metier:before, #offre .box p.type:before, #offre .box p.duree:before, #offre .box p.debut:before, #offre p.duree:before, #offre p.exp:before, #offre p.etude:before, #compte .alerte p.ville:before ,#compte .alerte p.activite:before, #compte .alerte p.metier:before, #compte .alerte p.agency:before, #compte .alerte p.date:before {
     font-family: 'FontAwesome';
     margin-right: 5px;
     font-size: 16px;
@@ -351,16 +348,16 @@ line-height: 50px;}
 
 #offre .box p.date:before  { content: '\f073';}
 #offre .box p.ref:before  { content: '';}
-#offre .box p.ville:before, #compte p.ville:before  { content: '\f041';}
-#offre .box p.activite:before, #compte p.activite:before { content: '\f0b1';}
-#offre .box p.metier:before, #compte p.metier:before { content: '\f2bb';}
+#offre .box p.ville:before, #compte .alerte p.ville:before  { content: '\f041';}
+#offre .box p.activite:before, #compte .alerte p.activite:before { content: '\f0b1';}
+#offre .box p.metier:before, #compte .alerte p.metier:before { content: '\f2bb';}
 #offre .box p.type:before  { content: '\f15c';}
-#offre .box p.debut:before, #compte p.date:before { content: '\f274';}
+#offre .box p.debut:before, #compte .alerte p.date:before { content: '\f274';}
 #offre p.duree:before { content: '\f017';}
 #offre p.exp:before { content: '\f02d';}
 #offre p.etude:before { content: '\f19d';}
 
-#compte  p.agency:before {content:'\f2c1';}
+#compte .alerte p.agency:before {content:'\f2c1';}
 
 #offre .container {text-align: left;}
 

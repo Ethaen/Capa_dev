@@ -10,7 +10,27 @@ class AccountfrontController extends Controller
 {
     public function personnal_spaceAction(Request $request)
     {
-        return $this->render('AppBundle::personnal_space.html.twig');
+        $user = $this->getUser();
+        if (!($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) && !$user)
+        {
+          return $this->redirectToRoute('login_register');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $query = $em->createQuery(
+            'SELECT p
+            FROM EpiDevAdminBundle:UserInfo p
+            WHERE p.user_id LIKE :id'
+        )->setParameters(array('id' => $user->getId()));
+
+        $user_info = $query->getResult();
+        return $this->render('AppBundle::personnal_space.html.twig', array('user_info' => $user_info));
+    }
+
+    public function get_CV(Request $request, $user_id)
+    {
+      
     }
 
     public function login_registerAction(Request $request)
