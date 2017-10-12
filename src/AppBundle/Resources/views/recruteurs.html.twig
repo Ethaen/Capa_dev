@@ -6,10 +6,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ recruteurs.name }}</title>
+        <title>{{ entity.name }}</title>
 
-        <meta name="title" content="{{ recruteurs.metaTitle }}">
-        <meta name="description" content="{{ recruteurs.metaDescription }}">
+        <meta name="title" content="{{ entity.metaTitle }}">
+        <meta name="description" content="{{ entity.metaDescription }}">
 
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
@@ -62,13 +62,13 @@
 <div id="content"></div>
 <script>
 var parser = new DOMParser;
-var content = "{{ recruteurs.content }}".replace(/\({ret}\)/g, '');
+var content = "{{ entity.content }}".replace(/\({ret}\)/g, '');
 content = parser.parseFromString(content, 'text/html');
 document.getElementById("content").innerHTML = content.body.textContent;
 </script>
 
 <!-- <div id="slider">
-    <img src="{{ asset('./images/recruteurs.jpg') }}" alt="Espace Recruteur" />
+    <img src="{{ asset('./images/entity.jpg') }}" alt="Espace Recruteur" />
 </div>
 
 <div id="page-title">

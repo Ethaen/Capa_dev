@@ -113,10 +113,10 @@ home:
     defaults:
       _controller: AppBundle:Home:index
 
-recruteurs:
-  path: /recruteurs
+variable_url:
+  path: /{path}
   defaults:
-    _controller: AppBundle:Recruteursfront:recruteurs
+    _controller: AppBundle:VariableUrl:variableUrl
 
 list_offers:
     path: /list_offers
@@ -172,3 +172,12 @@ my_alerts:
     path: /my_alerts
     defaults:
         _controller: AppBundle:Accountfront:my_alerts
+
+# Redirect
+remove_trailing_slash:
+    path: /{url}
+    defaults:
+      _controller: AppBundle:Redirecting:removeTrailingSlash
+    requirements:
+        url: .*/$
+    methods: [GET]
