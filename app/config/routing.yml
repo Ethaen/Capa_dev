@@ -173,10 +173,10 @@ my_alerts:
     defaults:
         _controller: AppBundle:Accountfront:my_alerts
 
-variable_url:
+variable_url_cms:
   path: /{path}
   defaults:
-    _controller: AppBundle:VariableUrl:variableUrl
+    _controller: AppBundle:VariableUrlCms:variableUrlCms
 
 # Redirect
 remove_trailing_slash:

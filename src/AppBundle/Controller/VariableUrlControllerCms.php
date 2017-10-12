@@ -6,9 +6,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class VariableUrlController extends Controller
+class VariableUrlCmsController extends Controller
 {
-  public function variableUrlAction(Request $request)
+  public function variableUrlCmsAction(Request $request)
   {
     $em = $this->getDoctrine()->getManager();
     $path = $request->attributes->get('path');
