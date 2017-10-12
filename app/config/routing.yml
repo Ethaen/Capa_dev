@@ -113,11 +113,6 @@ home:
     defaults:
       _controller: AppBundle:Home:index
 
-variable_url:
-  path: /{path}
-  defaults:
-    _controller: AppBundle:VariableUrl:variableUrl
-
 list_offers:
     path: /list_offers
     defaults:
@@ -177,6 +172,11 @@ my_alerts:
     path: /my_alerts
     defaults:
         _controller: AppBundle:Accountfront:my_alerts
+
+variable_url:
+  path: /{path}
+  defaults:
+    _controller: AppBundle:VariableUrl:variableUrl
 
 # Redirect
 remove_trailing_slash:
