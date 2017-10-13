@@ -75,10 +75,11 @@
       var id = "{{ entity.id }}";
 
       if (file) {
-        image_id = makeId()+extension;
         var form_data = new FormData();
+        var image_id = makeId()+extension;
         form_data.append('file', file);
-        form_data.append('image_id', image_id);
+        form_data.append('name', image_id);
+        form_data.append('path', "img/actuality/upload/");
         $.ajax({
           url: '/admin/upload.php',
           dataType: 'text',

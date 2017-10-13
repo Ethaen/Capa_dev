@@ -8,9 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ContactfrontController extends Controller
 {
-    public function indexAction(Request $request)
-    {
-        return $this->render('AppBundle::contact.html.twig');
-    }
+  public function indexAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $agencies = $em->getRepository('EpiDevAdminBundle:CMS')->findAll();
 
+    return $this->render('AppBundle::contact.html.twig', array('agencies' => $agencies));
+  }
 }
