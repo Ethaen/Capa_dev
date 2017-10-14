@@ -75,6 +75,10 @@ delete_agency:
   path: /admin/delete_agency
   defaults:
     _controller: EpiDevAdminBundle:Agency:delete
+save_agency:
+  path: /admin/save_agency
+  defaults:
+    _controller: EpiDevAdminBundle:Agency:save
 
 offer:
     path: /admin/offer

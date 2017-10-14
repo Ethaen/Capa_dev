@@ -1,1 +1,76 @@
-EDIT_AGENCY
+<html>
+<head>
+
+  <!-- Date picker -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+
+<body>
+
+  <center style="margin-bottom: 2%;">
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+    <br><br><br>HEADER<br><br><br>
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+  </center>
+
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Nom :</p>
+    <div id="name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{ agency.Name }}
+    </div>
+  </div>
+
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Adresse :</p>
+    <div id="address" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{ agency.Address }}
+    </div>
+  </div>
+
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Ville :</p>
+    <div id="city" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{ agency.City }}
+    </div>
+  </div>
+
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Téléphone :</p>
+    <div id="phone" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{ agency.Phone }}
+    </div>
+  </div>
+
+  <div>
+    <button onclick="save()" style="margin-top: 2%;">Save</button>
+    <script type="text/javascript">
+    function save()
+    {
+      var name = document.getElementById('name').innerText;
+      var address = document.getElementById('address').innerText;
+      var city = document.getElementById('city').innerText;
+      var phone = document.getElementById('phone').innerText;
+      var id = "{{ agency.id }}";
+
+      $.ajax({
+        url: '{{ (path('save')) }}',
+        type: "POST",
+        dataType: "text",
+        data: {
+          "name": name,
+          "address": address,
+          "city": city,
+          "phone": phone,
+          "id": id,
+        }
+      });
+      window.location.href = "{{ path('agency') }}";
+    }
+    </script>
+  </div>
+
+</body>
+</html>
