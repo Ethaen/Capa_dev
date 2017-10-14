@@ -18,12 +18,6 @@
 	<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
 	<script type="text/javascript" src="js/jquery.animate-shadow-min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
-	<script>
-
-
-
-	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
-	</script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
 	</script>
 	<script type="text/javascript" class="init">
@@ -58,7 +52,7 @@
 
 	<!-- BUTTON -->
 	<br><br><br><br>
-	<center><button type="button" onclick="AddAgency()">Ajouter une agence</button></center>
+	<center><button type="button" onclick="addAgency()">Ajouter une agence</button></center>
 	<br>
 	<!-- BUTTON -->
 
@@ -102,15 +96,13 @@
 						</select>
 					</center>
 				</td>
-				<td>
-					<center>
-						<a href="{{ path('edit_agency') ~ "?id=" ~ agency.id }}"> <img src="{{ asset( 'img/agency/edit.png') }}"  alt="" style="width:20px; height:20px;"/></a>
-						&nbsp;&nbsp;&nbsp;
-						<a href="{{ path('duplicate_agency') ~ "?id=" ~ agency.id }}"> <img src="{{ asset( 'img/agency/duplicate.png') }}"  alt="" style="width:20px; height:20px;"/></a>
-						&nbsp;&nbsp;&nbsp;
-						<a href="{{ path('delete_agency') ~ "?id=" ~ agency.id }}"> <img src="{{ asset( 'img/agency/delete.jpg') }}"  alt="" style="width:20px; height:20px;"/></a>
-					</center>
-				</td>
+				<td><center>
+					<a href="{{ path('edit_agency') ~ "?id=" ~ agency.id }}"> <img src="{{ asset( 'img/agency/edit.png') }}"  alt="" style="width:20px; height:20px;"/></a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="{{ path('duplicate_agency') ~ "?id=" ~ agency.id }}"> <img src="{{ asset( 'img/agency/duplicate.png') }}"  alt="" style="width:20px; height:20px;"/></a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="{{ path('delete_agency') ~ "?id=" ~ agency.id }}"> <img src="{{ asset( 'img/agency/delete.jpg') }}"  alt="" style="width:20px; height:20px;"/></a>
+				</center></td>
 			</tr>
 			{% endfor %}
 			<!--
@@ -128,7 +120,7 @@
 </body>
 
 <script>
-function AddAgency()
+function addAgency()
 {
 	var path = "{{ path('add_agency') }}";
 

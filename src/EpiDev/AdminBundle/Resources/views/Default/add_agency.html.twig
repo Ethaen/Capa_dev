@@ -1,49 +1,70 @@
-<!DOCTYPE HTML>
 <html>
-
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Admin | Ajouter une agence</title>
-
-<!-- Behavioral Meta Data -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="icon" type="image/png" href="img/actuality/small-logo-01.png">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,900italic,700italic,700,500italic,400italic,500,300italic,300' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-	<link href='css/style.css' rel='stylesheet' type='text/css'>
-
-
+  <!-- Date picker -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
 
 <body>
-<a name="ancre"></a>
 
-<!-- CACHE -->
-<div class="cache"></div>
+  <center style="margin-bottom: 2%;">
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+    <br><br><br>HEADER<br><br><br>
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+  </center>
 
-<!-- HEADER -->
-
-<div id="wrapper-header">
-	<div id="main-header" class="object">
-    <div class="top-rated object" style="color:red">AJOUTER UNE AGENCE </div>
-        <div id="stripes"></div>
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Nom :</p>
+    <div id="name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
     </div>
-</div>
+  </div>
+
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Adresse :</p>
+    <div id="address" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+    </div>
+  </div>
+
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Ville :</p>
+    <div id="city" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+    </div>
+  </div>
+
+  <div style="width: 60%; margin-top: 2%;">
+    <p>Téléphone :</p>
+    <div id="phone" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+    </div>
+  </div>
+
+  <div>
+    <button onclick="add()" style="margin-top: 2%;">Add</button>
+    <script type="text/javascript">
+    function add()
+    {
+      var name = document.getElementById('name').innerText;
+      var address = document.getElementById('address').innerText;
+      var city = document.getElementById('city').innerText;
+      var phone = document.getElementById('phone').innerText;
+
+      $.ajax({
+        url: '{{ path('upload_agency') }}',
+        type: "POST",
+        dataType: "text",
+        data: {
+          "name": name,
+          "address": address,
+          "city": city,
+          "phone": phone
+        }
+      });
+      window.location.href = "{{ path('agency') }}";
+    }
+    </script>
+  </div>
 
 </body>
 </html>
-
-<!-- SCRIPT -->
-
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
-  <script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
-  <script type="text/javascript" src="js/jquery-animate-css-rotate-scale.js"></script>
-	<script type="text/javascript" src="js/fastclick.min.js"></script>
-	<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
-	<script type="text/javascript" src="js/jquery.animate-shadow-min.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-	<script>

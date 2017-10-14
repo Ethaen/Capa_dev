@@ -59,8 +59,12 @@ agency:
     path: /admin/agency
     defaults:
       _controller: EpiDevAdminBundle:Agency:agency
+upload_agency:
+    path: /admin/upload_agency
+    defaults:
+      _controller: EpiDevAdminBundle:Agency:upload
 add_agency:
-    path: /admin/add/agency
+    path: /admin/add_agency
     defaults:
       _controller: EpiDevAdminBundle:Agency:add
 edit_agency:

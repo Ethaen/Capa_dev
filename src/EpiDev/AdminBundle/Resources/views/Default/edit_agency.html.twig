@@ -53,10 +53,9 @@
       var address = document.getElementById('address').innerText;
       var city = document.getElementById('city').innerText;
       var phone = document.getElementById('phone').innerText;
-      var id = "{{ agency.id }}";
 
       $.ajax({
-        url: '{{ (path('save')) }}',
+        url: '{{ path('save_agency') }}',
         type: "POST",
         dataType: "text",
         data: {
@@ -64,7 +63,7 @@
           "address": address,
           "city": city,
           "phone": phone,
-          "id": id,
+          "id": "{{ agency.id }}"
         }
       });
       window.location.href = "{{ path('agency') }}";

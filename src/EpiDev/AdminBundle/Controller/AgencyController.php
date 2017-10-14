@@ -23,31 +23,52 @@ class AgencyController extends Controller
     $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
     $emails = $em->getRepository('EpiDevAdminBundle:email')->findAll();
 
-    return $this->render('EpiDevAdminBundle:Default:agency.html.twig', array('agencies' => $agencies, 'emails' => $emails) );
+    return $this->render('EpiDevAdminBundle:Default:agency.html.twig', array('agencies' => $agencies, 'emails' => $emails));
+  }
+
+  public function deleteAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $em->remove($em->getRepository('EpiDevAdminBundle:Agency')->find($request->query->get('id')));
+    $em->flush();
+    return $this->redirectToRoute('agency');
+  }
+
+  public function uploadAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $agency = new Agency;
+
+    $agency->setName($request->request->get('name'));
+    $agency->setAddress($request->request->get('address'));
+    $agency->setCity($request->request->get('city'));
+    $agency->setPhone($request->request->get('phone'));
+    $em->persist($agency);
+    $em->flush();
+    return $this->redirectToRoute('agency');
+  }
+
+  public function duplicateAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $agency_copy = clone $em->getRepository('EpiDevAdminBundle:Agency')->find($request->query->get('id'));
+    $em->persist($agency_copy);
+    $em->flush();
+    return $this->redirectToRoute('agency');
   }
 
   public function addAction(Request $request)
   {
-    $agency = new Agency();
-
-    $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $agency);
-    $formBuilder
-    ->add('name',      TextType::class)
-    ->add('address',     TextType::class)
-    ->add('city',   TextType::class)
-    ->add('phone',    TextType::class)
-    ->add('save',      SubmitType::class);
-
-    $form = $formBuilder->getForm();
-    return $this->render('EpiDevAdminBundle:Default:add_agency.html.twig', array('form' => $form->createView()));
+    return $this->render('EpiDevAdminBundle:Default:add_agency.html.twig');
   }
 
   public function editAction(Request $request)
   {
-    $agencies = $this->getDoctrine()->getManager()->getRepository('EpiDevAdminBundle:Agency')->findAll();
-    $id = $request->query->get("id");
+    $agency = $this->getDoctrine()->getManager()->getRepository('EpiDevAdminBundle:Agency')->find($request->query->get("id"));
 
-    return $this->render('EpiDevAdminBundle:Default:edit_agency.html.twig', array('agency' => $agencies[$id]));
+    return $this->render('EpiDevAdminBundle:Default:edit_agency.html.twig', array('agency' => $agency));
   }
 
   public function saveAction(Request $request)
