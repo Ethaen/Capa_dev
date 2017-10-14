@@ -1,14 +1,266 @@
-{% for domain in domain_activity %}
-{{ domain.name }}
-<br>
-{% endfor %}
+<!DOCTYPE html>
+<html>
 
-{% for job in jobs %}
-{{ job.name }}
-<br>
-{% endfor %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% for agency in agencies %}
-{{ agency.name }}
-<br>
-{% endfor %}
+        <title>Capa Intérim - Agence de recrutement et offres d'emploi à Châteaubriant - </title>
+
+        <meta name="description" content="Capa Intérim vous accompagne dans votre recherche d'emploi. Découvrez nos offres d'emploi en intérim, CDD, CDI et alternance en Pays de Loire. ">
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+        <link href="./css/font.css" rel="stylesheet">
+
+
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/font-awesome.min.css" rel="stylesheet" >
+
+        <link href="./css/style.css" rel="stylesheet">
+
+
+    </head>
+
+<body>
+
+<header>
+
+    <div id="menu">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img alt="Logo Capa Intérim" src="./images/logo-capa-interim.png" class="img-responsive">
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="nav">
+                    <ul class="nav navbar-nav">
+                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Je cherche un job <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="offres.html">Offres d'emploi</a></li>
+                                <li><a href="./moncompte.html">Candidature spontanée</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="recruteurs.html">Espace recruteur</a></li>
+                        <li><a href="actualites.html">Actualités</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li class="active"><a href="moncompte.html" class="compte">Mon compte</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+</header>
+
+<div id="page-title">
+    <div class="container">
+    <h1>Mon compte</h1>
+    </div>
+</div>
+
+<div id="breadcrumb">
+    <div class="container">
+    <ul>
+        <li><a class="home" href="./">Accueil</a></li>
+        <li>Mon compte</li>
+    </ul>
+    </div>
+</div>
+
+<div id="connexion">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box">
+                    <h3>Accéder à mon espace personnel</h3>
+                    <p>Accédez à mon compte pour gérer mes informations personnelles, mes alertes, mes candidatures.</p>
+                    <input type="text" placeholder="Mon identifiant" name="id" />
+                    <input type="text" placeholder="Mon mot de passe" name="password" />
+                    <a href="./monespace.html" class="btn btn-default">Me connecter</a>
+                    <a href="motdepasse.html" class="small pull-right">mot de passe oublié ?</a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="box yellow">
+                <h3 class="white">Créer mon espace personnel</h3>
+                <p class="white">Enregistrer mon profil, stocker mon CV, créer des alertes et postuler à nos offres d'emploi.</p>
+                <h3>Mes informations de connexion</h3>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Mon Email *" name="email" />
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Mon mot de passe *" name="pwd" />
+                </div>
+                <div class="clearfix"></div>
+                <div class="line"></div>
+                <h3>Mes informations personnelles</h3>
+                <div class="col-sm-12">
+                    <input type="radio" name="civilite" value="mr"> Mr *
+                    <input type="radio" name="civilite" value="mme"> Mme *
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Mon Nom *" name="nom" />
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Mon Prénom *" name="prenom" />
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Mon Téléphone" name="phone" />
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Mon Portable *" name="mobile" />
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" placeholder="Mon Adresse *" name="address" />
+                </div>
+                <div class="col-sm-2">
+                    <input type="text" placeholder="CP *" name="cp" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="text" placeholder="Ville *" name="ville" />
+                </div>
+                <div class="clearfix"></div>
+                <div class="line"></div>
+
+                <h3>Mes préférences d'emploi</h3>
+                <div class="col-sm-6">
+                    <div id="type">
+                        <select>
+                            <option selected>Secteur d'activité</option>
+                            <option>Activité 1</option>
+                            <option>Activité 2</option>
+                            <option>Activité 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="type">
+                        <select>
+                            <option selected>Métier</option>
+                            <option>Métier 1</option>
+                            <option>Métier 2</option>
+                            <option>Métier 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="type">
+                        <select>
+                            <option selected>Mon Agence CAPA</option>
+                            <option>Agence Vay</option>
+                            <option>Agence Châteaubriant</option>
+                            <option>Agence Montaigu</option>
+                            <option>Agence Sablé-sur-Sarthe</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="type">
+                        <select>
+                            <option selected>Type de contrat</option>
+                            <option>Intérim</option>
+                            <option>CDD</option>
+                            <option>CDI</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+                <div class="col-sm-6">
+                    <a href="" class="btn btn-default cv">Télécharger mon CV</a>
+                </div>
+                <div class="col-sm-6">
+                    <p class="white">Formats acceptés : .PDF / .DOC / .DOCX</p>
+                </div>
+                <div class="clearfix"></div>
+                <div class="line"></div>
+                <a href="" class="btn btn-default white pull-right">Créer mon compte</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="liens">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                    <h3>Je cherche un job</h3>
+                    <ul>
+                        <li><a href="">Nos offres d'emploi</a></li>
+                        <li><a href="">Candidature spontanée</a></li>
+                        <li><a href="">Mon espace personnel</a></li>
+                        <li><a href="">Agences d'intérim</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                    <h3>Nos types de mission</h3>
+                    <ul>
+                        <li><a href="">Emplois en CDD à Châteaubriant</a></li>
+                        <li><a href="">Contrats CDI en Pays-de-Loire</a></li>
+                        <li><a href="">Missions intérim en Loire-Atlantique</a></li>
+                        <li><a href="">Travail temporaire dans l'Ouest</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                    <h3>Nos dernières offres d'emploi</h3>
+                    <ul>
+                        <li><a href="">Garagiste à Nozay (44) Intérim</a></li>
+                        <li><a href="">Chef de chantier à Châteaubriant (44) CDI</a></li>
+                        <li><a href="">Agent de Production à Vay (85) Intérim</a></li>
+                        <li><a href="">Boulanger Pâtissier au Mans (72) CDD</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                    <h3>Capa intérim</h3>
+                    <ul>
+                        <li><a href="">Espace recruteurs</a></li>
+                        <li><a href="">Nos actualités</a></li>
+                        <li><a href="">Nos agences</a></li>
+                        <li><a href="">Contactez-nous</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="social" class="grey_bg">
+     <div class="container">
+         <ul>
+             <li><a href="" target="_blank" ><i class="fa fa-twitter" aria-hidden="true"></i>
+    </a></li>
+             <li><a href="http://www.facebook.com/capainterim/" target="_blank" ><i class="fa fa-facebook" aria-hidden="true"></i>
+    </a></li>
+             <li><a href="" target="_blank" ><i class="fa fa-linkedin" aria-hidden="true"></i>
+    </a></li>
+             <li><a href="" target="_blank" ><i class="fa fa-google-plus" aria-hidden="true"></i>
+    </a></li>
+         </ul>
+     </div>
+</div>
+
+<div id="copyright">
+    <div class="container">
+        <p>Copyright © 2017 CAPA INTÉRIM | <a href="">Mentions légales</a></p>
+    </div>
+</div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="./js/bootstrap.min.js"></script>
+
+</body>
+
+
+
+</html>

@@ -75,23 +75,55 @@ class AccountfrontController extends Controller
       $jobs = $em->getRepository('EpiDevAdminBundle:Job')->findAll();
       $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
 
+      $email = $request->get('email');
+      $password = $request->get('password');
+
+      if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+      {
+          return $this->redirectToRoute('home');
+      }
+
+      if ($email && $password)
+      {
+
+      }
+
       return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs, 'agencies' => $agencies));
     }
 
-    public function lost_passwordAction(Request $request)
+    public function lost_passwordAction(Request $request, \Swift_Mailer $mailer)
     {
       $flashbag = $this->get('session')->getFlashBag();
       $flashbag->get("reset_success");
       $this->addFlash("reset_success", "Si cette adresse email est reconnue, un email contenant votre nouveau mot de passe vous sera envoyé.");
       if ($request->get('email_resetted'))
       {
-        // Send email
-        $userManager = $this->get('fos_user.user_manager');
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 10; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
 
-        // Pour charger un utilisateur
-        echo $request->get('email');
-        $user = $userManager->findUserBy(array('email' => $request->get('email')));
-        //$user->setPassword('newpass');
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserBy(array('email' => $request->get('email')) );
+        $new_password = $randomString;
+        $user->setPlainPassword($new_password);
+        $userManager->updateUser($user, true);
+
+        $message = (new \Swift_Message('Modification du mot de passe'))
+        ->setFrom('guidiv7@gmail.com')
+        ->setTo('guidiv7@gmail.com')
+        ->setBody(
+            $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                'Emails/reset_password.html.twig',
+                array('new_password' => $new_password)
+            ),
+            'text/html'
+        );
+        $mailer->send($message);
+
         return $this->render('AppBundle::lost_password.html.twig', array('success' => 1 ));
       }
       return $this->render('AppBundle::lost_password.html.twig', array('success' => 0 ));
@@ -151,7 +183,7 @@ class AccountfrontController extends Controller
       $user_info->setCivility($request->request->get('civility'));
       $user_info->setName($request->request->get('name'));
       $user_info->setFirstname($request->request->get('firstname'));
-      $user_info->setEmail($request->request->get('email'));
+      $user_info->setEmail(preg_replace('/\s+/', '', $request->request->get('email')));
       $user_info->setTelephone($request->request->get('telephone'));
       $user_info->setMobilePhone($request->request->get('mobile_phone'));
       $user_info->setAddress($request->request->get('address'));
