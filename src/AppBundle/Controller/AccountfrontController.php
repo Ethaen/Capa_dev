@@ -80,6 +80,13 @@ class AccountfrontController extends Controller
 
     public function lost_passwordAction(Request $request)
     {
+      $this->addFlash("reset_success", "Si cette adresse email est reconnue, un email contenant votre nouveau mot de passe vous sera envoyé.");
+      if ($request->get('email_resetted'))
+      {
+
+
+        // Send email
+      }
       return $this->render('AppBundle::lost_password.html.twig');
     }
 
