@@ -346,6 +346,7 @@
       form_data.append('job', document.getElementById('job').value);
       form_data.append('agency', document.getElementById('agency').value);
       form_data.append('contract_type', document.getElementById('contract_type').value);
+      form_data.append('id', '{{ user_info[0].user_id }}');
 
       $.ajax({
         url: '{{ (path('update_info')) }}',

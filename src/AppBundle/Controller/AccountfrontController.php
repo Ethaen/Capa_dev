@@ -80,14 +80,21 @@ class AccountfrontController extends Controller
 
     public function lost_passwordAction(Request $request)
     {
+      $flashbag = $this->get('session')->getFlashBag();
+      $flashbag->get("reset_success");
       $this->addFlash("reset_success", "Si cette adresse email est reconnue, un email contenant votre nouveau mot de passe vous sera envoyé.");
       if ($request->get('email_resetted'))
       {
-
-
         // Send email
+        $userManager = $this->get('fos_user.user_manager');
+
+        // Pour charger un utilisateur
+        echo $request->get('email');
+        $user = $userManager->findUserBy(array('email' => $request->get('email')));
+        //$user->setPassword('newpass');
+        return $this->render('AppBundle::lost_password.html.twig', array('success' => 1 ));
       }
-      return $this->render('AppBundle::lost_password.html.twig');
+      return $this->render('AppBundle::lost_password.html.twig', array('success' => 0 ));
     }
 
     public function my_alertsAction(Request $request)
@@ -154,6 +161,12 @@ class AccountfrontController extends Controller
       $user_info->setJob($request->request->get('job'));
       $user_info->setEmployType($request->request->get('contract_type'));
       $user_info->setAgency($request->request->get('agency'));
+
+      $userManager = $this->get('fos_user.user_manager');
+
+      // Pour charger un utilisateur
+      $user = $userManager->findUserBy(array('id' => $request->get('id')));
+      $user->setEmail($request->request->get('email'));
 
       $em->flush();
       return $this->redirectToRoute('personnal_space');
