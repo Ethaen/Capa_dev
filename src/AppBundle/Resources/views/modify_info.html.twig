@@ -1,1 +1,414 @@
 
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Capa Intérim - Agence de recrutement et offres d'emploi à Châteaubriant - </title>
+
+        <meta name="description" content="Capa Intérim vous accompagne dans votre recherche d'emploi. Découvrez nos offres d'emploi en intérim, CDD, CDI et alternance en Pays de Loire. ">
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+        <link href="./css/font.css" rel="stylesheet">
+
+
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/font-awesome.min.css" rel="stylesheet" >
+
+        <link href="./css/style.css" rel="stylesheet">
+
+
+    </head>
+
+<body>
+
+<header>
+
+    <div id="menu">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img alt="Logo Capa Intérim" src="./images/logo-capa-interim.png" class="img-responsive">
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="nav">
+                    <ul class="nav navbar-nav">
+                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Je cherche un job <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="offres.html">Offres d'emploi</a></li>
+                                <li><a href="./moncompte.html">Candidature spontanée</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="recruteurs.html">Espace recruteur</a></li>
+                        <li><a href="actualites.html">Actualités</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li class="active"><a href="moncompte.html" class="compte">Mon compte</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+</header>
+
+<div id="page-title">
+    <div class="container">
+    <h1>Mon espace personnel</h1>
+    </div>
+</div>
+
+<div id="breadcrumb">
+    <div class="container">
+    <ul>
+        <li><a class="home" href="./">Accueil</a></li>
+        <li><a href="./moncompte.html">Mon Compte</a></li>
+        <li>Mon espace personnel</li>
+    </ul>
+    </div>
+</div>
+
+<div id="compte">
+    <div class="container">
+        <div class="row">
+           <div class="col-sm-3">
+                <div class="box yellow">
+                    <h3>Mon espace personnel</h3>
+                    <p>Accédez aux rubriques utiles pour votre recherche d'emploi.</p>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a data-toggle="tab" href="#profil" class="profil">Mon Profil</a></li>
+                        <li><a data-toggle="tab" href="#" class="alerte">Mes alertes</a></li>
+                        <li><a data-toggle="tab" href="#" class="candidature">Mes candidatures</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="tab-content">
+                    <div id="profil" class="tab-pane fade in active">
+                        <h3>Mon Profil</h3>
+                        <div class="line"></div>
+                        <h3>Mes informations personnelles</h3>
+                        <div class="col-sm-12">
+                            {% if user_info[0].civility == "Mr"%}
+                            <input type="radio" name="civilite" value="mr" id="Mr_radio" checked="checked"> Mr *
+                            <input type="radio" name="civilite" id="Mme_radio" value="mme"> Mme *
+                            {% else %}
+                            <input type="radio" name="civilite" value="mr" > Mr *
+                            <input type="radio" name="civilite" value="mme" checked="checked"> Mme *
+                            {% endif %}
+                        </div>
+                        <div class="col-sm-6">
+                            <input id="name" type="text" placeholder="Mon Nom *" name="nom" value="{{ user_info[0].name }}" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input id="first_name" type="text" placeholder="Mon Prénom *" name="prenom" value="{{ user_info[0].firstname }}" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input id="telephone" type="text" placeholder="Mon Téléphone" name="phone" value="{{ user_info[0].telephone }}" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input id="mobile_phone" type="text" placeholder="Mon Portable *" name="mobile" value="{{ user_info[0].mobilePhone }}" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input id="address" type="text" placeholder="Mon Adresse *"  name="address" value="{{ user_info[0].address }}" />
+                        </div>
+                        <div class="col-sm-2">
+                            <input id="postal_code" type="text" placeholder="CP *" name="cp" value="{{ user_info[0].postalCode }}" />
+                        </div>
+                        <div class="col-sm-4">
+                            <input id="city" type="text" placeholder="Ville *" name="ville" value="{{ user_info[0].city }}" />
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="line"></div>
+                        <h3>Mes informations de connexion</h3>
+                        <div class="col-sm-6">
+                            <input id="email" type="text" placeholder="Mon Email *" name="email" value=" {{ user_info[0].email }}" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input id="password" type="text" placeholder="Mon mot de passe *" name="pwd" value="**********" />
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="line"></div>
+                        <h3>Mes préférences d'emploi</h3>
+                        <div class="col-sm-6">
+                            <div id="type">
+                            <select id="domain">
+                                {% if (user_info[0].domain == "" or user_info[0].domain == "Secteur d'activité") %}
+                                  <option selected>Secteur d'activité</option>
+                                {% else %}
+                                  <option>Secteur d'activité</option>
+                                   <option selected>{{ user_info[0].domain }}</option>
+                                {% endif %}
+
+                                {% for domain in domains %}
+                                  {% if (domain.name != user_info[0].domain or user_info[0].domain == "Secteur d'activité" ) %}
+                                    <option>{{ domain.name }}</option>
+                                  {% endif %}
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div id="type">
+                                <select id="job">
+                                  {% if (user_info[0].job == "" or user_info[0].job == "Métier") %}
+                                    <option selected>Métier</option>
+                                  {% else %}
+                                    <option>Métier</option>
+                                     <option selected>{{ user_info[0].job }}</option>
+                                  {% endif %}
+
+                                    {% for job in jobs %}
+                                      {% if (job.name != user_info[0].job or user_info[0].job == "Métier") %}
+                                        <option>{{ job.name }}</option>
+                                      {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div id="type">
+                                <select id="agency">
+                                    {% if (user_info[0].agency == "" or user_info[0].agency == "Mon Agence CAPA") %}
+                                    <option selected>Mon Agence CAPA</option>
+                                    {% else %}
+                                    <option>Mon Agence CAPA</option>
+                                    <option selected>{{ user_info[0].agency }}</option>
+                                    {% endif %}
+                                    {% for agency in agencies %}
+                                    {% if user_info[0].agency != agency.name %}
+                                    <option>{{ agency.name }}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div id="type">
+                                <select id="contract_type">
+                                    {% if (user_info[0].employType == "" or user_info[0].employType == "Type de contrat") %}
+                                        <option selected>Type de contrat</option>
+                                      {% else %}
+                                        <option selected>{{ user_info[0].employType }}</option>
+                                    {% endif %}
+                                    {% if user_info[0].employType != "Intérim" %}
+                                      <option>Intérim</option>
+                                    {% endif %}
+                                    {% if user_info[0].employType != "CDD" %}
+                                      <option>CDD</option>
+                                    {% endif %}
+                                    {% if user_info[0].employType != "CDI" %}
+                                      <option>CDI</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br />
+                        <div class="col-sm-6">
+                          <p><strong>Mon CV : </strong> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <a href="{{path('get_cv', {'user_cv': user_info[0].cv_generated_name } ) }}"> {{ user_info[0].cv }} </a></p>
+                            <p class="white">Formats acceptés : .PDF / .DOC / .DOCX</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <div id="new_cv">
+                            <a id="file_upload" name="up" href="#new_cv" class="btn btn-default cv" onclick="upload()">Télécharger un nouveau CV</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="line"></div>
+                        <div>
+                        </div>
+                        <a href="#" class="btn btn-default yellow pull-right" onclick="update_info()" >Enregistrer</a>
+                        <a href="{{path('personnal_space') }}" class="btn btn-default pull-right" >Annuler</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="liens">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                    <h3>Je cherche un job</h3>
+                    <ul>
+                        <li><a href="">Nos offres d'emploi</a></li>
+                        <li><a href="">Candidature spontanée</a></li>
+                        <li><a href="">Mon espace personnel</a></li>
+                        <li><a href="">Agences d'intérim</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                    <h3>Nos types de mission</h3>
+                    <ul>
+                        <li><a href="">Emplois en CDD à Châteaubriant</a></li>
+                        <li><a href="">Contrats CDI en Pays-de-Loire</a></li>
+                        <li><a href="">Missions intérim en Loire-Atlantique</a></li>
+                        <li><a href="">Travail temporaire dans l'Ouest</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                    <h3>Nos dernières offres d'emploi</h3>
+                    <ul>
+                      {% for offer in last_offers %}
+                        <li><a href="">{{ offer.title }}</a></li>
+                      {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                    <h3>Capa intérim</h3>
+                    <ul>
+                        <li><a href="">Espace recruteurs</a></li>
+                        <li><a href="">Nos actualités</a></li>
+                        <li><a href="">Nos agences</a></li>
+                        <li><a href="">Contactez-nous</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="social" class="grey_bg">
+     <div class="container">
+         <ul>
+             <li><a href="" target="_blank" ><i class="fa fa-twitter" aria-hidden="true"></i>
+    </a></li>
+             <li><a href="http://www.facebook.com/capainterim/" target="_blank" ><i class="fa fa-facebook" aria-hidden="true"></i>
+    </a></li>
+             <li><a href="" target="_blank" ><i class="fa fa-linkedin" aria-hidden="true"></i>
+    </a></li>
+             <li><a href="" target="_blank" ><i class="fa fa-google-plus" aria-hidden="true"></i>
+    </a></li>
+         </ul>
+     </div>
+</div>
+
+<div id="copyright">
+    <div class="container">
+        <p>Copyright © 2017 CAPA INTÉRIM | <a href="">Mentions légales <input id="file" type="file" style="opacity:0; position:absolute;" disabled="true"/></a>
+        </p>
+    </div>
+</div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="./js/bootstrap.min.js"></script>
+
+    <script>
+
+    function upload()
+    {
+      document.getElementById("file").disabled = false;
+      $('#file').click();
+      document.getElementById("file").disabled = true;
+    }
+
+    function makeid()
+    {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < 15; i++)
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
+
+    function update_info()
+    {
+      var form_data = new FormData();
+      if (document.getElementById('Mr_radio').checked)
+        form_data.append('civility', 'Mr');
+      else
+        form_data.append('civility', 'Mme');
+      form_data.append('name', document.getElementById('name').value);
+      form_data.append('firstname', document.getElementById('first_name').value);
+      form_data.append('telephone', document.getElementById('telephone').value);
+      form_data.append('mobile_phone', document.getElementById('mobile_phone').value);
+      form_data.append('address', document.getElementById('address').value);
+      form_data.append('postal_code', document.getElementById('postal_code').value);
+      form_data.append('city', document.getElementById('city').value);
+      form_data.append('email', document.getElementById('email').value);
+      form_data.append('domain', document.getElementById('domain').value);
+      form_data.append('job', document.getElementById('job').value);
+      form_data.append('agency', document.getElementById('agency').value);
+      form_data.append('contract_type', document.getElementById('contract_type').value);
+
+      $.ajax({
+        url: '{{ (path('update_info')) }}',
+        dataType: 'text',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+      });
+
+//      window.location('{{ (path('personnal_space')) }}');
+    }
+
+  $('#file').change(
+    function(event) {
+      file = event.target.files[0];
+      console.log(URL.createObjectURL(event.target.files[0]) );
+
+      var re = /(\.pdf|\.PDF|\.doc|\.DOC|\.docx|\.DOCX)$/i;
+      var form_data = new FormData();
+
+        var form_data = new FormData();
+        form_data.append('file', file);
+        var new_name = makeid() + '.pdf';
+        form_data.append('name', new_name);
+        form_data.append('real_name', file.name);
+        form_data.append('path', "../../app/Resources/CV/");
+
+      if(!re.exec(file.name))
+      {
+        alert("Merci d'uploader uniquement des fichiers PDF, DOC ou DOCX");
+      }
+          else
+          {
+            $.ajax({
+               url: '/admin/upload.php',
+               dataType: 'text',
+               cache: false,
+               contentType: false,
+               processData: false,
+               data: form_data,
+               type: 'post',
+             });
+          }
+
+          $.ajax({
+            url: '{{ (path('modify_cv')) }}',
+            type: "POST",
+            dataType: "text",
+            data: {
+              "user_id": {{ user_info[0].user_id }},
+              "real_name": file.name,
+              "name": new_name
+            }
+          });
+
+    });
+
+    </script>
+
+</body>
+
+
+
+</html>

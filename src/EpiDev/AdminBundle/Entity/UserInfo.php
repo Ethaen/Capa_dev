@@ -113,6 +113,13 @@ class UserInfo
     private $cv;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="cv_generated_name", type="string", length=255)
+     */
+    private $cv_generated_name;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="user_id", type="integer")
@@ -124,6 +131,14 @@ class UserInfo
      *
      * @return int
      */
+
+     /**
+      * @var string
+      *
+      * @ORM\Column(name="agency", type="string", length=255)
+      */
+     private $agency;
+
     public function getId()
     {
         return $this->id;
@@ -464,4 +479,53 @@ class UserInfo
     {
         return $this->cv;
     }
+
+    /**
+     * Set cv_generated_name
+     *
+     * @param string $cv_generated_name
+     *
+     * @return UserInfo
+     */
+    public function setCv_generated_name($cv_generated_name)
+    {
+        $this->cv_generated_name = $cv_generated_name;
+
+        return $this;
+    }
+
+    /**
+     * Get cv_generated_name
+     *
+     * @return string
+     */
+    public function getCv_generated_name()
+    {
+        return $this->cv_generated_name;
+    }
+
+/**
+ * Set agency
+ *
+ * @param string $agency
+ *
+ * @return UserInfo
+ */
+public function setAgency($agency)
+{
+    $this->agency = $agency;
+
+    return $this;
+}
+
+/**
+ * Get agency
+ *
+ * @return string
+ */
+public function getAgency()
+{
+    return $this->agency;
+}
+
 }

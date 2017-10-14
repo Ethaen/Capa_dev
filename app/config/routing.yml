@@ -163,10 +163,25 @@ get_cv:
     defaults:
       _controller: AppBundle:Accountfront:get_CV
 
+upload_cv:
+    path: /upload_cv
+    defaults:
+      _controller: AppBundle:Accountfront:upload_cv
+
+modify_cv:
+    path: /modify/cv
+    defaults:
+      _controller: AppBundle:Accountfront:modify_cv
+
 information_modify:
     path: /modify_info
     defaults:
         _controller: AppBundle:Accountfront:modify_info
+
+update_info:
+    path: /update_info
+    defaults:
+      _controller: AppBundle:Accountfront:update_info
 
 my_alerts:
     path: /my_alerts

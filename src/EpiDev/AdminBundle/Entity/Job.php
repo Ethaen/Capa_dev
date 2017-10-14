@@ -30,6 +30,13 @@ class Job
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="domain", type="string", length=255)
+     */
+    private $domain;
+
+    /**
      * Get id
      *
      * @return int
@@ -62,5 +69,28 @@ class Job
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set domain
+     *
+     * @param string $domain
+     *
+     * @return Job
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
+
+        return $this;
+    }
+
+    /**
+     * Get domain
+     *
+     * @return string
+     */
+    public function getDomain()
+    {
+        return $this->domain;
+    }
+}

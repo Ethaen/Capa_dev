@@ -95,7 +95,7 @@
             <div class="col-sm-9">
                 <div class="tab-content">
                     <div id="profil" class="tab-pane fade in active">
-                        <a href="./editprofil.html" class="btn btn-default pull-right">Modifier</a>
+                        <a href="{{ path('information_modify') }}" class="btn btn-default pull-right">Modifier</a>
                         <h3>Mon Profil</h3>
                         <div class="line"></div>
                         <div class="col-sm-4">
@@ -131,7 +131,7 @@
                             <p><strong>Type de contrat : </strong> {{ user_info[0].employType }}<p>
                         </div>
                         <div class="col-sm-6">
-                            <p><strong>Mon CV : </strong> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <a href="CV/{{ user_info[0].cv }}"> {{ user_info[0].cv }} </a></p>
+                            <p><strong>Mon CV : </strong> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> <a href="{{path('get_cv', {'user_cv': user_info[0].cv_generated_name } ) }}"> {{ user_info[0].cv }} </a></p>
                         </div>
                         <div class="clearfix"></div>
                         </div>
