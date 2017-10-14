@@ -140,7 +140,7 @@ function Addoffer()
 {
 	var path = "{{ path('add_offer') }}";
 
-	window.location.replace(path);
+	window.location.href = path;
 }
 
 function Filter()
@@ -148,7 +148,7 @@ function Filter()
 	var path = "{{ path('offer') }}";
 
 	path += "	?agency=" + document.getElementById('agency').value + "&"+ "domain=" + document.getElementById('domain').value;
-	window.location.replace(path);
+	window.location.href = path;
 }
 
 </script>
