@@ -41,19 +41,6 @@ saveActuality:
     defaults:
       _controller: EpiDevAdminBundle:Actuality:saveActuality
 
-contact:
-  path: /admin/contact
-  defaults:
-    _controller: EpiDevAdminBundle::Admin:contact
-modifyContact:
-  path: /admin/modifyContact
-  defaults:
-    _controller: EpiDevAdminBundle:Actuality:modifyContact
-saveContact:
-  path: /admin/saveContact
-  defaults:
-    _controller: EpiDevAdminBundle:Actuality:saveContact
-
 cms:
   path: /admin/cms
   defaults:
@@ -76,6 +63,18 @@ add_agency:
     path: /admin/add/agency
     defaults:
       _controller: EpiDevAdminBundle:Agency:add
+edit_agency:
+  path: /admin/edit_agency
+  defaults:
+    _controller: EpiDevAdminBundle:Agency:edit
+duplicate_agency:
+  path: /admin/duplicate_agency
+  defaults:
+    _controller: EpiDevAdminBundle:Agency:duplicate
+delete_agency:
+  path: /admin/delete_agency
+  defaults:
+    _controller: EpiDevAdminBundle:Agency:delete
 
 offer:
     path: /admin/offer

@@ -3,22 +3,22 @@
 <head>
 
 	<!-- Behavioral Meta Data -->
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	    <link rel="icon" type="image/png" href="img/actuality/small-logo-01.png">
-	    <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,900italic,700italic,700,500italic,400italic,500,300italic,300' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-		<link href='css/style.css' rel='stylesheet' type='text/css'>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="icon" type="image/png" href="img/actuality/small-logo-01.png">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,900,900italic,700italic,700,500italic,400italic,500,300italic,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href='css/style.css' rel='stylesheet' type='text/css'>
 
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-			<script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
-			<script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
-			<script type="text/javascript" src="js/jquery-animate-css-rotate-scale.js"></script>
-		<script type="text/javascript" src="js/fastclick.min.js"></script>
-		<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
-		<script type="text/javascript" src="js/jquery.animate-shadow-min.js"></script>
-		<script type="text/javascript" src="js/main.js"></script>
-		<script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
+	<script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
+	<script type="text/javascript" src="js/jquery-animate-css-rotate-scale.js"></script>
+	<script type="text/javascript" src="js/fastclick.min.js"></script>
+	<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
+	<script type="text/javascript" src="js/jquery.animate-shadow-min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script>
 
 
 
@@ -29,9 +29,9 @@
 	<script type="text/javascript" class="init">
 
 
-$(document).ready(function() {
-	$('#example').DataTable();
-} );
+	$(document).ready(function() {
+		$('#example').DataTable();
+	} );
 	</script>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -49,72 +49,83 @@ $(document).ready(function() {
 
 	<div id="wrapper-header">
 		<div id="main-header" class="object">
-	    <div class="top-rated object" style="color:red">AGENCES</div>
-	        <div id="stripes"></div>
-	    </div>
+			<div class="top-rated object" style="color:red">AGENCES</div>
+			<div id="stripes"></div>
+		</div>
 	</div>
 
-<!-- HEADER -->
+	<!-- HEADER -->
 
-<!-- BUTTON -->
-<br><br><br><br>
-<center><button type="button" onclick="AddAgency()">Ajouter une agence</button></center>
-<br>
-<!-- BUTTON -->
+	<!-- BUTTON -->
+	<br><br><br><br>
+	<center><button type="button" onclick="AddAgency()">Ajouter une agence</button></center>
+	<br>
+	<!-- BUTTON -->
 
-<table id="example" class="display" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>Nom de l'agence</th>
-                <th>Adresse</th>
-                <th>Ville</th>
-                <th>Téléphone</th>
-                <th>E-mail</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-							<th>Nom de l'agence</th>
-							<th>Adresse</th>
-							<th>Ville</th>
-							<th>Téléphone</th>
-							<th>E-mail</th>
-            </tr>
-        </tfoot>
-        <tbody>
+	<table id="example" class="display" cellspacing="0" width="100%">
+		<thead>
+			<tr>
+				<th>Nom de l'agence</th>
+				<th>Adresse</th>
+				<th>Ville</th>
+				<th>Téléphone</th>
+				<th>E-mail</th>
+				<th>Options</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>Nom de l'agence</th>
+				<th>Adresse</th>
+				<th>Ville</th>
+				<th>Téléphone</th>
+				<th>E-mail</th>
+				<th>Options</th>
+			</tr>
+		</tfoot>
+		<tbody>
 
-					{% for agency in agencies %}
-					<tr>
-					<td><center>{{ agency.name }}</center></td>
-					<td><center>{{ agency.adresse }}</center></td>
-					<td><center>{{ agency.city }}</center></td>
-					<td><center>{{ agency.telephone }}</center></td>
-					<td>
-						<center>
+			{% for agency in agencies %}
+			<tr>
+				<td><center>{{ agency.name }}</center></td>
+				<td><center>{{ agency.address }}</center></td>
+				<td><center>{{ agency.city }}</center></td>
+				<td><center>{{ agency.phone }}</center></td>
+				<td>
+					<center>
 						<select id="agency_emails" style="width:200px; height:40px;">
-						{% for email in emails %}
-						{% if email.agency == agency.city %}
-						<option value="email" align="center">{{ email.mail }}</option>
-						{% endif %}
-						{% endfor %}
-					</select>
-				</center>
+							{% for email in emails %}
+							{% if email.agency == agency.city %}
+							<option value="email" align="center">{{ email.mail }}</option>
+							{% endif %}
+							{% endfor %}
+						</select>
+					</center>
 				</td>
-				</tr>
-					{% endfor %}
-						<!--
-						<tr>
-                <td>Aiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-            </tr>
-					-->
-    	</tbody>
-    </table>
+				<td>
+					<center>
+						<a href="{{ path('edit_agency') ~ "?id=" ~ agency.id }}"> <img src="{{ asset( 'img/agency/edit.png') }}"  alt="" style="width:20px; height:20px;"/></a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="{{ path('duplicate_agency') ~ "?id=" ~ agency.id }}"> <img src="{{ asset( 'img/agency/duplicate.png') }}"  alt="" style="width:20px; height:20px;"/></a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="{{ path('delete_agency') ~ "?id=" ~ agency.id }}"> <img src="{{ asset( 'img/agency/delete.jpg') }}"  alt="" style="width:20px; height:20px;"/></a>
+					</center>
+				</td>
+			</tr>
+			{% endfor %}
+			<!--
+			<tr>
+			<td>Aiger Nixon</td>
+			<td>System Architect</td>
+			<td>Edinburgh</td>
+			<td>61</td>
+			<td>2011/04/25</td>
+		</tr>
+	-->
+</tbody>
+</table>
 
-	</body>
+</body>
 
 <script>
 function AddAgency()

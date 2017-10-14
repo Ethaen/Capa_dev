@@ -16,30 +16,47 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AgencyController extends Controller
 {
-    public function agencyAction(Request $request)
-    {
-      $em = $this->getDoctrine()->getManager();
+  public function agencyAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
 
-      $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
-      $emails = $em->getRepository('EpiDevAdminBundle:email')->findAll();
+    $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+    $emails = $em->getRepository('EpiDevAdminBundle:email')->findAll();
 
-      return $this->render('EpiDevAdminBundle:Default:agency.html.twig', array('agencies' => $agencies, 'emails' => $emails) );
+    return $this->render('EpiDevAdminBundle:Default:agency.html.twig', array('agencies' => $agencies, 'emails' => $emails) );
+  }
+
+  public function addAction(Request $request)
+  {
+    $agency = new Agency();
+
+    $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $agency);
+    $formBuilder
+    ->add('name',      TextType::class)
+    ->add('address',     TextType::class)
+    ->add('city',   TextType::class)
+    ->add('phone',    TextType::class)
+    ->add('save',      SubmitType::class);
+
+    $form = $formBuilder->getForm();
+    return $this->render('EpiDevAdminBundle:Default:add_agency.html.twig', array(
+      'form' => $form->createView()));
     }
 
-    public function addAction(Request $request)
+    public function editAction(Request $request)
     {
       $agency = new Agency();
 
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $agency);
+      $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $agency);
       $formBuilder
-     ->add('name',      TextType::class)
-     ->add('adresse',     TextType::class)
-     ->add('city',   TextType::class)
-     ->add('telephone',    TextType::class)
-     ->add('save',      SubmitType::class);
+      ->add('name',      TextType::class)
+      ->add('address',     TextType::class)
+      ->add('city',   TextType::class)
+      ->add('phone',    TextType::class)
+      ->add('save',      SubmitType::class);
 
       $form = $formBuilder->getForm();
       return $this->render('EpiDevAdminBundle:Default:add_agency.html.twig', array(
-      'form' => $form->createView()));
+        'form' => $form->createView()));
+      }
     }
-}
