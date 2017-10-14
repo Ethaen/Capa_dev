@@ -82,7 +82,7 @@
 
       content = content.replace(/(?:\r\n|\r|\n)/g, '({ret})');
       $.ajax({
-        url: '{{ (path('saveCMS')) }}',
+        url: '{{ (path('saveRecruteur')) }}',
         type: "POST",
         dataType: "text",
         data: {

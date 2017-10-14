@@ -31,9 +31,9 @@ class Agency
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="text")
+     * @ORM\Column(name="address", type="text")
      */
-    private $adresse;
+    private $address;
 
     /**
      * @var string
@@ -45,9 +45,9 @@ class Agency
     /**
      * @var string
      *
-     * @ORM\Column(name="telephone", type="string", length=255)
+     * @ORM\Column(name="phone", type="string", length=255)
      */
-    private $telephone;
+    private $phone;
 
     /**
      * Get id
@@ -84,27 +84,27 @@ class Agency
     }
 
     /**
-     * Set adresse
+     * Set address
      *
-     * @param string $adresse
+     * @param string $address
      *
      * @return Agency
      */
-    public function setAdresse($adresse)
+    public function setAddress($address)
     {
-        $this->adresse = $adresse;
+        $this->address = $address;
 
         return $this;
     }
 
     /**
-     * Get adresse
+     * Get adsress
      *
      * @return string
      */
-    public function getAdresse()
+    public function getAddress()
     {
-        return $this->adresse;
+        return $this->address;
     }
 
     /**
@@ -132,26 +132,26 @@ class Agency
     }
 
     /**
-     * Set telephone
+     * Set phone
      *
-     * @param string $telephone
+     * @param string $phone
      *
      * @return Agency
      */
-    public function setTelephone($telephone)
+    public function setPhone($phone)
     {
-        $this->telephone = $telephone;
+        $this->phone = phone;
 
         return $this;
     }
 
     /**
-     * Get telephone
+     * Get phone
      *
      * @return string
      */
-    public function getTelephone()
+    public function getPhone()
     {
-        return $this->telephone;
+        return $this->phone;
     }
 }

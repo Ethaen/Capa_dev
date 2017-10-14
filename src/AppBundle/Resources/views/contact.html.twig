@@ -78,18 +78,50 @@
     </div>
   </div>
 
-  <center><div id="map" style="align: center;width:400px;height:400px;background:yellow"></div></center>
+  <br/><center><div id="map" style="align: center;width:700px;height:500px;background:yellow"></div></center><br/>
   <script>
   function myMap()
   {
-    var mapOptions = {
-      center: new google.maps.LatLng(47.080721, 2.372554),
-      zoom: 5,
-      mapTypeId: google.maps.MapTypeId.HYBRID
-    }
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    console.log("{{ agencies }}");
+    var map = new google.maps.Map(document.getElementById("map"));
+    var geocoder = new google.maps.Geocoder();
+    var x = 0, y = 0, z = 0;
+
+    "{% set i = 0 %}"
+    "{% for agency in agencies %}"
+    var address = "{{ agency.address }}".concat(", ", "{{ agency.city }}");
+    geocoder.geocode({'address': address}, function(results, status)
+    {
+      var marker = new google.maps.Marker({map: map, position: results[0].geometry.location});
+      var infowindow = new google.maps.InfoWindow({content: "{{ agency.name }}"});
+      var lat = 0, sqroot = 0, lng = 0
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+      google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
+        infowindow.open(map, marker);
+      });
+      lat = results[0].geometry.location.lat() * Math.PI / 180;
+      lng = results[0].geometry.location.lng() * Math.PI / 180;
+      x += Math.cos(lat) * Math.cos(lng);
+      y += Math.cos(lat) * Math.sin(lng);
+      z += Math.sin(lat);
+
+      "{% if i + 1 == agencies|length %}"
+      x = x / "{{ agencies|length }}";
+      y = y / "{{ agencies|length }}";
+      z = z / "{{ agencies|length }}";
+      lng = Math.atan2(y, x);
+      sqroot = Math.sqrt(x*x + y*y);
+      lat = Math.atan2(z, sqroot);
+      map.setCenter(new google.maps.LatLng(lat * 180 / Math.PI, lng * 180 / Math.PI))
+      map.setZoom(8);
+      "{% endif %}"
+    });
+    "{% set i = i + 1 %}"
+    "{% endfor %}"
   }
+
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbchHd25hbpCzxj0Z7muPMl4DxCw85hxE&callback=myMap"></script>
 
@@ -97,40 +129,29 @@
     <div id="agences-list">
       <div class="container">
         <h2>Nos agences</h2>
+
+        {% set i = 0 %}
+        {% for agency in agencies %}
+        {% if i == 0 %}
         <div class="row">
+          {% endif %}
+
           <div class="col-md-3 col-sm-6">
             <div class="agence">
-              <h3>Agence Vay</h3>
-              <a class="tel" href="tel:0240878686">02 40 87 86 86</a>
-              <a class="adresse" href="https://goo.gl/maps/b1GQYLi9AYv"   target="_blank">2 rue du stade<br />44170 Vay</a>
+              <h3>{{ agency.name }}</h3>
+              <a class="tel" href="tel:{{ agency.phone }}".replace(/\s/g, '');>{{ agency.phone }}</a>
+              <a class="adresse" href="https://goo.gl/maps/uNhxuXL4a6B2" target="_blank">{{ agency.address }}<br/>{{ agency.city }}</a>
               <a class="email" href="#">Envoyer un email</a>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="agence">
-              <h3>Agence Châteaubriant</h3>
-              <a class="tel" href="tel:0240280593">02 40 28 05 93</a>
-              <a class="adresse" href="https://goo.gl/maps/uNhxuXL4a6B2" target="_blank">14 Rue de Coueré<br />44110 Châteaubriant</a>
-              <a class="email" href="#">Envoyer un email</a>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="agence">
-              <h3>Agence Montaigu</h3>
-              <a class="tel" href="tel:0251315747">02 51 31 57 47</a>
-              <a class="adresse" href="https://goo.gl/maps/SmcspkqkJ512"  target="_blank">12 Ter rue René Descartes<br />85600 Boufferé</a>
-              <a class="email" href="#">Envoyer un email</a>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="agence">
-              <h3>Agence Sablé-sur-Sarthe</h3>
-              <a class="tel" href="tel:0243621420">02 43 62 14 20</a>
-              <a class="adresse" href="https://goo.gl/maps/1UNxUvdrucG2"  target="_blank">28 rue Haute Saint-Martin<br />72300 Sable-sur- Sarthe</a>
-              <a class="email" href="#">Envoyer un email</a>
-            </div>
-          </div>
+
+          {% set i = i + 1 %}
+          {% if i == 4 %}
         </div>
+        {% set i = 0 %}
+        {% endif %}
+        {% endfor %}
+
       </div>
     </div>
   </footer>

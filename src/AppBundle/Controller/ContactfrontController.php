@@ -11,7 +11,7 @@ class ContactfrontController extends Controller
   public function indexAction(Request $request)
   {
     $em = $this->getDoctrine()->getManager();
-    $agencies = $em->getRepository('EpiDevAdminBundle:CMS')->findAll();
+    $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
 
     return $this->render('AppBundle::contact.html.twig', array('agencies' => $agencies));
   }

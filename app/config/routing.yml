@@ -41,18 +41,31 @@ saveActuality:
     defaults:
       _controller: EpiDevAdminBundle:Actuality:saveActuality
 
+contact:
+  path: /admin/contact
+  defaults:
+    _controller: EpiDevAdminBundle::Admin:contact
+modifyContact:
+  path: /admin/modifyContact
+  defaults:
+    _controller: EpiDevAdminBundle:Actuality:modifyContact
+saveContact:
+  path: /admin/saveContact
+  defaults:
+    _controller: EpiDevAdminBundle:Actuality:saveContact
+
 cms:
   path: /admin/cms
   defaults:
     _controller: EpiDevAdminBundle:Admin:cms
-modifyCMS:
-  path: /admin/modifyCMS
+modifyRecruteur:
+  path: /admin/modifyRecruteur
   defaults:
-    _controller: EpiDevAdminBundle:CMS:modifyCMS
-saveCMS:
-  path: /admin/saveCMS
+    _controller: EpiDevAdminBundle:CMS:modifyRecruteur
+saveRecruteur:
+  path: /admin/saveRecruteur
   defaults:
-    _controller: EpiDevAdminBundle:CMS:saveCMS
+    _controller: EpiDevAdminBundle:CMS:saveRecruteur
 
 
 agency:
