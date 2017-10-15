@@ -69,7 +69,36 @@ class OfferController extends Controller
 
     public function editAction(Request $request)
     {
-      return $this->render('EpiDevAdminBundle:Default:edit_offer.html.twig');
+      $em = $this->getDoctrine()->getManager();
+      $offer = $em->getRepository('EpiDevAdminBundle:Offer')->find($request->query->get('id'));
+
+      return $this->render('EpiDevAdminBundle:Default:edit_offer.html.twig', array('offer' => $offer));
+    }
+
+    public function saveAction(Request $request)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $offer = $em->getRepository('EpiDevAdminBundle:Offer')->find($request->request->get('id'));
+
+      $offer->setTitle($request->request->get('title'));
+      $offer->setReference($request->request->get('reference'));
+      $offer->seBegin(new \DateTime($request->request->get('begin')));
+      $offer->setActive($request->request->get('active'));
+      $offer->setDepartment($request->request->get('department'));
+      $offer->setCity($request->request->get('city'));
+      $offer->setAgency($request->request->get('agency'));
+      $offer->setDomain($request->request->get('domain'));
+      $offer->setJob($request->request->get('job'));
+      $offer->setJob_type($request->request->get('job_type'));
+      $offer->setDuration($request->request->get('duration'));
+      $offer->setExperience($request->request->get('experience'));
+      $offer->setDegree($request->request->get('degree'));
+      $offer->setDescription($request->request->get('description'));
+      if ($request->request->get('img_src')) {
+        $offer->setImg_src($request->request->get('img_src'));
+      }
+      $em->flush();
+      return $this->redirectToRoute('offer');
     }
 
     public function duplicateAction(Request $request)
