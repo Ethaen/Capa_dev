@@ -188,6 +188,11 @@ upload_cv:
     defaults:
       _controller: AppBundle:Accountfront:upload_cv
 
+register_cv_upload:
+    path: /register/cv/upload
+    defaults:
+      _controller: AppBundle:Accountfront:register_cv_upload
+
 modify_cv:
     path: /modify/cv
     defaults:

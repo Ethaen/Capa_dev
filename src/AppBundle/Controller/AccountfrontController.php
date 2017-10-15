@@ -9,6 +9,8 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use AppBundle\Service\FileUploader;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 class AccountfrontController extends Controller
 {
@@ -74,22 +76,51 @@ class AccountfrontController extends Controller
       $domain_activity = $em->getRepository('EpiDevAdminBundle:Domain')->findAll();
       $jobs = $em->getRepository('EpiDevAdminBundle:Job')->findAll();
       $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+      $password_ok = 0;
+      $invalid_credential = 0;
 
-      $email = $request->get('email');
-      $password = $request->get('password');
+      $login_email = $request->get('login_email');
+      $login_password = $request->get('login_password');
 
       if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
       {
           return $this->redirectToRoute('home');
       }
 
-      if ($email && $password)
+      if ($login_email && $login_password)
       {
-
+        // hash password and compare to db password
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserBy(array('email' => $login_email) );
+        $encoder = new MessageDigestPasswordEncoder();
+        $password = $encoder->encodePassword($login_password, $user->getSalt());
+        if ($password == $user->getPassword() && $user)
+          $password_ok = 1;
+        if ($password_ok)
+        {
+          $token = new UsernamePasswordToken($user, $user->getPassword(), 'main', $user->getRoles());
+          $context = $this->get('security.token_storage');
+          $context->setToken($token);
+          $router = $this->get('router');
+          return $this->redirectToRoute('home');
+        }
+        else if (!$password_ok || !$user)
+          {
+            //flashbag invalid credential
+            $flashbag = $this->get('session')->getFlashBag();
+            $flashbag->get("invalid_credential");
+            $this->addFlash("invalid_credential", "L'email ou le mot de passe entré n'est pas reconnu.");
+            $invalid_credential = 1;
+          }
       }
 
-      return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs, 'agencies' => $agencies));
+      if (!$invalid_credential)
+        return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs, 'agencies' => $agencies, 'invalid_credential' => 0));
+      else
+        return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs, 'agencies' => $agencies, 'invalid_credential' => 1));
     }
+
+
 
     public function lost_passwordAction(Request $request, \Swift_Mailer $mailer)
     {
@@ -224,5 +255,10 @@ class AccountfrontController extends Controller
 
         $em->flush();
         return $this->redirectToRoute('home');
+    }
+
+    public function register_cv_upload(Request $request)
+    {
+      return $this->redirectToRoute('login_register');
     }
 }

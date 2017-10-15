@@ -76,6 +76,15 @@
     </ul>
     </div>
 </div>
+{% if invalid_credential %}
+{% for message in app.flashes('invalid_credential') %}
+    <center>
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+    </center>
+{% endfor %}
+{% endif %}
 
 <div id="connexion">
     <div class="container">
@@ -84,9 +93,9 @@
                 <div class="box">
                     <h3>Accéder à mon espace personnel</h3>
                     <p>Accédez à mon compte pour gérer mes informations personnelles, mes alertes, mes candidatures.</p>
-                    <input type="text" placeholder="Mon identifiant" name="id" />
-                    <input type="text" placeholder="Mon mot de passe" name="password" />
-                    <a href="./monespace.html" class="btn btn-default">Me connecter</a>
+                    <input id="login_email" type="text" placeholder="Mon identifiant" name="id" />
+                    <input id="login_password" type="text" placeholder="Mon mot de passe" name="password" />
+                    <a href="#" class="btn btn-default" onclick="login()">Me connecter</a>
                     <a href="motdepasse.html" class="small pull-right">mot de passe oublié ?</a>
                 </div>
             </div>
@@ -96,38 +105,38 @@
                 <p class="white">Enregistrer mon profil, stocker mon CV, créer des alertes et postuler à nos offres d'emploi.</p>
                 <h3>Mes informations de connexion</h3>
                 <div class="col-sm-6">
-                    <input type="text" placeholder="Mon Email *" name="email" />
+                    <input id="register_email" type="text" placeholder="Mon Email *" name="email" />
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" placeholder="Mon mot de passe *" name="pwd" />
+                    <input id="register_password" type="text" placeholder="Mon mot de passe *" name="pwd" />
                 </div>
                 <div class="clearfix"></div>
                 <div class="line"></div>
                 <h3>Mes informations personnelles</h3>
                 <div class="col-sm-12">
-                    <input type="radio" name="civilite" value="mr"> Mr *
-                    <input type="radio" name="civilite" value="mme"> Mme *
+                    <input id="register_Mr" type="radio" name="civilite" value="mr"> Mr *
+                    <input id="register_Mme" type="radio" name="civilite" value="mme"> Mme *
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" placeholder="Mon Nom *" name="nom" />
+                    <input id="register_name" type="text" placeholder="Mon Nom *" name="nom" />
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" placeholder="Mon Prénom *" name="prenom" />
+                    <input id="register_firstname" type="text" placeholder="Mon Prénom *" name="prenom" />
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" placeholder="Mon Téléphone" name="phone" />
+                    <input id="register_telephone" type="text" placeholder="Mon Téléphone" name="phone" />
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" placeholder="Mon Portable *" name="mobile" />
+                    <input id="register_mobile" type="text" placeholder="Mon Portable *" name="mobile" />
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" placeholder="Mon Adresse *" name="address" />
+                    <input id="register_address" type="text" placeholder="Mon Adresse *" name="address" />
                 </div>
                 <div class="col-sm-2">
-                    <input type="text" placeholder="CP *" name="cp" />
+                    <input id="register_code" type="text" placeholder="CP *" name="cp" />
                 </div>
                 <div class="col-sm-4">
-                    <input type="text" placeholder="Ville *" name="ville" />
+                    <input id="register_city" type="text" placeholder="Ville *" name="ville" />
                 </div>
                 <div class="clearfix"></div>
                 <div class="line"></div>
@@ -135,7 +144,7 @@
                 <h3>Mes préférences d'emploi</h3>
                 <div class="col-sm-6">
                     <div id="type">
-                        <select>
+                        <select id="register_domain">
                             <option selected>Secteur d'activité</option>
                             <option>Activité 1</option>
                             <option>Activité 2</option>
@@ -145,7 +154,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div id="type">
-                        <select>
+                        <select id="register_job">
                             <option selected>Métier</option>
                             <option>Métier 1</option>
                             <option>Métier 2</option>
@@ -155,7 +164,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div id="type">
-                        <select>
+                        <select id="register_agency">
                             <option selected>Mon Agence CAPA</option>
                             <option>Agence Vay</option>
                             <option>Agence Châteaubriant</option>
@@ -166,7 +175,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div id="type">
-                        <select>
+                        <select id="register_contract_type">
                             <option selected>Type de contrat</option>
                             <option>Intérim</option>
                             <option>CDD</option>
@@ -177,14 +186,14 @@
                 <div class="clearfix"></div>
                 <br />
                 <div class="col-sm-6">
-                    <a href="" class="btn btn-default cv">Télécharger mon CV</a>
+                    <a href="#" class="btn btn-default cv" onclick="register_cv_upload()">Télécharger mon CV</a>
                 </div>
                 <div class="col-sm-6">
                     <p class="white">Formats acceptés : .PDF / .DOC / .DOCX</p>
                 </div>
                 <div class="clearfix"></div>
                 <div class="line"></div>
-                <a href="" class="btn btn-default white pull-right">Créer mon compte</a>
+                <a href="#" class="btn btn-default white pull-right" onclick="create_account()">Créer mon compte</a>
                 </div>
             </div>
         </div>
@@ -258,6 +267,69 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script src="./js/bootstrap.min.js"></script>
+
+    <script>
+
+    function validateEmail(email)
+    {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
+
+    function login()
+    {
+      var login_email = document.getElementById('login_email').value;
+      var login_password = document.getElementById('login_password').value;
+      var path = '{{path('login_register')}}' + '?login_email=' + login_email + '&login_password=' + login_password;
+
+      window.location.href = path;
+    }
+
+    function register_cv_upload()
+    {
+
+    }
+
+    function create_account()
+    {
+      var form_ok = 1;
+
+      var register_email = document.getElementById('register_email').value;
+      var register_password = document.getElementById('register_password').value;
+      var register_civility;
+      if (document.getElementById('register_Mr').checked)
+        register_civility = 'Mr';
+      else
+        register_civility = 'Mme';
+      var register_name = document.getElementById('register_name').value;
+      var register_firstname = document.getElementById('register_firstname').value;
+      var register_telephone = document.getElementById('register_telephone').value;
+      var register_mobile = document.getElementById('register_mobile').value;
+      var register_address = document.getElementById('register_address').value;
+      var register_code = document.getElementById('register_code').value;
+      var register_city = document.getElementById('register_city').value;
+      var register_domain = document.getElementById('register_domain').value;
+      var register_job = document.getElementById('register_job').value;
+      var register_agency = document.getElementById('register_agency').value;
+      var register_contract_type = document.getElementById('register_contract_type').value;
+
+      if (!validateEmail(register_email))
+        {
+          form_ok = 0;
+          alert('Merci de renseigner un email valide');
+        }
+      else if (register_password == "" || register_civility == "" || register_name == "" || register_firstname == ""
+               || register_telephone == "" || register_mobile == "" || register_address == "" || register_code == ""
+               || register_city == "" || register_domain == "" || register_job == "" || register_agency == ""
+               || register_contract_type == "")
+              {
+                form_ok = 0;
+                alert('Merci de renseigner l\'ensemble des champs')
+              }
+
+    }
+
+    </script>
 
 </body>
 
