@@ -65,10 +65,10 @@ class ActualityController extends Controller
     return $this->render('EpiDevAdminBundle:Default:add_actuality.html.twig');
   }
 
-  public function duplicateAction(Request $request)
+  public function duplicateActualityAction(Request $request)
   {
     $em = $this->getDoctrine()->getManager();
-    $actuality = $em->getRepository('EpiDevAdminBundle:Offer')->find($request->query->get('id'));
+    $actuality = $em->getRepository('EpiDevAdminBundle:Actuality')->find($request->query->get('id'));
 
     $actuality_copy = clone $actuality;
     $em->persist($actuality_copy);
@@ -76,7 +76,7 @@ class ActualityController extends Controller
     return $this->redirectToRoute('actuality');
   }
 
-  public function deleteAction(Request $request)
+  public function deleteActualityAction(Request $request)
   {
     $em = $this->getDoctrine()->getManager();
     $actuality = $em->getRepository('EpiDevAdminBundle:Actuality')->find($request->query->get('id'));
