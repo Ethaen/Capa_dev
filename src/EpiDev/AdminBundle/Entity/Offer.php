@@ -87,9 +87,16 @@ class Offer
     /**
      * @var bool
      *
-     * @ORM\Column(name="Time", type="boolean")
+     * @ORM\Column(name="Job_type", type="boolean")
      */
-    private $time;
+    private $job_type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Duration", type="string", length=255)
+     */
+    private $duration;
 
     /**
      * @var string
@@ -346,27 +353,51 @@ class Offer
     }
 
     /**
-     * Set time
+     * Set job_type
      *
-     * @param boolean $time
+     * @param boolean $job_type
      *
      * @return Offer
      */
-    public function setTime($time)
+    public function setJob_type($job_type)
     {
-        $this->time = $time;
+        $job_type->job_type = $job_type;
 
         return $this;
     }
 
     /**
-     * Get time
+     * Get job_type
      *
      * @return bool
      */
-    public function getTime()
+    public function getJob_type()
     {
-        return $this->time;
+        return $this->job_type;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param string $duration
+     *
+     * @return Offer
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return string
+     */
+    public function getDuration()
+    {
+        return $this->duration;
     }
 
     /**

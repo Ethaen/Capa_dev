@@ -104,6 +104,10 @@ delete_offer:
   path: /admin/delete_offer
   defaults:
     _controller: EpiDevAdminBundle:Offer:delete
+save_offer:
+  path: /admin/save_offer
+  defaults:
+    _controller: EpiDevAdminBundle:Offer:save
 
 application:
   path: /admin/application
