@@ -35,6 +35,13 @@ class AccountfrontController extends Controller
         return $this->render('AppBundle::personnal_space.html.twig', array('user_info' => $user_info));
     }
 
+    public function set_alertAction(Request $request)
+    {
+      
+
+      return redirectToRoute('personnal_space');
+    }
+
     public function get_CVAction(Request $request)
     {
       $em = $this->getDoctrine()->getManager();

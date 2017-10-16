@@ -183,6 +183,11 @@ personnal_space:
     defaults:
       _controller: AppBundle:Accountfront:personnal_space
 
+set_alert:
+    path: /set_alert
+    defaults:
+      _controller: AppBundle:Accountfront:set_alert
+
 login_register:
     path: /login.html
     defaults:
