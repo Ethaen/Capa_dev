@@ -17,14 +17,14 @@
   <div style="width: 60%; margin-top: 2%;">
     <p>Nom :</p>
     <div id="name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
-      {{ entity.name }}
+      {{ page.name }}
     </div>
   </div>
 
   <div style="width: 60%; margin-top: 2%;">
     <p>Titre de l'article :</p>
     <div id="article_title" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
-      {{ entity.articleTitle }}
+      {{ page.articleTitle }}
     </div>
   </div>
 
@@ -32,7 +32,7 @@
     <p>Contenu :</p>
     <textarea id="content" contenteditable="true" style="width: 60%; height: 20%; border-style: solid; border-width: 1px; border-color: #c9c9c9;"></textarea>
     <script>
-    var content = "{{ entity.content }}".replace(/\({ret}\)/g, '\n');
+    var content = "{{ page.content }}".replace(/\({ret}\)/g, '\n');
     document.getElementById("content").innerHTML = content;
     </script>
   </div>
@@ -41,21 +41,21 @@
   <div style="width: 60%; margin-top: 2%;">
     <p>Nom dans l'URL :</p>
     <div id="url_name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
-      {{ entity.urlName }}
+      {{ page.urlName }}
     </div>
   </div>
 
   <div style="width: 60%; margin-top: 2%;">
     <p>Meta titre :</p>
     <div id="meta_title" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
-      {{ entity.metaTitle }}
+      {{ page.metaTitle }}
     </div>
   </div>
 
   <div>
     <p>Meta description :</p>
     <div id="meta_description" contenteditable="true" style="height: 15%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
-      {{ entity.metaDescription }}
+      {{ page.metaDescription }}
     </div>
   </div>
 
@@ -63,7 +63,7 @@
     Indexer<input type="checkbox" id="indexed">
   </div>
   <script>
-  document.getElementById("indexed").checked = "{{ entity.indexed }}";
+  document.getElementById("indexed").checked = "{{ page.indexed }}";
   </script>
 
   <div>
@@ -78,7 +78,7 @@
       var meta_title = document.getElementById('meta_title').innerText;
       var meta_description = document.getElementById('meta_description').innerText;
       var indexed = document.getElementById('indexed').checked ? 1 : 0;
-      var id = "{{ entity.id }}";
+      var id = "{{ page.id }}";
 
       content = content.replace(/(?:\r\n|\r|\n)/g, '({ret})');
       $.ajax({

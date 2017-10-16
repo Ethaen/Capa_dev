@@ -130,8 +130,7 @@
       <div class="container">
 
         <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6">
+          <div class="col-md-5">
             <div id="contact-form">
               <h4>Votre Message</h4>
               <p>Prénom</p>
@@ -142,35 +141,59 @@
               <input type="email" name="email" placeholder="contact@orange.fr">
               <p>Message</p>
               <textarea rows="3" type="text" name="message" placeholder="Votre message"></textarea>
+              <p>Agence</p>
+              <select id="agency" style="width:100%; margin-bottom: 2%;">
+              	{% for agency in agencies %}
+              	<option value="{{ agency.name }}">{{ agency.name }}</option>
+              	{% endfor %}
+              </select>
             </div>
-            <a class="btn btn-default submit" type="submit" style="width: 100%;">Envoyer</a>
+            <a class="btn btn-default submit" onclick="sendEmail()" type="submit" style="width: 100%;">Envoyer</a>
           </div>
-          <div class="col-md-3"></div>
+          <script>
+          var prenom = document.getElementById('lname').innerText;
+          $.ajax({
+            url: '{{ (path('sendEmail')) }}',
+            type: "POST",
+            dataType: "text",
+            data: {
+              "title": title,
+              "content": content,
+              "date": date,
+              "image_id": image_id,
+              "image_name": image_name,
+              "id": "{{ entity.id }}"
+            }
+          });
+          window.location.href = "{{ path('actuality') }}";
+
+          </script>
+          <div class="col-md-7">
+            <h2>Nos agences</h2>
+
+            {% set i = 0 %}
+            {% for agency in agencies %}
+            {% if i == 0 %}
+            <div class="row">
+              {% endif %}
+
+              <div class="col-md-6 col-sm-6">
+                <div class="agence">
+                  <h3>{{ agency.name }}</h3>
+                  <a class="tel" href="tel:{{ agency.phone }}".replace(/\s/g, '');>{{ agency.phone }}</a>
+                  <a class="adresse" href="https://goo.gl/maps/uNhxuXL4a6B2" target="_blank">{{ agency.address }}<br/>{{ agency.city }}</a>
+                </div>
+              </div>
+
+              {% set i = i + 1 %}
+              {% if i == 2 %}
+            </div>
+            {% set i = 0 %}
+            {% endif %}
+            {% endfor %}
+          </div>
         </div>
 
-        <h2>Nos agences</h2>
-
-        {% set i = 0 %}
-        {% for agency in agencies %}
-        {% if i == 0 %}
-        <div class="row">
-          {% endif %}
-
-          <div class="col-md-3 col-sm-6">
-            <div class="agence">
-              <h3>{{ agency.name }}</h3>
-              <a class="tel" href="tel:{{ agency.phone }}".replace(/\s/g, '');>{{ agency.phone }}</a>
-              <a class="adresse" href="https://goo.gl/maps/uNhxuXL4a6B2" target="_blank">{{ agency.address }}<br/>{{ agency.city }}</a>
-              <a class="email" href="#">Envoyer un email</a>
-            </div>
-          </div>
-
-          {% set i = i + 1 %}
-          {% if i == 4 %}
-        </div>
-        {% set i = 0 %}
-        {% endif %}
-        {% endfor %}
 
       </div>
     </div>

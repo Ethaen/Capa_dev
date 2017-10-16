@@ -1,95 +1,96 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Admin | CMS</title>
 
-  <!-- Behavioral Meta Data -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="icon" type="image/png" href="admin/img/actuality/small-logo-01.png">
-  <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,900italic,700italic,700,500italic,400italic,500,300italic,300' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-  <link href='css/style.css' rel='stylesheet' type='text/css'>
+	<!-- Behavioral Meta Data -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="icon" type="image/png" href="img/page/small-logo-01.png">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,900,900italic,700italic,700,500italic,400italic,500,300italic,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href='css/style.css' rel='stylesheet' type='text/css'>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
+	<script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
+	<script type="text/javascript" src="js/jquery-animate-css-rotate-scale.js"></script>
+	<script type="text/javascript" src="js/fastclick.min.js"></script>
+	<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
+	<script type="text/javascript" src="js/jquery.animate-shadow-min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
+	</script>
+	<script type="text/javascript" class="init">
+
+
+	$(document).ready(function() {
+		$('#example').DataTable();
+	} );
+	</script>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Admin | CMS</title>
+	<link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+	<style type="text/css" class="init">
+
+	</style>
 </head>
-
 <body>
-  <a name="ancre"></a>
 
-  <!-- CACHE -->
-  <div class="cache"></div>
+	<!-- HEADER -->
 
-  <!-- HEADER -->
+	<div id="wrapper-header">
+		<div id="main-header" class="object">
+			<div class="top-rated object" style="color:red">CMS</div>
+			<div id="stripes"></div>
+		</div>
+	</div>
 
-  <div id="wrapper-header">
-    <div id="main-header" class="object">
-      <div class="top-rated object" style="color:red">CMS</div>
-      <div id="stripes"></div>
-    </div>
-  </div>
+	<!-- HEADER -->
 
-  <!-- PORTFOLIO -->
+	<!-- BUTTON -->
+	<br><br><br><br>
+	<br>
+	<!-- BUTTON -->
 
-  <div id="wrapper-container">
+	<table id="example" class="display" cellspacing="0" width="100%">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Indexé</th>
+				<th>Options</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>Nom</th>
+				<th>Indexé</th>
+				<th>Options</th>
+			</tr>
+		</tfoot>
+		<tbody>
 
-    <div class="container object">
-
-      <div id="main-container-image">
-
-        <section class="work">
-          <!-- Display of cms -->
-          {% for cms in cms %}
-
-          <figure class="white">
-            <a href="{{ path('modifyCms', {'id': cms.id}) }}">
-              <img src="https://fr.animalblog.co/wp-content/uploads/2013/02/chat-content.jpg"  alt=""/>
-            </a>
-            <div id="wrapper-part-info">
-              <div id="part-info">{{ cms.name }}</a></div>
-            </div>
-          </figure>
-
-        {% endfor %}
-      </section>
-
-    </div>
-
-  </div>
-  <div id="wrapper-oldnew">
-    <div class="oldnew">
-      <div class="wrapper-oldnew-prev">
-        <div id="oldnew-prev"></div>
-      </div>
-      <div class="wrapper-oldnew-next">
-        <div id="oldnew-next"></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="wrapper-thank">
-    <div class="thank"></div>
-  </div>
-
-  <div id="wrapper-copyright">
-    <div class="copyright">
-      <div class="copy-text object"><a style="color:red;">Capa Interim Section Admin</a><a style="color:#D0D1D4; display:none;" href="https://dcrazed.com/">Dcrazed</a></div>
-    </div>
-  </div>
-
-</div>
-
-
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
-<script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
-<script type="text/javascript" src="js/jquery-animate-css-rotate-scale.js"></script>
-<script type="text/javascript" src="js/fastclick.min.js"></script>
-<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
-<script type="text/javascript" src="js/jquery.animate-shadow-min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+			{% for page in cms %}
+			<tr>
+				<td><center>{{ page.name }}</center></td>
+				<td><center>{{ page.indexed }}</center></td>
+				<td><center>
+					<a href="{{ path('modifyCms') ~ "?id=" ~ page.id }}"> <img src="{{ asset( 'img/cms/edit.png') }}"  alt="" style="width:20px; height:20px;"/></a>
+				</center></td>
+			</tr>
+			{% endfor %}
+			<!--
+			<tr>
+			<td>Aiger Nixon</td>
+			<td>System Architect</td>
+			<td>Edinburgh</td>
+			<td>61</td>
+			<td>2011/04/25</td>
+		</tr>
+	-->
+</tbody>
+</table>
 
 </body>
-</html>

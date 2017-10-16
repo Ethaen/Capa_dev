@@ -60,12 +60,14 @@
 		<thead>
 			<tr>
 				<th>Titre</th>
+				<th>Date</th>
 				<th>Options</th>
 			</tr>
 		</thead>
 		<tfoot>
 			<tr>
 				<th>Titre</th>
+				<th>Date</th>
 				<th>Options</th>
 			</tr>
 		</tfoot>
@@ -74,6 +76,7 @@
 			{% for actuality in actualities %}
 			<tr>
 				<td><center>{{ actuality.title }}</center></td>
+				<td><center>{{ actuality.date|date('Y-m-d') }}</center></td>
 				<td><center>
 					<a href="{{ path('modifyActuality') ~ "?id=" ~ actuality.id }}"> <img src="{{ asset( 'img/actuality/edit.png') }}"  alt="" style="width:20px; height:20px;"/></a>
 					&nbsp;&nbsp;&nbsp;

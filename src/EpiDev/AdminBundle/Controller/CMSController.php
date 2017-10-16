@@ -18,7 +18,7 @@ class CMSController extends Controller
   public function modifyCmsAction(Request $request)
   {
     $cms = $this->getDoctrine()->getManager()->getRepository('EpiDevAdminBundle:CMS')->find($request->query->get('id'));
-    return $this->render('EpiDevAdminBundle:Default:cms_modify.html.twig', array('entity' => $cms));
+    return $this->render('EpiDevAdminBundle:Default:cms_modify.html.twig', array('page' => $cms));
   }
 
   public function saveCmsAction(Request $request)

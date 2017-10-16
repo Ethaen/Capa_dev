@@ -172,6 +172,10 @@ contact:
     path: /contact
     defaults:
       _controller: AppBundle:Contactfront:index
+sendEmail:
+    path: /contact/sendEmail
+    defaults:
+      _controller: AppBundle:Contactfront:sendEmail
 
 spontaneous_application:
     path: /spontaneous_application
