@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use AppBundle\Service\FileUploader;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
+use Symfony\Component\HttpFoundation\Session\Session;
+use EpiDev\AdminBundle\Entity\UserInfo;
 
 class AccountfrontController extends Controller
 {
@@ -115,7 +117,7 @@ class AccountfrontController extends Controller
       }
       else if ($request->query->get('account_create'))
       {
-        echo 'Register' . $request->request->get('lorem');
+        $session = new Session();
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserBy(array('email' => $request->get('register_email')) );
         if ($user)
@@ -126,6 +128,35 @@ class AccountfrontController extends Controller
           return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs,
                                'agencies' => $agencies, 'email_exist' => 1, 'invalid_credential' => 0));
         }
+        // If user doesn't exist, create it
+       $user = $userManager->createUser();
+       $user->setUsername($request->query->get('register_firstname'));
+       $user->setEmail($request->query->get('register_email'));
+       $user->setEmailCanonical($request->query->get('register_email'));
+       // this method will encrypt the password with the default settings :)
+       $user->setPlainPassword($request->query->get('register_password'));
+       $userManager->updateUser($user);
+       // Create associated user_info
+       $session = new Session();
+       $user_info = new UserInfo();
+       $user_info->setCivility($request->query->get('register_civility'));
+       $user_info->setName($request->query->get('register_name'));
+       $user_info->setFirstname($request->query->get('register_firstname'));
+       $user_info->setEmail($request->query->get('register_email'));
+       $user_info->setTelephone($request->query->get('register_telephone'));
+       $user_info->setMobilePhone($request->query->get('register_mobile'));
+       $user_info->setAddress($request->query->get('register_address'));
+       $user_info->setPostalCode($request->query->get('register_code'));
+       $user_info->setCity($request->query->get('register_city'));
+       $user_info->setDomain($request->query->get('register_domain'));
+       $user_info->setJob($request->query->get('register_job'));
+       $user_info->setEmployType($request->query->get('register_contract_type'));
+       $user_info->setCv($session->get('real_name'));
+       $user_info->setCv_generated_name($session->get('name'));
+       $user_info->setUser_id($user->getId());
+       $user_info->setAgency($request->query->get('register_agency'));
+       $em->persist($user_info);
+       $em->flush();
       }
 
 
@@ -276,7 +307,10 @@ class AccountfrontController extends Controller
 
     public function register_cv_uploadAction(Request $request)
     {
+      $session = new Session();
 
+      $session->set('name', $request->request->get('name'));
+      $session->set('real_name', $request->request->get('real_name'));
 
       return $this->redirectToRoute('login_register');
     }
