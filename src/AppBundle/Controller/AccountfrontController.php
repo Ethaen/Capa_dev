@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 use Symfony\Component\HttpFoundation\Session\Session;
 use EpiDev\AdminBundle\Entity\UserInfo;
+use EpiDev\AdminBundle\Entity\Alert;
 
 class AccountfrontController extends Controller
 {
@@ -32,14 +33,34 @@ class AccountfrontController extends Controller
         )->setParameters(array('id' => $user->getId()));
 
         $user_info = $query->getResult();
-        return $this->render('AppBundle::personnal_space.html.twig', array('user_info' => $user_info));
+
+        $query = $em->createQuery(
+            'SELECT p
+            FROM EpiDevAdminBundle:Alert p
+            WHERE p.userEmail LIKE :email'
+        )->setParameters(array('email' => $user->getEmail()));
+
+        $alerts = $query->getResult();
+
+        return $this->render('AppBundle::personnal_space.html.twig', array('user_info' => $user_info, 'alerts' => $alerts));
     }
 
     public function set_alertAction(Request $request)
     {
-      
+      $em = $this->getDoctrine()->getManager();
+      $user = $this->getUser();
+      $alert = new Alert();
 
-      return redirectToRoute('personnal_space');
+      $alert->setName($request->query->get('alert_name'));
+      $alert->setDomain($request->query->get('alert_domain'));
+      $alert->setJob($request->query->get('alert_job'));
+      $alert->setDepartment($request->query->get('alert_department'));
+      $alert->setAgency($request->query->get('alert_agency'));
+      $alert->setUserEmail($user->getEmail());
+      $em->persist($alert);
+      $em->flush();
+
+      return $this->redirectToRoute('personnal_space');
     }
 
     public function get_CVAction(Request $request)

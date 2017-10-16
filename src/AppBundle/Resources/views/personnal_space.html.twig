@@ -147,10 +147,10 @@
                             </div>
                             <div class="modal-body">
                                 <p class="title">Nom de l'alerte : * </p>
-                                <input type="text" placeholder="Mon Alerte" name="name" />
+                                <input id="alert_name" type="text" placeholder="Mon Alerte" name="name" />
                                 <p class="activite">Secteur d'activité :</p>
                                 <div id="type">
-                                    <select>
+                                    <select id="alert_domain">
                                         <option selected>Secteur d'activité</option>
                                         <option>Activité 1</option>
                                         <option>Activité 2</option>
@@ -159,7 +159,7 @@
                                 </div>
                                 <p class="metier">Métier : *</p>
                                 <div id="type">
-                                    <select>
+                                    <select id="alert_job">
                                         <option selected>Métier</option>
                                         <option>Métier 1</option>
                                         <option>Métier 2</option>
@@ -168,7 +168,7 @@
                                 </div>
                                 <p class="metier">Localisation : *</p>
                                 <div id="type">
-                                    <select>
+                                    <select id="alert_department">
                                         <option selected>Département</option>
                                         <option>44 - Loire-Atlantique</option>
                                         <option>Métier 2</option>
@@ -177,7 +177,7 @@
                                 </div>
                                 <p class="agency">Agence :</p>
                                 <div id="type">
-                                    <select>
+                                    <select id="alert_agency">
                                         <option selected>Mon Agence CAPA</option>
                                         <option>Agence Vay</option>
                                         <option>Agence Châteaubriant</option>
@@ -186,7 +186,7 @@
                                     </select>
                                 </div>
 
-                                <a href="" class="btn btn-default yellow pull-right" >Enregistrer</a>
+                                <a href="#" class="btn btn-default yellow pull-right" onclick="save_alert()">Enregistrer</a>
                                 <a href="" class="btn btn-default  pull-right" >Annuler</a>
                                 <div class="clearfix"></div>
                             </div>
@@ -195,6 +195,7 @@
                         </div>
                         <h3>Mes alertes</h3>
                         <div class="line"></div>
+                        {% for alert in alerts %}
                         <a class="delete pull-right">Supprimer</a>
                         <p class="title">Titre de l'alerte</p>
                         <div class="alerte">
@@ -216,27 +217,7 @@
                             </div>
                             <div class="clearfix"></div>
                             </div>
-                        <a class="delete pull-right">Supprimer</a>
-                        <p class="title">Titre de l'alerte</p>
-                        <div class="alerte">
-                            <div class="col-sm-3">
-                                <p class="activite">Secteur d'activité :</p>
-                                <p>Activité 1, Activité 2</p>
-                            </div>
-                            <div class="col-sm-3">
-                                <p class="metier">Métier :</p>
-                                <p>Métier 1, Métier 2</p>
-                            </div>
-                            <div class="col-sm-3">
-                                <p class="ville">Localisation :</p>
-                                <p>44, 85, 72</p>
-                            </div>
-                            <div class="col-sm-3">
-                                <p class="agency">Agence :</p>
-                                <p>CAPA Châteaubriant</p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
+                        {% endfor %}
                     </div>
                     <div id="candidatures" class="tab-pane fade">
                         <h3>Mes candidatures</h3>
@@ -333,6 +314,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script src="./js/bootstrap.min.js"></script>
+
+    <script>
+
+    function save_alert()
+    {
+      var alert_name = document.getElementById('alert_name').value;
+      var alert_domain = document.getElementById('alert_domain').value;
+      var alert_job = document.getElementById('alert_job').value;
+      var alert_department = document.getElementById('alert_department').value;
+      var alert_agency = document.getElementById('alert_agency').value;
+
+      if (alert_name == "" || alert_job == "Métier" || alert_department == "Département")
+        alert('Merci de renseigner tous les champs');
+      else
+      {
+        var url = '{{path('set_alert')}}' + '?alert_name=' + alert_name + '&alert_domain=' + alert_domain
+                                           + '&alert_job=' + alert_job + '&alert_department=' + alert_department
+                                           + '&alert_agency=' + alert_agency;
+        window.location.href = url;
+      }
+    }
+
+    </script>
 
 </body>
 
