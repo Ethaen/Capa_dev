@@ -16,14 +16,17 @@ class VariableUrlCmsController extends Controller
 
     for ($i = 0; $i < count($pages); ++$i)
     {
-      if ($path == "mentions_legales")
+      if ($path == $pages[$i]->getUrlName())
       {
-        return $this->render('AppBundle::mentions_legales.html.twig');
-      }
-      else if ($path == $pages[$i]->getUrlName())
-      {
-        if ($pages[$i]->getId() == 1)
-          return $this->render('AppBundle::recruteurs.html.twig', array('recruteurs' => $pages[$i]));
+        if ($pages[$i]->getId() == 1) {
+          return $this->render('AppBundle::recruteur.html.twig', array('entity' => $pages[$i]));
+        }
+        if ($pages[$i]->getId() == 2) {
+          return $this->render('AppBundle::mentions_legales.html.twig', array('entity' => $pages[$i]));
+        }
+        if ($pages[$i]->getId() == 3) {
+          return $this->render('AppBundle::general_sales_conditions.html.twig', array('entity' => $pages[$i]));
+        }
       }
     }
     return $this->redirectToRoute('home');

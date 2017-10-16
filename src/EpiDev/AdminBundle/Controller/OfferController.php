@@ -71,8 +71,11 @@ class OfferController extends Controller
     {
       $em = $this->getDoctrine()->getManager();
       $offer = $em->getRepository('EpiDevAdminBundle:Offer')->find($request->query->get('id'));
+      $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+      $domains = $em->getRepository('EpiDevAdminBundle:Domain')->findAll();
+      $jobs = $em->getRepository('EpiDevAdminBundle:Job')->findAll();
 
-      return $this->render('EpiDevAdminBundle:Default:edit_offer.html.twig', array('offer' => $offer));
+      return $this->render('EpiDevAdminBundle:Default:edit_offer.html.twig', array('offer' => $offer, 'agencies' => $agencies, 'domains' => $domains, 'jobs' => $jobs));
     }
 
     public function saveAction(Request $request)
@@ -81,8 +84,8 @@ class OfferController extends Controller
       $offer = $em->getRepository('EpiDevAdminBundle:Offer')->find($request->request->get('id'));
 
       $offer->setTitle($request->request->get('title'));
-      $offer->setReference($request->request->get('reference'));
-      $offer->seBegin(new \DateTime($request->request->get('begin')));
+      $offer->setRéférence($request->request->get('reference'));
+      $offer->setBegin(new \DateTime($request->request->get('begin')));
       $offer->setActive($request->request->get('active'));
       $offer->setDepartment($request->request->get('department'));
       $offer->setCity($request->request->get('city'));
@@ -95,7 +98,7 @@ class OfferController extends Controller
       $offer->setDegree($request->request->get('degree'));
       $offer->setDescription($request->request->get('description'));
       if ($request->request->get('img_src')) {
-        $offer->setImg_src($request->request->get('img_src'));
+        $offer->setImg_src("img/offer/upload/".$request->request->get('img_src'));
       }
       $em->flush();
       return $this->redirectToRoute('offer');

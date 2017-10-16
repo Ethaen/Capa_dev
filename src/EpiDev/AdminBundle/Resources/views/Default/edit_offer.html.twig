@@ -7,8 +7,8 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   $( function() {
-    $("#datepicker").datepicker({ dateFormat: "dd-mm-yy" }).val();
-    $("#datepicker").datepicker("setDate" , "{{ offer.Begin|date('d-m-Y') }}");
+    $("#begin").datepicker({ dateFormat: "dd-mm-yy" }).val();
+    $("#begin").datepicker("setDate" , "{{ offer.Begin|date('d-m-Y') }}");
   });
   </script>
 
@@ -22,66 +22,224 @@
     <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
   </center>
 
-  <div style="width: 60%; position: absolute; margin-top: 2%;">
+  <div style="width: 20%; margin-top: 2%;">
     <p>Titre :</p>
     <div id="title" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
       {{ offer.Title }}
     </div>
   </div>
 
-  <div style="width: 60%; position: absolute; margin-top: 2%;">
+  <div style="width: 20%; margin-top: 2%;">
     <p>Référence :</p>
-    <div id="" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+    <div id="reference" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
       {{ offer.Référence }}
     </div>
   </div>
 
-  <div>
-    <p>Date :</p>
-    <input type="text" id="datepicker"></input>
+  <div style="margin-top: 2%;">
+    <p>Date de début :</p>
+    <input type="text" id="begin"></input>
   </div>
 
-  <div>
-    Active :<input type="checkbox" id="active">
+  <div style="margin-top: 2%;">
+    <p>Département :</p>
+    <select id="department" style="width:200px; height:40px;">
+      <option value='01'>01 - Ain</option>
+      <option value='02'>02 - Aisne</option>
+      <option value='03'>03 - Allier</option>
+      <option value='04'>04 - Alpes de Haute Provence</option>
+      <option value='05'>05 - Alpes (Hautes)</option>
+      <option value='06'>06 - Alpes Maritimes</option>
+      <option value='07'>07 - Ard&egrave;che</option>
+      <option value='08'>08 - Ardennes</option>
+      <option value='09'>09 - Ari&egrave;ge</option>
+      <option value='10'>10 - Aube</option>
+      <option value='11'>11 - Aude</option>
+      <option value='12'>12 - Aveyron</option>
+      <option value='13'>13 - Bouches du Rh&ocirc;ne</option>
+      <option value='14'>14 - Calvados</option>
+      <option value='15'>15 - Cantal</option>
+      <option value='16'>16 - Charente</option>
+      <option value='17'>17 - Charente Maritime</option>
+      <option value='18'>18 - Cher</option>
+      <option value='19'>19 - Corr&egrave;ze</option>
+      <option value='20'>20 - Corse</option>
+      <option value='21'>21 - C&ocirc;te d&acute;Or</option>
+      <option value='22'>22 - C&ocirc;tes d&acute;Armor</option>
+      <option value='23'>23 - Creuse</option>
+      <option value='24'>24 - Dordogne</option>
+      <option value='25'>25 - Doubs</option>
+      <option value='26'>26 - Dr&ocirc;me</option>
+      <option value='27'>27 - Eure</option>
+      <option value='28'>28 - Eure et Loir</option>
+      <option value='29'>29 - Finist&egrave;re</option>
+      <option value='30'>30 - Gard</option>
+      <option value='31'>31 - Garonne (Haute)</option>
+      <option value='32'>32 - Gers</option>
+      <option value='33'>33 - Gironde</option>
+      <option value='34'>34 - H&eacute;rault</option>
+      <option value='35'>35 - Ille et Vilaine</option>
+      <option value='36'>36 - Indre</option>
+      <option value='37'>37 - Indre et Loire</option>
+      <option value='38'>38 - Is&egrave;re</option>
+      <option value='39'>39 - Jura</option>
+      <option value='40'>40 - Landes</option>
+      <option value='41'>41 - Loir et Cher</option>
+      <option value='42'>42 - Loire</option>
+      <option value='43'>43 - Loire (Haute)</option>
+      <option value='44'>44 - Loire Atlantique</option>
+      <option value='45'>45 - Loiret</option>
+      <option value='46'>46 - Lot</option>
+      <option value='47'>47 - Lot et Garonne</option>
+      <option value='48'>48 - Loz&egrave;re</option>
+      <option value='49'>49 - Maine et Loire</option>
+      <option value='50'>50 - Manche</option>
+      <option value='51'>51 - Marne</option>
+      <option value='52'>52 - Marne (Haute)</option>
+      <option value='53'>53 - Mayenne</option>
+      <option value='54'>54 - Meurthe et Moselle</option>
+      <option value='55'>55 - Meuse</option>
+      <option value='56'>56 - Morbihan</option>
+      <option value='57'>57 - Moselle</option>
+      <option value='58'>58 - Ni&egrave;vre</option>
+      <option value='59'>59 - Nord</option>
+      <option value='60'>60 - Oise</option>
+      <option value='61'>61 - Orne</option>
+      <option value='62'>62 - Pas de Calais</option>
+      <option value='63'>63 - Puy de D&ocirc;me</option>
+      <option value='64'>64 - Pyr&eacute;n&eacute;es Atlantiques</option>
+      <option value='65'>65 - Pyr&eacute;n&eacute;es (Hautes)</option>
+      <option value='66'>66 - Pyr&eacute;n&eacute;es Orientales</option>
+      <option value='67'>67 - Rhin (Bas)</option>
+      <option value='68'>68 - Rhin (Haut)</option>
+      <option value='69'>69 - Rh&ocirc;ne</option>
+      <option value='70'>70 - Sa&ocirc;ne (Haute)</option>
+      <option value='71'>71 - Sa&ocirc;ne et Loire</option>
+      <option value='72'>72 - Sarthe</option>
+      <option value='73'>73 - Savoie</option>
+      <option value='74'>74 - Savoie (Haute)</option>
+      <option value='75'>75 - Paris (Dept.)</option>
+      <option value='76'>76 - Seine Maritime</option>
+      <option value='77'>77 - Seine et Marne</option>
+      <option value='78'>78 - Yvelines</option>
+      <option value='79'>79 - S&egrave;vres (Deux)</option>
+      <option value='80'>80 - Somme</option>
+      <option value='81'>81 - Tarn</option>
+      <option value='82'>82 - Tarn et Garonne</option>
+      <option value='83'>83 - Var</option>
+      <option value='84'>84 - Vaucluse</option>
+      <option value='85'>85 - Vend&eacute;e</option>
+      <option value='86'>86 - Vienne</option>
+      <option value='87'>87 - Vienne (Haute)</option>
+      <option value='88'>88 - Vosges</option>
+      <option value='89'>89 - Yonne</option>
+      <option value='90'>90 - Belfort (Territoire de)</option>
+      <option value='91'>91 - Essonne</option>
+      <option value='92'>92 - Hauts de Seine</option>
+      <option value='93'>93 - Seine Saint Denis</option>
+      <option value='94'>94 - Val de Marne</option>
+      <option value='95'>95 - Val d&acute;Oise</option>
+      <option value='98'>98 - Mayotte</option>
+      <option value='9A'>9A - Guadeloupe</option>
+      <option value='9B'>9B - Guyane</option>
+      <option value='9C'>9C - Martinique</option>
+      <option value='9D'>9D - R&eacute;union</option>
+    </select>
+  </div>
+  <script>
+  document.getElementById("department").value = "{{ offer.department }}";
+  </script>
+
+  <div style="width: 20%; margin-top: 2%;">
+    <p>Ville :</p>
+    <div id="city" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{ offer.City }}
+    </div>
   </div>
 
-  <select id="department" style="width:200px; height:40px;">
-    <option value="agence">Département</option>
-  </select>
+  <div style="margin-top: 2%;">
+    <p>Agence :</p>
+    <select id="agency" style="width:200px; height:40px;">
+      {% for agency in agencies %}
+      <option value="{{ agency.name }}">{{ agency.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <script>
+  document.getElementById("agency").value = "{{ offer.agency }}";
+  </script>
 
-  <select id="city" style="width:200px; height:40px;">
-    <option value="agence">Ville</option>
-  </select>
+  <div style="margin-top: 2%;">
+    <p>Secteur d'activité :</p>
+    <select id="domain" style="width:200px; height:40px;">
+      {% for domain in domains %}
+      <option value="{{ domain.name }}">{{ domain.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <script>
+  document.getElementById("domain").value = "{{ offer.domain }}";
+  </script>
 
-  <select id="agency" style="width:200px; height:40px;">
-    <option value="agency">Agence</option>
-  </select>
+  <div style="margin-top: 2%;">
+    <p>Métier :</p>
+    <select id="job" style="width:200px; height:40px;">
+      {% for job in jobs %}
+      <option value="{{ job.name }}">{{ job.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <script>
+  document.getElementById("job").value = "{{ offer.job }}";
+  </script>
 
-  <select id="domaine" style="width:200px; height:40px;">
-    <option value="domaine">Domaine</option>
-  </select>
+  <div style="margin-top: 2%;">
+    <p>Durée :</p>
+    <select id="duration" style="width:200px; height:40px;">
+      <option value="4 mois">4 mois</option>
+      <option value="6 mois">6 mois</option>
+      <option value="1 ans">1 an</option>
+      <option value="2 ans">2 ans</option>
+    </select>
+  </div>
+  <script>
+  document.getElementById("duration").value = "{{ offer.duration }}";
+  </script>
 
-  <select id="job" style="width:200px; height:40px;">
-    <option value="job">Métier</option>
-  </select>
+  <div style="margin-top: 2%;">
+    <p>Expérience souhaitée :</p>
+    <select id="experience" style="width:200px; height:40px;">
+      <option value="Sans experience">Sans experience</option>
+      <option value="1- an">1- an</option>
+      <option value="3 ans">3 ans</option>
+      <option value="5 ans">5 ans</option>
+      <option value="10+ ans">10+ ans</option>
+    </select>
+  </div>
+  <script>
+  document.getElementById("experience").value = "{{ offer.experience }}";
+  </script>
 
-  <div>
+  <div style="margin-top: 2%;">
+    <p>Niveau d'étude :</p>
+    <select id="degree" style="width:200px; height:40px;">
+      <option value="Sans diplôme">Sans diplôme</option>
+      <option value="Bac">Bac</option>
+      <option value="Mater">Master</option>
+    </select>
+  </div>
+  <script>
+  document.getElementById("degree").value = "{{ offer.degree }}";
+  </script>
+
+  <div style="margin-top: 2%;">
     Type d'emploi :<input type="checkbox" id="job_type"> Temps partiel
   </div>
+  <script>
+  document.getElementById("job_type").checked = "{{ offer.job_type }}";
+  </script>
 
-  <select id="duration" style="width:200px; height:40px;">
-    <option value="duration">Durée</option>
-  </select>
-
-  <select id="experience" style="width:200px; height:40px;">
-    <option value="experience">Expérience souhaitée</option>
-  </select>
-
-  <select id="degree" style="width:200px; height:40px;">
-    <option value="degree">Niveau d'étude</option>
-  </select>
-
-  <div>
+  <div style="margin-top: 2%;">
     <p>Description du poste :</p>
     <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
     <script type="text/javascript">
@@ -94,6 +252,14 @@
 
   <img id="image" src="{{ offer.img_src }}" height="15%">
   <input type="file" id="upload" accept="image/*" style="margin-top: 2%;">
+
+  <div>
+    Active :<input type="checkbox" id="active">
+  </div>
+  <script>
+  document.getElementById("active").checked = "{{ offer.active }}";
+  </script>
+
   <script>
   file = "";
   image_name = "";
@@ -117,7 +283,7 @@
       var begin = document.getElementById('begin').value;
       var active = document.getElementById('active').checked ? 1 : 0;
       var department = document.getElementById('department').value;
-      var city = document.getElementById('city').value;
+      var city = document.getElementById('city').innerText;
       var agency = document.getElementById('agency').value;
       var domain = document.getElementById('domain').value;
       var job = document.getElementById('job').value;
@@ -130,6 +296,7 @@
       if (file) {
         var form_data = new FormData();
         var image_id = makeId()+extension;
+
         form_data.append('file', file);
         form_data.append('name', image_id);
         form_data.append('path', "img/offer/upload/");
@@ -145,12 +312,13 @@
       }
 
       $.ajax({
-        url: '{{ (path('save')) }}',
+        url: '{{ (path('save_offer')) }}',
         type: "POST",
         dataType: "text",
         data: {
           "title": title,
           "reference": reference,
+          "begin": begin,
           "active": active,
           "department": department,
           "city": city,
@@ -161,12 +329,12 @@
           "duration": duration,
           "experience": experience,
           "degree": degree,
-          "begin": begin,
+          "description": description,
           "img_src": image_id,
           "id": "{{ offer.id }}"
         }
       });
-      window.location.href = "{{ path('offer') }}";
+      //window.location.href = "{{ path('offer') }}";
     }
     function makeId()
     {

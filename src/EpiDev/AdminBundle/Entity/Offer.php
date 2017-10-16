@@ -361,7 +361,7 @@ class Offer
      */
     public function setJob_type($job_type)
     {
-        $job_type->job_type = $job_type;
+        $this->job_type = $job_type;
 
         return $this;
     }

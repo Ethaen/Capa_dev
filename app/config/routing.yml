@@ -45,14 +45,14 @@ cms:
   path: /admin/cms
   defaults:
     _controller: EpiDevAdminBundle:Admin:cms
-modifyRecruteur:
-  path: /admin/modifyRecruteur
+modifyCms:
+  path: /admin/modifyCms
   defaults:
-    _controller: EpiDevAdminBundle:CMS:modifyRecruteur
-saveRecruteur:
-  path: /admin/saveRecruteur
+    _controller: EpiDevAdminBundle:CMS:modifyCms
+saveCms:
+  path: /admin/saveCms
   defaults:
-    _controller: EpiDevAdminBundle:CMS:saveRecruteur
+    _controller: EpiDevAdminBundle:CMS:saveCms
 
 
 agency:
