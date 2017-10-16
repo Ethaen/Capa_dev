@@ -2,6 +2,7 @@
 
 namespace EpiDev\AdminBundle\Controller;
 
+use EpiDev\AdminBundle\Entity\Actuality;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -34,6 +35,53 @@ class ActualityController extends Controller
       $actuality->setImg_id("/admin/img/actuality/upload/".$request->request->get('image_id'));
       $actuality->setImg_name($request->request->get('image_name'));
     }
+    $em->flush();
+    return $this->redirectToRoute('actuality');
+  }
+
+  public function uploadActualityAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $actuality = new Actuality;
+
+    $actuality->setTitle($request->request->get('title'));
+    $actuality->setTexte($request->request->get('content'));
+    $actuality->setDate(new \DateTime($request->request->get('date')));
+    if ($request->request->get('image_id') && $request->request->get('image_name')) {
+      $actuality->setImg_id("/admin/img/actuality/upload/".$request->request->get('image_id'));
+      $actuality->setImg_name($request->request->get('image_name'));
+    }
+    else {
+      $actuality->setImg_id("");
+      $actuality->setImg_name("");
+    }
+    $em->persist($actuality);
+    $em->flush();
+    return $this->redirectToRoute('actuality');
+  }
+
+  public function addActualityAction(Request $request)
+  {
+    return $this->render('EpiDevAdminBundle:Default:add_actuality.html.twig');
+  }
+
+  public function duplicateAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $actuality = $em->getRepository('EpiDevAdminBundle:Offer')->find($request->query->get('id'));
+
+    $actuality_copy = clone $actuality;
+    $em->persist($actuality_copy);
+    $em->flush();
+    return $this->redirectToRoute('actuality');
+  }
+
+  public function deleteAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $actuality = $em->getRepository('EpiDevAdminBundle:Actuality')->find($request->query->get('id'));
+
+    $em->remove($actuality);
     $em->flush();
     return $this->redirectToRoute('actuality');
   }

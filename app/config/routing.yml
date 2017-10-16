@@ -40,6 +40,22 @@ saveActuality:
     path: /admin/saveActuality
     defaults:
       _controller: EpiDevAdminBundle:Actuality:saveActuality
+addActuality:
+    path: /admin/addActuality
+    defaults:
+      _controller: EpiDevAdminBundle:Actuality:addActuality
+uploadActuality:
+    path: /admin/uploadActuality
+    defaults:
+      _controller: EpiDevAdminBundle:Actuality:uploadActuality
+deleteActuality:
+    path: /admin/deleteActuality
+    defaults:
+      _controller: EpiDevAdminBundle:Actuality:deleteActuality
+duplicateActuality:
+    path: /admin/duplicateActuality
+    defaults:
+      _controller: EpiDevAdminBundle:Actuality:duplicateActuality
 
 cms:
   path: /admin/cms

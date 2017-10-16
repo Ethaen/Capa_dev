@@ -1,0 +1,120 @@
+<html>
+<head>
+
+  <!-- Date picker -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $("#datepicker").datepicker({ dateFormat: "dd-mm-yy" }).val();
+  });
+  </script>
+
+
+</head>
+
+<body>
+
+  <center style="margin-bottom: 2%;">
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+    <br><br><br>HEADER<br><br><br>
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+  </center>
+
+  <div style="width: 60%; position: absolute; margin-top: 2%;">
+    <p>Titre :</p>
+    <div id="title" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+    </div>
+  </div>
+
+  <div align="right">
+    <img id="image" src="" height="15%">
+    <div>
+      <input type="file" id="upload" accept="image/*" style="margin-top: 2%;">
+      <script>
+      file = "";
+      image_name = "";
+      image_id = "";
+      $('#upload').change(
+        function(event) {
+          file = event.target.files[0];
+          image_name = document.getElementById('upload').files[0].name;
+          extension = "."+image_name.split('.').pop();
+          $("#image").fadeIn("fast").attr('src', URL.createObjectURL(event.target.files[0]));
+        }
+      );
+      </script>
+    </div>
+  </div>
+
+  <div>
+    <p>Contenu :</p>
+    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+    <script type="text/javascript">
+    bkLib.onDomLoaded(function() { nicEditors.allTextAreas({buttonList : ['fontSize','bold','italic','underline']}) });
+    </script>
+    <form id="content_area">
+      <textarea content="" style="width: 100%; height: 30%;"></textarea>
+    </form>
+  </div>
+
+  <div>
+    <p>Date :</p>
+    <input type="text" id="datepicker"></input>
+  </div>
+  <div>
+    <button onclick="add()" style="margin-top: 2%;">Ajouter</button>
+    <script type="text/javascript">
+    function add()
+    {
+      var title = document.getElementById('title').innerText;
+      var content = $('#content_area').find('.nicEdit-main').html();
+      var date = document.getElementById('datepicker').value;
+
+      if (file) {
+        var form_data = new FormData();
+        var image_id = makeId()+extension;
+        form_data.append('file', file);
+        form_data.append('name', image_id);
+        form_data.append('path', "img/actuality/upload/");
+        $.ajax({
+          url: '/admin/upload.php',
+          dataType: 'text',
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data,
+          type: 'post'
+        });
+      }
+
+      $.ajax({
+        url: '{{ (path('uploadActuality')) }}',
+        type: "POST",
+        dataType: "text",
+        data: {
+          "title": title,
+          "content": content,
+          "date": date,
+          "image_id": image_id,
+          "image_name": image_name
+        }
+      });
+      window.location.href = "{{ path('actuality') }}";
+    }
+    function makeId()
+    {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random()*possible.length));
+
+      return text;
+    }
+    </script>
+  </div>
+
+</body>
+</html>
