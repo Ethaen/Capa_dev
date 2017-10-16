@@ -196,24 +196,24 @@
                         <h3>Mes alertes</h3>
                         <div class="line"></div>
                         {% for alert in alerts %}
-                        <a class="delete pull-right">Supprimer</a>
-                        <p class="title">Titre de l'alerte</p>
+                        <a href="{{ path('delete_alert', { 'alert_id': alert.id } ) }}" class="delete pull-right">Supprimer</a>
+                        <p class="title">{{ alert.name }}</p>
                         <div class="alerte">
                             <div class="col-sm-3">
                                 <p class="activite">Secteur d'activité :</p>
-                                <p>Activité 1, Activité 2</p>
+                                <p>{{ alert.domain}}</p>
                             </div>
                             <div class="col-sm-3">
                                 <p class="metier">Métier :</p>
-                                <p>Métier 1, Métier 2</p>
+                                <p>{{ alert.job }}</p>
                             </div>
                             <div class="col-sm-3">
                                 <p class="ville">Localisation :</p>
-                                <p>44, 85, 72</p>
+                                <p>{{ alert.department }}</p>
                             </div>
                             <div class="col-sm-3">
                                 <p class="agency">Agence :</p>
-                                <p>CAPA Châteaubriant</p>
+                                <p>{{ alert.agency }}</p>
                             </div>
                             <div class="clearfix"></div>
                             </div>

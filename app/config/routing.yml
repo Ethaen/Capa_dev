@@ -172,6 +172,7 @@ contact:
     path: /contact
     defaults:
       _controller: AppBundle:Contactfront:index
+
 sendEmail:
     path: /contact/sendEmail
     defaults:
@@ -191,6 +192,11 @@ set_alert:
     path: /set_alert
     defaults:
       _controller: AppBundle:Accountfront:set_alert
+
+delete_alert:
+    path: /delete_alert
+    defaults:
+        _controller: AppBundle:Accountfront:delete_alert
 
 login_register:
     path: /login.html

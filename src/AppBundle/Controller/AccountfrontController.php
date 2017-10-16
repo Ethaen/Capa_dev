@@ -63,6 +63,17 @@ class AccountfrontController extends Controller
       return $this->redirectToRoute('personnal_space');
     }
 
+    public function delete_alertAction(Request $request)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $alert = $this->getDoctrine()->getRepository('EpiDevAdminBundle:Alert')->find($request->query->get('alert_id'));
+
+      $em->remove($alert);
+      $em->flush();
+
+      return $this->redirectToRoute('personnal_space');
+    }
+
     public function get_CVAction(Request $request)
     {
       $em = $this->getDoctrine()->getManager();
