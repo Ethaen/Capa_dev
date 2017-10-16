@@ -87,7 +87,7 @@ class AccountfrontController extends Controller
           return $this->redirectToRoute('home');
       }
 
-      if ($login_email && $login_password)
+      if ($login_email && $login_password && !$request->query->get('account_create'))
       {
         // hash password and compare to db password
         $userManager = $this->get('fos_user.user_manager');
@@ -113,11 +113,28 @@ class AccountfrontController extends Controller
             $invalid_credential = 1;
           }
       }
+      else if ($request->query->get('account_create'))
+      {
+        echo 'Register' . $request->request->get('lorem');
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserBy(array('email' => $request->get('register_email')) );
+        if ($user)
+        {
+          $flashbag = $this->get('session')->getFlashBag();
+          $flashbag->get("email_exist");
+          $this->addFlash("email_exist", "Un compte est déjà associé à cet email");
+          return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs,
+                               'agencies' => $agencies, 'email_exist' => 1, 'invalid_credential' => 0));
+        }
+      }
+
 
       if (!$invalid_credential)
-        return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs, 'agencies' => $agencies, 'invalid_credential' => 0));
+        return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs,
+                                                                           'agencies' => $agencies, 'invalid_credential' => 0, 'email_exist' => 0));
       else
-        return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs, 'agencies' => $agencies, 'invalid_credential' => 1));
+        return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs, 'agencies' => $agencies,
+                                                                           'invalid_credential' => 1, 'email_exist' => 0));
     }
 
 
@@ -257,8 +274,10 @@ class AccountfrontController extends Controller
         return $this->redirectToRoute('home');
     }
 
-    public function register_cv_upload(Request $request)
+    public function register_cv_uploadAction(Request $request)
     {
+
+
       return $this->redirectToRoute('login_register');
     }
 }
