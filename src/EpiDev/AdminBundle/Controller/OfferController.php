@@ -2,39 +2,48 @@
 
 namespace EpiDev\AdminBundle\Controller;
 
+use EpiDev\AdminBundle\Entity\Offer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class OfferController extends Controller
 {
-    public function offerAction(Request $request)
+  public function offerAction(Request $request)
+  {
+    $agency = $request->query->get('agency');
+    $domain = $request->query->get('domain');
+
+    $em = $this->getDoctrine()->getManager();
+    if ( (isset($agency) && isset($domain)) && ($agency != "agence" && $domain != "activity") )
     {
-      $agency = $request->query->get('agency');
-      $domain = $request->query->get('domain');
+      // Filter from agency and domain
+      $query = $em->createQuery(
+        'SELECT p
+        FROM EpiDevAdminBundle:Offer p
+        WHERE p.agency LIKE :agency
+        AND p.domain LIKE :domain
+        ORDER BY p.id ASC'
+        )->setParameters(array('agency' => $agency, 'domain' => $domain)
+      );
 
-      $em = $this->getDoctrine()->getManager();
-      if ( (isset($agency) && isset($domain)) && ($agency != "agence" && $domain != "activity") )
-        {
-          // Filter from agency and domain
-          $query = $em->createQuery(
-              'SELECT p
-              FROM EpiDevAdminBundle:Offer p
-              WHERE p.agency LIKE :agency
-              AND p.domain LIKE :domain
-              ORDER BY p.id ASC'
-          )->setParameters(array('agency' => $agency, 'domain' => $domain));
-
-          $offers = $query->getResult();
-        }
-      else if ( isset($agency) && $agency != "agence")
-      {
-        // Filter from agency
-        $query = $em->createQuery(
-            'SELECT p
-            FROM EpiDevAdminBundle:Offer p
-            WHERE p.agency LIKE :agency
-            ORDER BY p.id ASC'
+      $offers = $query->getResult();
+    }
+    else if ( isset($agency) && $agency != "agence")
+    {
+      // Filter from agency
+      $query = $em->createQuery(
+        'SELECT p
+        FROM EpiDevAdminBundle:Offer p
+        WHERE p.agency LIKE :agency
+        ORDER BY p.id ASC'
         )->setParameter('agency', $agency);
 
         $offers = $query->getResult();
@@ -43,11 +52,12 @@ class OfferController extends Controller
       {
         // Filter from domain
         $query = $em->createQuery(
-            'SELECT p
-            FROM EpiDevAdminBundle:Offer p
-            WHERE p.domain LIKE :domain
-            ORDER BY p.id ASC'
-        )->setParameter('domain', $domain);
+          'SELECT p
+          FROM EpiDevAdminBundle:Offer p
+          WHERE p.domain LIKE :domain
+          ORDER BY p.id ASC'
+          )->setParameter('domain', $domain
+        );
 
         $offers = $query->getResult();
       }
@@ -62,9 +72,44 @@ class OfferController extends Controller
       return $this->render('EpiDevAdminBundle:Default:offer.html.twig', array('offers' => $offers, 'agencies' => $agencies, 'domains' => $domains) );
     }
 
+    public function uploadAction(Request $request)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $offer = new Offer;
+
+      $offer->setTitle($request->request->get('title'));
+      $offer->setRéférence($request->request->get('reference'));
+      $offer->setBegin(new \DateTime($request->request->get('begin')));
+      $offer->setActive($request->request->get('active'));
+      $offer->setDepartment($request->request->get('department'));
+      $offer->setCity($request->request->get('city'));
+      $offer->setAgency($request->request->get('agency'));
+      $offer->setDomain($request->request->get('domain'));
+      $offer->setJob($request->request->get('job'));
+      $offer->setJob_type($request->request->get('job_type'));
+      $offer->setDuration($request->request->get('duration'));
+      $offer->setExperience($request->request->get('experience'));
+      $offer->setDegree($request->request->get('degree'));
+      $offer->setDescription($request->request->get('description'));
+      if ($request->request->get('img_src')) {
+        $offer->setImg_src("img/offer/upload/".$request->request->get('img_src'));
+      }
+      else {
+        $offer->setImg_src("");
+      }
+      $em->persist($offer);
+      $em->flush();
+      return $this->redirectToRoute('offer');
+    }
+
     public function addAction()
     {
-      return $this->render('EpiDevAdminBundle:Default:add_offer.html.twig');
+      $em = $this->getDoctrine()->getManager();
+      $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+      $domains = $em->getRepository('EpiDevAdminBundle:Domain')->findAll();
+      $jobs = $em->getRepository('EpiDevAdminBundle:Job')->findAll();
+
+      return $this->render('EpiDevAdminBundle:Default:add_offer.html.twig', array('agencies' => $agencies, 'domains' => $domains, 'jobs' => $jobs));
     }
 
     public function editAction(Request $request)
@@ -127,4 +172,4 @@ class OfferController extends Controller
       $em->flush();
       return $this->redirectToRoute('offer');
     }
-}
+  }
