@@ -31,7 +31,7 @@ fos_user_change_password:
 actuality:
     path: /admin/actuality
     defaults:
-      _controller: EpiDevAdminBundle:Admin:actuality
+      _controller: EpiDevAdminBundle:Actuality:actuality
 modifyActuality:
     path: /admin/modifyActuality
     defaults:
@@ -60,7 +60,7 @@ duplicateActuality:
 cms:
   path: /admin/cms
   defaults:
-    _controller: EpiDevAdminBundle:Admin:cms
+    _controller: EpiDevAdminBundle:CMS:cms
 modifyCms:
   path: /admin/modifyCms
   defaults:
@@ -125,6 +125,51 @@ save_offer:
   defaults:
     _controller: EpiDevAdminBundle:Offer:save
 
+job:
+    path: /admin/job
+    defaults:
+      _controller: EpiDevAdminBundle:Job:job
+add_job:
+  path: /admin/add_job
+  defaults:
+    _controller: EpiDevAdminBundle:Job:add_job
+add_domain:
+  path: /admin/add_domain
+  defaults:
+    _controller: EpiDevAdminBundle:Job:add_domain
+upload_job:
+  path: /admin/upload_job
+  defaults:
+    _controller: EpiDevAdminBundle:Job:upload_job
+upload_domain:
+  path: /admin/upload_domain
+  defaults:
+    _controller: EpiDevAdminBundle:Job:upload_domain
+edit_job:
+  path: /admin/edit_job
+  defaults:
+    _controller: EpiDevAdminBundle:Job:edit_job
+edit_domain:
+  path: /admin/edit_domain
+  defaults:
+    _controller: EpiDevAdminBundle:Job:edit_domain
+delete_job:
+  path: /admin/delete_job
+  defaults:
+    _controller: EpiDevAdminBundle:Job:delete_job
+delete_domain:
+  path: /admin/delete_domain
+  defaults:
+    _controller: EpiDevAdminBundle:Job:delete_domain
+save_job:
+  path: /admin/save_job
+  defaults:
+    _controller: EpiDevAdminBundle:Job:save_job
+save_domain:
+  path: /admin/save_domain
+  defaults:
+    _controller: EpiDevAdminBundle:Job:save_domain
+
 application:
   path: /admin/application
   defaults:
@@ -172,9 +217,8 @@ contact:
     path: /contact
     defaults:
       _controller: AppBundle:Contactfront:index
-
 sendEmail:
-    path: /contact/sendEmail
+    path: /sendEmail
     defaults:
       _controller: AppBundle:Contactfront:sendEmail
 

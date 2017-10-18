@@ -16,6 +16,14 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class ActualityController extends Controller
 {
+  public function actualityAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $actualities = $em->getRepository('EpiDevAdminBundle:Actuality')->findAll();
+
+    return $this->render('EpiDevAdminBundle:Default:actuality.html.twig', array('actualities' => $actualities));
+  }
+
   public function modifyActualityAction(Request $request)
   {
     $actuality = $this->getDoctrine()->getManager()->getRepository('EpiDevAdminBundle:Actuality')->find($request->query->get('id'));

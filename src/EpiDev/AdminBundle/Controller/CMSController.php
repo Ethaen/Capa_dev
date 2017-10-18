@@ -15,6 +15,14 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class CMSController extends Controller
 {
+  public function cmsAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $cms = $em->getRepository('EpiDevAdminBundle:CMS')->findAll();
+
+    return $this->render('EpiDevAdminBundle:Default:cms.html.twig', array('cms' => $cms));
+  }
+
   public function modifyCmsAction(Request $request)
   {
     $cms = $this->getDoctrine()->getManager()->getRepository('EpiDevAdminBundle:CMS')->find($request->query->get('id'));

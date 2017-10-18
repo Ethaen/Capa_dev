@@ -134,40 +134,52 @@
             <div id="contact-form">
               <h4>Votre Message</h4>
               <p>Prénom</p>
-              <input type="text" name="lname" placeholder="Ex: Rousseau">
+              <input type="text" id="lname" name="lname" placeholder="Ex: Rousseau">
               <p>Nom</p>
-              <input type="text" name="fname" placeholder="Ex: Camille">
+              <input type="text" id="fname" name="fname" placeholder="Ex: Camille">
               <p>E-mail</p>
-              <input type="email" name="email" placeholder="contact@orange.fr">
+              <input type="email" id="email" name="email" placeholder="contact@orange.fr">
               <p>Message</p>
-              <textarea rows="3" type="text" name="message" placeholder="Votre message"></textarea>
+              <textarea rows="3" type="text" id="message" name="message" placeholder="Votre message"></textarea>
               <p>Agence</p>
               <select id="agency" style="width:100%; margin-bottom: 2%;">
-              	{% for agency in agencies %}
-              	<option value="{{ agency.name }}">{{ agency.name }}</option>
-              	{% endfor %}
+                {% for agency in agencies %}
+                <option value="{{ agency.name }}">{{ agency.name }}</option>
+                {% endfor %}
               </select>
             </div>
             <a class="btn btn-default submit" onclick="sendEmail()" type="submit" style="width: 100%;">Envoyer</a>
           </div>
           <script>
-          var prenom = document.getElementById('lname').innerText;
-          $.ajax({
-            url: '{{ (path('sendEmail')) }}',
-            type: "POST",
-            dataType: "text",
-            data: {
-              "title": title,
-              "content": content,
-              "date": date,
-              "image_id": image_id,
-              "image_name": image_name,
-              "id": "{{ entity.id }}"
-            }
-          });
-          window.location.href = "{{ path('actuality') }}";
+          function sendEmail()
+          {
+            var lname = document.getElementById('lname').value;
+            var fname = document.getElementById('fname').value;
+            var user_email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+            var agency = document.getElementById('agency').value;
+            var agency_email = "";
 
+            "{% for email in emails %}"
+            if ("{{ email.agency }}" == agency) {
+              agency_email = "{{ email.mail }}";
+            }
+            "{% endfor %}"
+            $.ajax({
+              url: '{{ (path('sendEmail')) }}',
+              type: "POST",
+              dataType: "text",
+              data: {
+                "lname": lname,
+                "fname": fname,
+                "user_email": user_email,
+                "message": message,
+                "agency_email": agency_email
+              }
+            });
+          }
           </script>
+
           <div class="col-md-7">
             <h2>Nos agences</h2>
 

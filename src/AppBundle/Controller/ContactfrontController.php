@@ -12,23 +12,27 @@ class ContactfrontController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
     $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+    $emails = $em->getRepository('EpiDevAdminBundle:email')->findAll();
 
-    return $this->render('AppBundle::contact.html.twig', array('agencies' => $agencies));
+    return $this->render('AppBundle::contact.html.twig', array('agencies' => $agencies, 'emails' => $emails));
   }
 
-  public function sendEmail(Request $request, \Swift_Mailer $mailer)
+  public function sendEmailAction(Request $request, \Swift_Mailer $mailer)
   {
-    $message = (new \Swift_Message('Modification du mot de passe'))
-    ->setFrom('guidiv7@gmail.com')
-    ->setTo('guidiv7@gmail.com')
+    $user_message = $request->request->get('message');
+    $lname = $request->request->get('lname');
+    $fname = $request->request->get('fname');
+    $message = (new \Swift_Message('Message utilisateur'))
+    ->setFrom($request->request->get('user_email'))
+    ->setTo($request->request->get('agency_email'))
     ->setBody(
-        $this->renderView(
-            // app/Resources/views/Emails/registration.html.twig
-            'Emails/reset_password.html.twig',
-            array('new_password' => $new_password)
-        ),
-        'text/html'
+      $this->renderView(
+        'Emails/send_user_email.html.twig',
+        array('message' => $user_message, 'lname' => $lname, 'fname' => $fname, 'mail')
+      ),
+      'text/html'
     );
     $mailer->send($message);
+    return $this->redirectToRoute('contact');
   }
 }
