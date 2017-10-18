@@ -108,6 +108,10 @@ add_offer:
   path: /admin/add_offer
   defaults:
     _controller: EpiDevAdminBundle:Offer:add
+upload_offer:
+  path: /admin/upload_offer
+  defaults:
+    _controller: EpiDevAdminBundle:Offer:upload
 edit_offer:
   path: /admin/edit_offer
   defaults:
@@ -209,7 +213,7 @@ offer_details:
       _controller: AppBundle:Offerfront:details
 
 list_actuality:
-    path: /list_actuality
+    path: /actuality
     defaults:
       _controller: AppBundle:Actualityfront:list
 

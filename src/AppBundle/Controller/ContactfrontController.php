@@ -28,7 +28,7 @@ class ContactfrontController extends Controller
     ->setBody(
       $this->renderView(
         'Emails/send_user_email.html.twig',
-        array('message' => $user_message, 'lname' => $lname, 'fname' => $fname, 'mail')
+        array('message' => $user_message, 'lname' => $lname, 'fname' => $fname, 'user_mail' => $user_mail)
       ),
       'text/html'
     );
