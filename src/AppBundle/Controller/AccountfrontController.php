@@ -41,8 +41,12 @@ class AccountfrontController extends Controller
         )->setParameters(array('email' => $user->getEmail()));
 
         $alerts = $query->getResult();
+        $domains = $this->getDoctrine()->getRepository('EpiDevAdminBundle:Domain')->findAll();
+        $jobs = $this->getDoctrine()->getRepository('EpiDevAdminBundle:Job')->findAll();
+        $agencies = $this->getDoctrine()->getRepository('EpiDevAdminBundle:Agency')->findAll();
 
-        return $this->render('AppBundle::personnal_space.html.twig', array('user_info' => $user_info, 'alerts' => $alerts));
+        return $this->render('AppBundle::personnal_space.html.twig', array('user_info' => $user_info, 'alerts' => $alerts, 'domains' => $domains
+                              , 'jobs' => $jobs, 'agencies' => $agencies));
     }
 
     public function set_alertAction(Request $request)
