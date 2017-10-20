@@ -122,6 +122,13 @@ class Offer
     /**
      * @var string
      *
+     * @ORM\Column(name="Description_txt", type="text")
+     */
+    private $description_txt;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="img_src", type="text")
      */
     private $img_src;
@@ -470,6 +477,30 @@ class Offer
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set description_txt
+     *
+     * @param string $description_txt
+     *
+     * @return Offer
+     */
+    public function setDescription_txt($description_txt)
+    {
+        $this->description_txt = $description_txt;
+
+        return $this;
+    }
+
+    /**
+     * Get description_txt
+     *
+     * @return string
+     */
+    public function getDescription_txt()
+    {
+        return $this->description_txt;
     }
 
     /**

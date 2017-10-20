@@ -91,6 +91,7 @@ class OfferController extends Controller
       $offer->setExperience($request->request->get('experience'));
       $offer->setDegree($request->request->get('degree'));
       $offer->setDescription($request->request->get('description'));
+      $offer->setDescription_txt($request->request->get('description_txt'));
       if ($request->request->get('img_src')) {
         $offer->setImg_src("img/offer/upload/".$request->request->get('img_src'));
       }
@@ -142,6 +143,8 @@ class OfferController extends Controller
       $offer->setExperience($request->request->get('experience'));
       $offer->setDegree($request->request->get('degree'));
       $offer->setDescription($request->request->get('description'));
+      //$offer->setDescription_txt($request->request->get('description_txt'));
+      $offer->setDescription_txt(strip_tags($request->request->get('description'), "<div><br>"));
       if ($request->request->get('img_src')) {
         $offer->setImg_src("img/offer/upload/".$request->request->get('img_src'));
       }
