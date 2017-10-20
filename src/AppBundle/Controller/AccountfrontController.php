@@ -137,6 +137,14 @@ class AccountfrontController extends Controller
         // hash password and compare to db password
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserBy(array('email' => $login_email) );
+        if (!$user)
+        {
+          $flashbag = $this->get('session')->getFlashBag();
+          $flashbag->get("invalid_credential");
+          $this->addFlash("invalid_credential", "L'email ou le mot de passe entré n'est pas reconnu.");
+          return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs, 'agencies' => $agencies,
+                                                                   'invalid_credential' => 1, 'email_exist' => 0, 'account_created' => 0));
+        }
         $encoder = new MessageDigestPasswordEncoder();
         $password = $encoder->encodePassword($login_password, $user->getSalt());
         if ($password == $user->getPassword() && $user)
@@ -169,11 +177,18 @@ class AccountfrontController extends Controller
           $flashbag->get("email_exist");
           $this->addFlash("email_exist", "Un compte est déjà associé à cet email");
           return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs,
-                               'agencies' => $agencies, 'email_exist' => 1, 'invalid_credential' => 0));
+                               'agencies' => $agencies, 'email_exist' => 1, 'invalid_credential' => 0, 'account_created' => 1));
         }
         // If user doesn't exist, create it
        $user = $userManager->createUser();
-       $user->setUsername($request->query->get('register_firstname'));
+       $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+       $charactersLength = strlen($characters);
+       $randomString = '';
+       for ($i = 0; $i < 10; $i++) {
+           $randomString .= $characters[rand(0, $charactersLength - 1)];
+       }
+
+       $user->setUsername($randomString);
        $user->setEmail($request->query->get('register_email'));
        $user->setEmailCanonical($request->query->get('register_email'));
        // this method will encrypt the password with the default settings :)
@@ -198,17 +213,26 @@ class AccountfrontController extends Controller
        $user_info->setCv_generated_name($session->get('name'));
        $user_info->setUser_id($user->getId());
        $user_info->setAgency($request->query->get('register_agency'));
+       $user_info->setSubscription(new \DateTime("now"));
        $em->persist($user_info);
        $em->flush();
+       $flashbag = $this->get('session')->getFlashBag();
+       $flashbag->get("account_created");
+       $this->addFlash("account_created", "Nous avons bien enregistré votre profil. Nous vous suggérons de créer des alertes via votre compte
+afin d’être prévenu des offres correspondantes à votre profil.");
+       return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs,
+                                                                          'agencies' => $agencies, 'invalid_credential' => 0, 'email_exist' => 0,
+                                                                          'account_created' => 1));
       }
 
 
       if (!$invalid_credential)
         return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs,
-                                                                           'agencies' => $agencies, 'invalid_credential' => 0, 'email_exist' => 0));
+                                                                           'agencies' => $agencies, 'invalid_credential' => 0, 'email_exist' => 0,
+                                                                           'account_created' => 0));
       else
         return $this->render('AppBundle::login_register.html.twig',  array('domain_activity' => $domain_activity, 'jobs' => $jobs, 'agencies' => $agencies,
-                                                                           'invalid_credential' => 1, 'email_exist' => 0));
+                                                                           'invalid_credential' => 1, 'email_exist' => 0, 'account_created' => 0));
     }
 
 

@@ -38,84 +38,84 @@ class UserInfo
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=255, unique=false)
      */
     private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, unique=false)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="telephone", type="string", length=255)
+     * @ORM\Column(name="telephone", type="string", length=255, unique=false)
      */
     private $telephone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mobile_phone", type="string", length=255)
+     * @ORM\Column(name="mobile_phone", type="string", length=255, unique=false)
      */
     private $mobilePhone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="address", type="string", length=255, unique=false)
      */
     private $address;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="postalCode", type="string", length=255)
+     * @ORM\Column(name="postalCode", type="string", length=255, unique=false)
      */
     private $postalCode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, unique=false)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="domain", type="string", length=255)
+     * @ORM\Column(name="domain", type="string", length=255, unique=false)
      */
     private $domain;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="job", type="string", length=255)
+     * @ORM\Column(name="job", type="string", length=255, unique=false)
      */
     private $job;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="employType", type="string", length=255)
+     * @ORM\Column(name="employType", type="string", length=255, unique=false)
      */
     private $employType;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cv", type="string", length=255)
+     * @ORM\Column(name="cv", type="string", length=255, nullable=true, unique=false)
      */
     private $cv;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cv_generated_name", type="string", length=255)
+     * @ORM\Column(name="cv_generated_name", type="string", length=255, nullable=true)
      */
     private $cv_generated_name;
 
@@ -138,6 +138,13 @@ class UserInfo
       * @ORM\Column(name="agency", type="string", length=255)
       */
      private $agency;
+
+     /**
+      * @var \DateTime
+      *
+      * @ORM\Column(name="subscription", type="date", nullable=true)
+      */
+     private $subscription;
 
     public function getId()
     {
@@ -527,5 +534,30 @@ public function getAgency()
 {
     return $this->agency;
 }
+
+/**
+ * Set begin
+ *
+ * @param \DateTime $subscription
+ *
+ * @return UserInfo
+ */
+public function setSubscription($subscription)
+{
+    $this->subscription = $subscription;
+
+    return $this;
+}
+
+/**
+ * Get subscription
+ *
+ * @return \DateTime
+ */
+public function getSubscription()
+{
+    return $this->subscription;
+}
+
 
 }

@@ -195,6 +195,23 @@ delete_application:
   defaults:
     _controller: EpiDevAdminBundle:Application:delete
 
+candidate:
+  path: /admin/candidate
+  defaults:
+    _controller: EpiDevAdminBundle:Candidate:index
+edit_candidate:
+  path: /admin/edit_candidate
+  defaults:
+    _controller: EpiDevAdminBundle:Candidate:edit
+duplicate_candidate:
+  path: /admin/duplicate_candidate
+  defaults:
+    _controller: EpiDevAdminBundle:Candidate:duplicate
+delete_candidate:
+  path: /admin/delete_candidate
+  defaults:
+    _controller: EpiDevAdminBundle:Candidate:delete
+
 # Public
 
 home:

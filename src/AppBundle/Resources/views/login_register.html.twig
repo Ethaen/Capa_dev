@@ -94,6 +94,15 @@
     </center>
 {% endfor %}
 {% endif %}
+{% if account_created %}
+{% for message in app.flashes('account_created') %}
+    <center>
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+    </center>
+{% endfor %}
+{% endif %}
 <div id="connexion">
     <div class="container">
         <div class="row">

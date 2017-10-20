@@ -99,6 +99,28 @@ class OfferController extends Controller
       }
       $em->persist($offer);
       $em->flush();
+
+
+      $alerts = $em->getRepository('EpiDevAdminBundle:Alert')->findAll();
+
+      foreach ($alerts as $alert)
+      {
+        if ($alert->getJob() == $request->request->get('job') && $alert->getDepartment() == $request->request->get('department'))
+        {
+          $message = (new \Swift_Message('Alerte nouvelle offre Capa'))
+          ->setFrom('guidiv7@gmail.com')
+          ->setTo($alert->getUserEmail())
+          ->setBody(
+              $this->renderView(
+                  'Emails/new_offer.html.twig',
+                  array('domain' => $request->request->get('domain'), 'job' => $request->request->get('job'), 'agency' => $request->request->get('agency'),
+                        'department' => $request->request->get('department'), 'offer_id' => $offer->getId())
+              ),
+              'text/html'
+          );
+          $this->get('mailer')->send($message);
+        }
+    }
       return $this->redirectToRoute('offer');
     }
 

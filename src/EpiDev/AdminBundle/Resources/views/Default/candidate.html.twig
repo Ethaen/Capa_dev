@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- Behavioral Meta Data -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    <link rel="icon" type="image/png" href="img/actuality/small-logo-01.png">
+	    <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,900italic,700italic,700,500italic,400italic,500,300italic,300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		<link href='css/style.css' rel='stylesheet' type='text/css'>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+			<script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
+			<script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
+			<script type="text/javascript" src="js/jquery-animate-css-rotate-scale.js"></script>
+		<script type="text/javascript" src="js/fastclick.min.js"></script>
+		<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
+		<script type="text/javascript" src="js/jquery.animate-shadow-min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script>
+
+
+
+	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
+	</script>
+	<script type="text/javascript" class="init">
+
+
+$(document).ready(function() {
+	$('#example').DataTable();
+} );
+	</script>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Admin | Gestion des candidats</title>
+	<link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+	<style type="text/css" class="init">
+
+	</style>
+</head>
+<body>
+
+	<!-- HEADER -->
+
+	<div id="wrapper-header">
+		<div id="main-header" class="object">
+	    <div class="top-rated object" style="color:red">Gestion des candidats</div>
+	        <div id="stripes"></div>
+	    </div>
+	</div>
+
+<!-- HEADER -->
+
+<!-- BUTTON -->
+<br><br><br><br>
+<center><button type="button" onclick="Addoffer()">Ajouter un candidat</button></center>
+<br>
+<!-- BUTTON -->
+
+<!-- Filter -->
+<center>
+<select id="agency" style="width:200px; height:40px;">
+	<option value="agence">Agence</option>
+	{% for agency in agencies %}
+	<option value="{{ agency.name }}">{{ agency.name }}</option>
+	{% endfor %}
+</select>
+<input id="name" type="text" name="Name">
+<button type="button" style="height:40px;" onclick="Filter()">Filtrer</button>
+</center>
+<!-- Filter -->
+
+<br>
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Agence</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+              <th>Email</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Agence</th>
+              <th>Options</th>
+            </tr>
+        </tfoot>
+        <tbody>
+
+
+					{% for user_info in user_infos %}
+					<tr>
+
+					<td><center>{{ user_info.email }}</center></td>
+					<td><center>{{ user_info.name }}</center></td>
+					<td><center>{{ user_info.firstname }}</center></td>
+          <td><center>{{ user_info.agency }}</center></td>
+					<td>
+						<center>
+						<a href="{{ path('edit_candidate') ~ "?id=" ~ user_info.id }}"> <img src="{{ asset( 'img/offer/edit.png') }}"  alt="" style="width:20px; height:20px;"/></a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="{{ path('duplicate_candidate') ~ "?id=" ~ user_info.id }}"> <img src="{{ asset( 'img/offer/duplicate.png') }}"  alt="" style="width:20px; height:20px;"/></a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="{{ path('delete_candidate') ~ "?id=" ~ user_info.id }}"> <img src="{{ asset( 'img/offer/delete.jpg') }}"  alt="" style="width:20px; height:20px;"/></a>
+						</center>
+					</td>
+
+				</tr>
+			{% endfor %}
+    	</tbody>
+    </table>
+
+	</body>
+
+<script>
+function Addoffer()
+{
+	var path = "{{ path('add_offer') }}";
+
+	window.location.href = path;
+}
+
+function Filter()
+{
+	var path = "{{ path('candidate') }}";
+
+	path += "	?agency=" + document.getElementById('agency').value + "&"+ "name=" + document.getElementById('name').value;
+	window.location.href = path;
+}
+
+</script>
