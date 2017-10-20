@@ -8,15 +8,16 @@ use Symfony\Component\HttpFoundation\Request;
 
 class OfferfrontController extends Controller
 {
+  public function listAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $offers = $em->getRepository('EpiDevAdminBundle:Offer')->findAll();
 
-    public function listAction(Request $request)
-    {
-      return $this->render('AppBundle::offer.html.twig');
-    }
+    return $this->render('AppBundle::offer.html.twig', array('offers' => $offers));
+  }
 
-    public function detailsAction(Request $request)
-    {
-      return $this->render('AppBundle::offer_details.html.twig');
-    }
-
+  public function detailsAction(Request $request)
+  {
+    return $this->render('AppBundle::offer_details.html.twig');
+  }
 }

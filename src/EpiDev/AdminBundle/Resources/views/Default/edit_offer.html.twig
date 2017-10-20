@@ -292,6 +292,7 @@
       var experience = document.getElementById('experience').value;
       var degree = document.getElementById('degree').value;
       var description = $('#description_area').find('.nicEdit-main').html();
+      var description_txt = $('#description_area').find('.nicEdit-main').text();
 
       if (file) {
         var form_data = new FormData();
@@ -330,6 +331,7 @@
           "experience": experience,
           "degree": degree,
           "description": description,
+          "description_txt": description_txt,
           "img_src": image_id,
           "id": "{{ offer.id }}"
         }
