@@ -211,7 +211,14 @@ delete_candidate:
   path: /admin/delete_candidate
   defaults:
     _controller: EpiDevAdminBundle:Candidate:delete
-
+add_candidate:
+  path: /admin/add/candidate
+  defaults:
+    _controller: EpiDevAdminBundle:Candidate:add
+upload_candidate:
+  path: /admin/upload/candidate
+  defaults:
+    _controller: EpiDevAdminBundle:Candidate:upload
 # Public
 
 home:

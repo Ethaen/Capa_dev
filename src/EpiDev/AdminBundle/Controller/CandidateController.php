@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use EpiDev\AdminBundle\Entity\UserInfo;
 
 
 class CandidateController extends Controller
@@ -93,4 +94,42 @@ class CandidateController extends Controller
     $em->flush();
     return $this->redirectToRoute('candidate');
   }
+
+  public function addAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+    $domains = $em->getRepository('EpiDevAdminBundle:Domain')->findAll();
+    $jobs = $em->getRepository('EpiDevAdminBundle:Job')->findAll();
+
+    return $this->render('EpiDevAdminBundle:Default:add_candidate.html.twig', array('agencies' => $agencies, 'domains' => $domains, 'jobs' => $jobs));
+  }
+
+  public function uploadAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $candidate = new UserInfo;
+
+    $candidate->setSubscription(new \DateTime($request->request->get('subscription')));
+    $candidate->setName($request->request->get('name'));
+    $candidate->setFirstname($request->request->get('firstname'));
+    $candidate->setCivility($request->request->get('civility'));
+    $candidate->setTelephone($request->request->get('telephone'));
+    $candidate->setMobilePhone($request->request->get('mobile_phone'));
+    $candidate->setEmail($request->request->get('email'));
+    $candidate->setAddress($request->request->get('address'));
+    $candidate->setPostalCode($request->request->get('postal_code'));
+    $candidate->setCity($request->request->get('city'));
+    $candidate->setAgency($request->request->get('agency'));
+    $candidate->setDomain($request->request->get('domain'));
+    $candidate->setJob($request->request->get('job'));
+    $candidate->setEmployType($request->request->get('contract_type'));
+    $candidate->setUser_id(-1);
+
+    $em->persist($candidate);
+    $em->flush();
+
+    return ($this->redirectToRoute('home'));
+  }
+
 }
