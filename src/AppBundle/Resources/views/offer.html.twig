@@ -115,29 +115,33 @@
       <div id="results">
         <h2>Consultez nos dernières offres</h2>
         {% set i = 0 %}
-        {% for offer in offers if i < 10 %}
+        {% for offer in offers if (i % 10) or (i == 0) %}
         <div class="annonce">
           <div class="col-sm-4">
-            <h3>{{ offer.title }}</h3>
+            <h3 id="title{{ i }}">{{ offer.title }}</h3>
           </div>
 
           <div class="col-md-7 col-sm-6" style="width: 665px; overflow: auto;">
             <p id="description{{ i }}"></p>
             <script>
-            var parser = new DOMParser;
-            var content = "{{ offer.description_txt }}";
+            document.getElementById("description"+"{{ i }}").innerText = offerDescription("{{ offer.description_txt }}");
+            function offerDescription(content)
+            {
+              var parser = new DOMParser;
+              var content = content;
 
-            content = parser.parseFromString(content, 'text/html').body.textContent;
-            content = content.replace(/<div>/g, '');
-            content = content.replace(/<br>/g, '\n');
-            content = content.replace(/<\/div>/g, '\n');
-            content = content.replace(/<\/br>/g, '\n');
-            var str = content.substring(0, 200);
+              content = parser.parseFromString(content, 'text/html').body.textContent;
+              content = content.replace(/<br>/g, '');
+              content = content.replace(/<div><div>/g, '\n');
+              content = content.replace(/<div>/g, '\n');
+              content = content.replace(/<\/div>/g, '');
+              var str = content.substring(0, 200);
 
-            if (content != str) {
-              str += "...";
+              if (content != str) {
+                str += "...";
+              }
+              return str;
             }
-            document.getElementById("description{{ i }}").innerText = str;
             </script>
           </div>
           <div class="col-md-1 col-sm-2 no-padding">
@@ -148,7 +152,34 @@
         {% set i = i + 1 %}
         {% endfor %}
       </div>
-      <a class="btn btn-default yellow">Plus d'offres</a>
+      <a class="btn btn-default yellow" onclick="moreOffer()">Plus d'offres</a>
+      <script>
+      function moreOffer()
+      {
+        var div = document.getElementById('results');
+
+        for (var i = 0; i < 9; ++i)
+        {
+          var node = document.getElementsByClassName('annonce');
+          if (!div || div.length > "{{ offers|length - 1 }}") {
+            return;
+          }
+          node = node[0].cloneNode(true);
+          node.querySelector('#title0').innerText = "{{ offers[i].title }}";
+          node.querySelector('#description0').innerText = offerDescription("{{ offers[i].description_txt }}");
+          div.appendChild(node);
+          $.ajax({
+            url: '{{ path('inc_i_offer') }}',
+            type: "POST",
+            data: {}/*,
+            success: function(result) {
+              var returnedvalue = result;
+              alert(returnedvalue);
+            }*/
+          });
+        }
+      }
+      </script>
     </div>
   </div>
   <div id="liens">

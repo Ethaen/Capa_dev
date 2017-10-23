@@ -231,6 +231,10 @@ list_offers:
     path: /list_offers
     defaults:
       _controller: AppBundle:Offerfront:list
+inc_i_offer:
+    path: /inc_i_offer
+    defaults:
+      _controller: AppBundle:Offerfront:inc_i_offer
 
 offer_details:
     path: /offer_details
