@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use EpiDev\AdminBundle\Entity\UserInfo;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class CandidateController extends Controller
@@ -71,6 +72,41 @@ class CandidateController extends Controller
     return $this->render('EpiDevAdminBundle:Default:edit_candidate.html.twig', array('user_infos' => $user_infos, 'agencies' => $agencies, 'domains' => $domains, 'jobs' => $jobs));
   }
 
+  public function updateAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $candidate = $em->getRepository('EpiDevAdminBundle:UserInfo')->find($request->request->get('id'));
+    $session = new Session();
+
+    $candidate->setSubscription(new \DateTime($request->request->get('subscription')));
+    $candidate->setName($request->request->get('name'));
+    $candidate->setFirstname($request->request->get('firstname'));
+    $candidate->setCivility($request->request->get('civility'));
+    $candidate->setTelephone($request->request->get('telephone'));
+    $candidate->setMobilePhone($request->request->get('mobile_phone'));
+    $candidate->setEmail($request->request->get('email'));
+    $candidate->setAddress($request->request->get('address'));
+    $candidate->setPostalCode($request->request->get('postal_code'));
+    $candidate->setCity($request->request->get('city'));
+    $candidate->setAgency($request->request->get('agency'));
+    $candidate->setDomain($request->request->get('domain'));
+    $candidate->setJob($request->request->get('job'));
+    $candidate->setEmployType($request->request->get('contract_type'));
+    $candidate->setUser_id(-1);
+    if ($session->get('real_name') != '')
+      $candidate->setCv($session->get('real_name'));
+    if ($session->get('name') != '')
+      $candidate->setCv_generated_name($session->get('name'));
+
+    $session->set('name', '');
+    $session->set('real_name', '');
+    $em->persist($candidate);
+    $em->flush();
+
+    return ($this->redirectToRoute('home'));
+
+  }
+
   public function duplicateAction(Request $request)
   {
     $id = $request->query->get('id');
@@ -105,10 +141,21 @@ class CandidateController extends Controller
     return $this->render('EpiDevAdminBundle:Default:add_candidate.html.twig', array('agencies' => $agencies, 'domains' => $domains, 'jobs' => $jobs));
   }
 
+  public function cv_uploadAction(Request $request)
+  {
+    $session = new Session();
+
+    $session->set('name', $request->request->get('name'));
+    $session->set('real_name', $request->request->get('real_name'));
+
+    return $this->redirectToRoute('candidate');
+  }
+
   public function uploadAction(Request $request)
   {
     $em = $this->getDoctrine()->getManager();
     $candidate = new UserInfo;
+    $session = new Session();
 
     $candidate->setSubscription(new \DateTime($request->request->get('subscription')));
     $candidate->setName($request->request->get('name'));
@@ -125,7 +172,11 @@ class CandidateController extends Controller
     $candidate->setJob($request->request->get('job'));
     $candidate->setEmployType($request->request->get('contract_type'));
     $candidate->setUser_id(-1);
+    $candidate->setCv($session->get('real_name'));
+    $candidate->setCv_generated_name($session->get('name'));
 
+    $session->set('name', '');
+    $session->set('real_name', '');
     $em->persist($candidate);
     $em->flush();
 

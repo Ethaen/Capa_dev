@@ -1,1 +1,291 @@
+<html>
+<head>
 
+  <!-- Date picker -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $("#begin").datepicker({ dateFormat: "dd-mm-yy" }).val();
+  });
+  </script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <link href="{{ asset('css/font.css') }}" rel="stylesheet">
+
+
+  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" >
+
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+  <center style="margin-bottom: 2%;">
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+    <br><br><br>HEADER<br><br><br>
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+  </center>
+
+  <div style="margin-top: 2%;">
+    <p>Date d'inscription :</p>
+    <input type="text" id="begin" value="{{user_infos.subscription|date('Y-m-d')}}"></input>
+  </div>
+
+  <div style="width: 20%; margin-top: 2%;">
+    <p>Nom :</p>
+    <div id="name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{user_infos.name }}
+    </div>
+  </div>
+
+  <div style="width: 20%; margin-top: 2%;">
+    <p>Prénom :</p>
+    <div id="firstname" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+    {{user_infos.firstname }}
+    </div>
+  </div>
+
+
+  <div style="margin-top: 2%;">
+    <p>Civilité :</p>
+    <select id="civility" style="width:200px; height:40px;">
+      {% if user_infos.civility == 'Mr' %}
+      <option value='Mr'>Mr</option>
+      <option value='Mme'>Mme</option>
+      {% else %}
+      <option value='Mme'>Mme</option>
+      <option value='Mr'>Mr</option>
+      {% endif %}
+    </select>
+  </div>
+
+  <div style="width: 20%; margin-top: 2%;">
+    <p>Téléphone :</p>
+    <div id="telephone" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{user_infos.telephone }}
+    </div>
+  </div>
+
+  <div style="width: 20%; margin-top: 2%;">
+    <p>Téléphone portable :</p>
+    <div id="mobile_phone" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{user_infos.mobilePhone }}
+    </div>
+  </div>
+
+  <div style="width: 20%; margin-top: 2%;">
+    <p>Email :</p>
+    <div id="email" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{user_infos.email }}
+    </div>
+  </div>
+
+  <div style="width: 20%; margin-top: 2%;">
+    <p>Addresse :</p>
+    <div id="address" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{user_infos.address }}
+    </div>
+  </div>
+
+  <div style="width: 20%; margin-top: 2%;">
+    <p>Code postal :</p>
+    <div id="postal_code" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{user_infos.postalCode }}
+    </div>
+  </div>
+
+  <div style="width: 20%; margin-top: 2%;">
+    <p>Ville :</p>
+    <div id="city" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+      {{user_infos.city }}
+    </div>
+  </div>
+
+  <div style="margin-top: 2%;">
+    <p>Agence :</p>
+    <select id="agency" style="width:200px; height:40px;">
+      <option value="{{user_infos.agency }}">{{user_infos.agency }}</option>
+      {% for agency in agencies %}
+      {% if user_infos.agency != agency.name %}
+      <option value="{{ agency.name }}">{{ agency.name }}</option>
+    {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+
+  <div style="margin-top: 2%;">
+    <p>Secteur d'activité :</p>
+    <select id="domain" style="width:200px; height:40px;">
+        <option value="{{ user_infos.domain }}">{{ user_infos.domain }}</option>
+      {% for domain in domains %}
+      {% if user_infos.domain != domain.name %}
+      <option value="{{ domain.name }}">{{ domain.name }}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+
+  <div style="margin-top: 2%;">
+    <p>Métier :</p>
+    <select id="job" style="width:200px; height:40px;">
+      <option value="{{ user_infos.job }}">{{ user_infos.job }}</option>
+      {% for job in jobs %}
+      {% if user_infos.job != job.name %}
+      <option value="{{ job.name }}">{{ job.name }}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+
+  <div style="margin-top: 2%;">
+    <p>Type d'emploi :</p>
+    <select id="contract_type" style="width:200px; height:40px;">
+      <option value="{{ user_infos.employType }}">{{ user_infos.employType }}</option>
+      {% if user_infos.employType != 'Intérim' %}
+      <option value="Intérim">Intérim</option>
+      {% endif %}
+      {% if user_infos.employType != 'CDD' %}
+      <option value="CDD">CDD</option>
+      {% endif %}
+      {% if user_infos.employType != 'CDI' %}
+      <option value="CDI">CDI</option>
+      {% endif %}
+    </select>
+  </div>
+
+  <div style="margin-top: 2%;" id="get_id" value="{{user_infos.id}}">
+    <p>Upload CV :</p>
+  <a href="#" class="btn btn-default cv" onclick="register_cv_upload()">Télécharger un CV</a>
+  <input id="file" type="file" style="opacity:0; position:absolute;" disabled="true"/>
+</div>
+  <div>
+
+    <button onclick="add()" style="margin-top: 2%;">Modifier</button>
+    <script type="text/javascript">
+
+    function makeid()
+    {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < 15; i++)
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
+
+    function register_cv_upload()
+    {
+      document.getElementById("file").disabled = false;
+      $('#file').click();
+      document.getElementById("file").disabled = true;
+    }
+
+    $('#file').change(
+      function(event) {
+        file = event.target.files[0];
+        console.log(URL.createObjectURL(event.target.files[0]) );
+
+        var re = /(\.pdf|\.PDF|\.doc|\.DOC|\.docx|\.DOCX)$/i;
+        var form_data = new FormData();
+
+          var form_data = new FormData();
+          form_data.append('file', file);
+          var new_name = makeid() + '.pdf';
+          form_data.append('name', new_name);
+          form_data.append('real_name', file.name);
+          form_data.append('path', "../../app/Resources/CV/");
+
+        if(!re.exec(file.name))
+        {
+          alert("Merci d'uploader uniquement des fichiers PDF, DOC ou DOCX");
+        }
+            else
+            {
+              $.ajax({
+                 url: '/admin/upload.php',
+                 dataType: 'text',
+                 cache: false,
+                 contentType: false,
+                 processData: false,
+                 data: form_data,
+                 type: 'post',
+               });
+            }
+
+            $.ajax({
+              url: '{{ (path('candidate_cv_upload')) }}',
+              type: "POST",
+              dataType: "text",
+              data: {
+                "real_name": file.name,
+                "name": new_name
+              }
+            });
+
+      });
+
+    function add()
+    {
+      var subscription = document.getElementById('begin').value;
+      var name = document.getElementById('name').innerText;
+      var firstname = document.getElementById('firstname').innerText;
+      var civility = document.getElementById('civility').value;
+      var telephone = document.getElementById('telephone').innerHTML;
+      var mobile_phone = document.getElementById('mobile_phone').innerHTML;
+      var email = document.getElementById('email').innerHTML;
+      var address = document.getElementById('address').innerHTML;
+      var postal_code = document.getElementById('postal_code').innerHTML;
+      var city = document.getElementById('city').innerHTML;
+      var agency = document.getElementById('agency').value;
+      var domain = document.getElementById('domain').value;
+      var job = document.getElementById('job').value;
+      var contract_type = document.getElementById('contract_type').value;
+      var id = document.getElementById('get_id').getAttribute('value');
+      console.log(id);
+
+      $.ajax({
+        url: '{{ (path('update_candidate')) }}',
+        type: "POST",
+        dataType: "text",
+        data: {
+          "subscription": subscription,
+          "name": name,
+          "firstname": firstname,
+          "civility": civility,
+          "telephone": telephone,
+          "mobile_phone": mobile_phone,
+          "email": email,
+          "address": address,
+          "postal_code": postal_code,
+          "city": city,
+          "agency": agency,
+          "domain": domain,
+          "job": job,
+          "contract_type": contract_type,
+          "id": id
+        }
+      });
+      window.location.href = "{{ path('candidate') }}";
+    }
+
+    function makeId()
+    {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random()*possible.length));
+
+      return text;
+    }
+    </script>
+  </div>
+
+</body>
+</html>

@@ -219,7 +219,14 @@ upload_candidate:
   path: /admin/upload/candidate
   defaults:
     _controller: EpiDevAdminBundle:Candidate:upload
-
+candidate_cv_upload:
+  path: /admin/upload/cv_upload
+  defaults:
+    _controller: EpiDevAdminBundle:Candidate:cv_upload
+update_candidate:
+  path: /admin/update/candidate
+  defaults:
+    _controller: EpiDevAdminBundle:Candidate:update
 # Public
 
 home:

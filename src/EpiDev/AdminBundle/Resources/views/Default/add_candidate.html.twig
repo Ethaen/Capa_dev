@@ -139,6 +139,17 @@
     <button onclick="add()" style="margin-top: 2%;">Ajouter</button>
     <script type="text/javascript">
 
+    function makeid()
+    {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < 15; i++)
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
+
     function register_cv_upload()
     {
       document.getElementById("file").disabled = false;
@@ -207,21 +218,6 @@
       var job = document.getElementById('job').value;
       var contract_type = document.getElementById('contract_type').value;
 
-      console.log(subscription);
-      console.log(name);
-      console.log(firstname);
-      console.log(civility);
-      console.log(telephone);
-      console.log(mobile_phone);
-      console.log(email);
-      console.log(address);
-      console.log(postal_code);
-      console.log(city);
-      console.log(agency);
-      console.log(domain);
-      console.log(job);
-      console.log(contract_type);
-
       $.ajax({
         url: '{{ (path('upload_candidate')) }}',
         type: "POST",
@@ -243,7 +239,7 @@
           "contract_type": contract_type
         }
       });
-//      window.location.href = "{{ path('candidate') }}";
+      window.location.href = "{{ path('candidate') }}";
     }
 
     function makeId()
