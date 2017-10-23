@@ -98,6 +98,7 @@ class OfferController extends Controller
       else {
         $offer->setImg_src("");
       }
+      $offer->setPublishDate(new \DateTime());
       $em->persist($offer);
       $em->flush();
 

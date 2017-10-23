@@ -43,6 +43,13 @@ class Offer
     private $begin;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="PublishDate", type="date", nullable=true)
+     */
+    private $publishDate;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="Active", type="boolean")
@@ -206,13 +213,37 @@ class Offer
     }
 
     /**
-     * Get begin
+    * Get begin
+    *
+    * @return \DateTime
+    */
+    public function getBegin()
+    {
+      return $this->begin;
+    }
+
+    /**
+     * Set publishDate
+     *
+     * @param \DateTime $publishDate
+     *
+     * @return Offer
+     */
+    public function setPublishDate($publishDate)
+    {
+        $this->publishDate = $publishDate;
+
+        return $this;
+    }
+
+    /**
+     * Get publishDate
      *
      * @return \DateTime
      */
-    public function getBegin()
+    public function getPublishDate()
     {
-        return $this->begin;
+        return $this->publishDate;
     }
 
     /**

@@ -1,1 +1,258 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Capa Intérim - Agence de recrutement et offres d'emploi à Châteaubriant - </title>
+
+  <meta name="description" content="Capa Intérim vous accompagne dans votre recherche d'emploi. Découvrez nos offres d'emploi en intérim, CDD, CDI et alternance en Pays de Loire. ">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <link href="./css/font.css" rel="stylesheet">
+
+
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/font-awesome.min.css" rel="stylesheet" >
+
+  <link href="./css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <header>
+
+    <div id="menu">
+      <div class="container">
+        <nav class="navbar navbar-default">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+              <img alt="Logo Capa Intérim" src="./images/logo-capa-interim.png" class="img-responsive">
+            </a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="nav">
+            <ul class="nav navbar-nav">
+              <li class="dropdow active"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Je cherche un job <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li class="active"><a href="offres.html">Offres d'emploi</a></li>
+                  <li><a href="./moncompte.html">Candidature spontanée</a></li>
+                </ul>
+              </li>
+              <li><a href="recruteurs.html">Espace recruteur</a></li>
+              <li><a href="actualites.html">Actualités</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="moncompte.html" class="compte">Mon compte</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+  </header>
+
+  <div id="page-title">
+    <div class="container">
+      <h1>{{ offer.title }}</h1>
+    </div>
+  </div>
+
+  <div id="breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a class="home" href="./">Accueil</a></li>
+        <li><a href="./offres.html">Offres d'Emploi</a></li>
+        <li><a href="#">{{ offer.domain }}</a></li>
+        <li><a id="jobType" href="#"></a></li>
+        <script>
+        document.getElementById('jobType').innerText = !parseInt({{ offer.job_type }}) ? "Temp plein" : "Temp partiel";
+        </script>
+        <li><a href="#">Ville ({{ offer.city }})</a></li>
+        <li>{{ offer.title }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="offre">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="box">
+            <p class="title date">Date de parution</p>
+            <p>{{ offer.publishDate|date('Y-m-d') }}</p>
+            <p class="title ref">Référence</p>
+            <p>{{ offer.référence }}</p>
+            <p class="title ville">Localisation</p>
+            <p>{{ offer.city }}</p>
+            <p class="title activite">Secteur d'activité</p>
+            <p>{{ offer.domain }}</p>
+            <p class="title metier">Métier</p>
+            <p>{{ offer.job }}</p>
+            <p class="title type">Type de contrat</p>
+            <p id="jobType2">lorem</p>
+            <script>
+            document.getElementById('jobType2').innerText = !parseInt({{ offer.job_type }}) ? "Temp plein" : "Temp partiel"
+            </script>
+            <p class="title debut">Date de début</p>
+            <p>{{ offer.begin|date('Y-m-d') }}</p>
+            <br />
+            <a class="btn btn-default" role="button" data-toggle="collapse" href="#contactAgence" aria-expanded="false" aria-controls="contactAgence">Contacter l'agence</a>
+            <div class="collapse" id="contactAgence">
+              <div class="agence">
+                <h3>{{ offer.agency }}</h3>
+                {% for agency in agencies %}
+                {% if agency.name == offer.agency %}
+                <a class="tel" href="tel:0251315747">{{ agency.phone }}</a>
+                <a class="adresse"  href="https://goo.gl/maps/SmcspkqkJ512"  target="_blank">{{ agency.address }}<br />{{ agency.city }}</a>
+                <a class="email" href="#">Envoyer un email</a>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="col-sm-4">
+            <p class="title duree">Durée</p>
+            <p>{{ offer.duration }}</p>
+          </div>
+          <div class="col-sm-4">
+            <p class="title exp">Expérience souhaitée</p>
+            <p>{{ offer.experience }}</p>
+          </div>
+          <div class="col-sm-4">
+            <p class="title etude">Niveau d'étude</p>
+            <p>{{ offer.degree }}</p>
+          </div>
+          <h3>Description du poste</h3>
+          <p id="description"></p>
+          <script>
+          var parser = new DOMParser;
+          var content = "{{ offer.description }}";
+
+          content = parser.parseFromString(content, 'text/html').body.textContent;
+          document.getElementById("description").innerHTML = content;
+          </script>
+          <a type="button" class="btn btn-default yellow pull-right" data-toggle="modal" data-target="#monCompte">Postulez à cette offre</a>
+
+          <div class="modal fade" id="monCompte" tabindex="-1" role="dialog" aria-labelledby="connexion">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Postulez à cette offre grâce à mon compte Capa Intérim</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p>Se connecter à mon espace personnel</p>
+                      <input type="text" placeholder="Mon identifiant" name="id" />
+                      <input type="text" placeholder="Mon mot de passe" name="password" />
+                      <a href="./monespace.html" class="btn btn-default">Me connecter</a>
+                      <a href="./motdepasse.html" class="small pull-right">mot de passe oublié ?</a>
+                    </div>
+                    <div class="col-sm-6">
+                      <p>Je n'ai pas encore de compte</p>
+                      <p class="yellow">Créer mon compte en quelques clics</p>
+                      <a href="./moncompte.html" class="btn btn-default yellow">Créer mon compte</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="liens">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <h3>Je cherche un job</h3>
+          <ul>
+            <li><a href="">Nos offres d'emploi</a></li>
+            <li><a href="">Candidature spontanée</a></li>
+            <li><a href="">Mon espace personnel</a></li>
+            <li><a href="">Agences d'intérim</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <h3>Nos types de mission</h3>
+          <ul>
+            <li><a href="">Emplois en CDD à Châteaubriant</a></li>
+            <li><a href="">Contrats CDI en Pays-de-Loire</a></li>
+            <li><a href="">Missions intérim en Loire-Atlantique</a></li>
+            <li><a href="">Travail temporaire dans l'Ouest</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <h3>Nos dernières offres d'emploi</h3>
+          <ul>
+            <li><a href="">Garagiste à Nozay (44) Intérim</a></li>
+            <li><a href="">Chef de chantier à Châteaubriant (44) CDI</a></li>
+            <li><a href="">Agent de Production à Vay (85) Intérim</a></li>
+            <li><a href="">Boulanger Pâtissier au Mans (72) CDD</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <h3>Capa intérim</h3>
+          <ul>
+            <li><a href="">Espace recruteurs</a></li>
+            <li><a href="">Nos actualités</a></li>
+            <li><a href="">Nos agences</a></li>
+            <li><a href="">Contactez-nous</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="social" class="grey_bg">
+    <div class="container">
+      <ul>
+        <li><a href="" target="_blank" ><i class="fa fa-twitter" aria-hidden="true"></i>
+        </a></li>
+        <li><a href="http://www.facebook.com/capainterim/" target="_blank" ><i class="fa fa-facebook" aria-hidden="true"></i>
+        </a></li>
+        <li><a href="" target="_blank" ><i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a></li>
+        <li><a href="" target="_blank" ><i class="fa fa-google-plus" aria-hidden="true"></i>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="copyright">
+    <div class="container">
+      <p>Copyright © 2017 CAPA INTÉRIM | <a href="">Mentions légales</a></p>
+    </div>
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <script src="./js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+  $('#monCompte').on('shown.bs.modal', function () {
+    $('#connexion').focus()
+  })
+  </script>
+
+</body>
+
+
+
+</html>
