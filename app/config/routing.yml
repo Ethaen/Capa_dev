@@ -219,6 +219,7 @@ upload_candidate:
   path: /admin/upload/candidate
   defaults:
     _controller: EpiDevAdminBundle:Candidate:upload
+
 # Public
 
 home:
