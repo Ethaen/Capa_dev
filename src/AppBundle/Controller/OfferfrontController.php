@@ -38,7 +38,14 @@ class OfferfrontController extends Controller
     $em = $this->getDoctrine()->getManager();
     $offer = $em->getRepository('EpiDevAdminBundle:Offer')->find($request->query->get('id'));
     $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+    $cms = $em->getRepository('EpiDevAdminBundle:CMS')->findAll()[0]->getUrlName();
+    $query = $em->createQuery(
+        'SELECT p
+        FROM EpiDevAdminBundle:Offer p
+                    ORDER BY p.id DESC'
+    )->setMaxResults(4);
+    $last_offers = $query->getResult();
 
-    return $this->render('AppBundle::offer_details.html.twig', array('offer' => $offer, 'agencies' => $agencies));
+    return $this->render('AppBundle::offer_details.html.twig', array('offer' => $offer, 'agencies' => $agencies, 'recruteur' => $cms, 'last_offers' => $last_offers));
   }
 }
