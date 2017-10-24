@@ -332,6 +332,11 @@ my_alerts:
     defaults:
         _controller: AppBundle:Accountfront:my_alerts
 
+get_city:
+  path: /get_city
+  defaults:
+    _controller: AppBundle:Redirecting:get_city
+
 variable_url_cms:
   path: /{path}
   defaults:

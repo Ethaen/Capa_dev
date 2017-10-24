@@ -40,9 +40,11 @@ class HomeController extends Controller
         )->setMaxResults(3);
         $actualities = $query->getResult();
 
+        $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+        $cms = $em->getRepository('EpiDevAdminBundle:CMS')->findAll()[0]->getUrlName();
         return $this->render('AppBundle::home.html.twig', array('available_offer' => $available_offer,
                              'last_offers' => $last_offers, 'month_workers' => $month_workers,
-                             'actualities' => $actualities) );
+                             'actualities' => $actualities, 'recruteur' => $cms, 'agencies' => $agencies) );
     }
 
     public function loginAction(Request $request)

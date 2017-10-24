@@ -13,8 +13,9 @@ class ContactfrontController extends Controller
     $em = $this->getDoctrine()->getManager();
     $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
     $emails = $em->getRepository('EpiDevAdminBundle:email')->findAll();
+    $cms = $em->getRepository('EpiDevAdminBundle:CMS')->findAll()[0]->getUrlName();
 
-    return $this->render('AppBundle::contact.html.twig', array('agencies' => $agencies, 'emails' => $emails));
+    return $this->render('AppBundle::contact.html.twig', array('agencies' => $agencies, 'emails' => $emails, 'recruteur' => $cms));
   }
 
   public function sendEmailAction(Request $request, \Swift_Mailer $mailer)
@@ -24,11 +25,11 @@ class ContactfrontController extends Controller
     $fname = $request->request->get('fname');
     $message = (new \Swift_Message('Message utilisateur'))
     ->setFrom($request->request->get('user_email'))
-    ->setTo($request->request->get('agency_email'))
+    ->setTo($request->request->get('user_agency'))
     ->setBody(
       $this->renderView(
         'Emails/send_user_email.html.twig',
-        array('message' => $user_message, 'lname' => $lname, 'fname' => $fname, 'user_mail' => $user_mail)
+        array('message' => $user_message, 'lname' => $lname, 'fname' => $fname, 'user_email' => $request->request->get('user_email'))
       ),
       'text/html'
     );

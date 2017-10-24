@@ -46,15 +46,15 @@
                     <ul class="nav navbar-nav">
                          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Je cherche un job <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="offres.html">Offres d'emploi</a></li>
+                                <li><a href="{{ path('list_offers') }}">Offres d'emploi</a></li>
                                 <li><a href="./moncompte.html">Candidature spontanée</a></li>
                             </ul>
                         </li>
-                        <li><a href="recruteurs.html">Espace recruteur</a></li>
-                        <li><a href="actualites.html">Actualités</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li class="active"><a href="moncompte.html" class="compte">Mon compte</a></li>
-                    </ul>
+                        <li><a href="{{ path('variable_url_cms', {'path': recruteur }) }}">Espace recruteur</a></li>
+                        <li><a href="{{ path('list_actuality') }}">Actualités</a></li>
+                        <li><a href="{{ path('contact') }}">Contact</a></li>
+                        <li><a href="{{ path('personnal_space') }}" class="compte">Mon compte</a></li>
+                            </ul>
                 </div>
             </nav>
         </div>
@@ -347,10 +347,10 @@
             <div class="col-md-3 col-sm-6">
                     <h3>Je cherche un job</h3>
                     <ul>
-                        <li><a href="">Nos offres d'emploi</a></li>
+                        <li><a href="{{ path('list_offers') }}">Nos offres d'emploi</a></li>
                         <li><a href="">Candidature spontanée</a></li>
-                        <li><a href="">Mon espace personnel</a></li>
-                        <li><a href="">Agences d'intérim</a></li>
+                        <li><a href="{{ path('personnal_space') }}">Mon espace personnel</a></li>
+                        <li><a href="{{ path('contact') }}">Agences d'intérim</a></li>
                 </ul>
             </div>
             <div class="col-md-3 col-sm-6">
@@ -365,19 +365,18 @@
             <div class="col-md-4 col-sm-6">
                     <h3>Nos dernières offres d'emploi</h3>
                     <ul>
-                        <li><a href="">Garagiste à Nozay (44) Intérim</a></li>
-                        <li><a href="">Chef de chantier à Châteaubriant (44) CDI</a></li>
-                        <li><a href="">Agent de Production à Vay (85) Intérim</a></li>
-                        <li><a href="">Boulanger Pâtissier au Mans (72) CDD</a></li>
+                      {% for last_offer in last_offers %}
+                        <li><a href="{{ path('offer_details', {'id': last_offer.id} ) }}">{{ last_offer.title }}</a></li>
+                      {% endfor %}
                 </ul>
             </div>
             <div class="col-md-2 col-sm-6">
                     <h3>Capa intérim</h3>
                     <ul>
-                        <li><a href="">Espace recruteurs</a></li>
-                        <li><a href="">Nos actualités</a></li>
-                        <li><a href="">Nos agences</a></li>
-                        <li><a href="">Contactez-nous</a></li>
+                        <li><a href="{{ path('variable_url_cms', {'path': recruteur }) }}">Espace recruteurs</a></li>
+                        <li><a href="{{ path('list_actuality') }}">Nos actualités</a></li>
+                        <li><a href="{{ path('contact') }}">Nos agences</a></li>
+                        <li><a href=" {{ path('contact') }} ">Contactez-nous</a></li>
                 </ul>
             </div>
         </div>

@@ -1,441 +1,424 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Capa Intérim - Agence de recrutement et offres d'emploi à Châteaubriant - </title>
+        <title>Capa Intérim - Agence de recrutement et offres d'emploi à Châteaubriant - </title>
 
-  <meta name="description" content="Capa Intérim vous accompagne dans votre recherche d'emploi. Découvrez nos offres d'emploi en intérim, CDD, CDI et alternance en Pays de Loire. ">
+        <meta name="description" content="Capa Intérim vous accompagne dans votre recherche d'emploi. Découvrez nos offres d'emploi en intérim, CDD, CDI et alternance en Pays de Loire. ">
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-  <link rel="stylesheet" href="{{ asset('css/font.css') }}" />
+        <link href="./css/font.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
 
-  <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" />
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/font-awesome.min.css" rel="stylesheet" >
 
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+        <link href="./css/style.css" rel="stylesheet">
 
-</head>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+    </head>
 
 <body>
 
-  <header>
+<header>
 
     <div id="menu">
-      <div class="container">
-        <nav class="navbar navbar-default">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="./">
-              <img alt="Logo Capa Intérim"  src="{{ asset('img/logo-capa-interim.png') }}" class="img-responsive">
-            </a>
-          </div>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="./">
+                        <img alt="Logo Capa Intérim" src="./images/logo-capa-interim.png" class="img-responsive">
+                    </a>
+                </div>
 
-          <div class="collapse navbar-collapse" id="nav">
-            <ul class="nav navbar-nav">
-              <li><a href="offres.html">Je cherche un job</a></li>
-              <li><a href="recruteurs.html">Espace recruteur</a></li>
-              <li><a href="#">Actualités</a></li>
-              <li><a href="#">Contact</a></li>
-              <li><a href="#" class="compte">Mon compte</a></li>
-            </ul>
-          </div>
-        </nav>
-      </div>
+                <div class="collapse navbar-collapse" id="nav">
+                    <ul class="nav navbar-nav">
+                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Je cherche un job <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('list_offers') }}">Offres d'emploi</a></li>
+                                <li><a href="candidature-spontanee.html">Candidature spontanée</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ path('variable_url_cms', {'path': recruteur }) }}">Espace recruteur</a></li>
+                        <li><a href="{{ path('list_actuality') }}">Actualités</a></li>
+                        <li><a href="{{ path('contact') }}">Contact</a></li>
+                        <li><a href="{{ path('personnal_space') }}" class="compte">Mon compte</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </div>
 
-  </header>
+</header>
 
-  <div id="slider">
-    <img src="{{ asset('img/slider.jpg') }}" />
+<div id="slider">
+    <img src="./images/slider.jpg" />
     <h1 class="hidden">Capa Intérim - Agence de recrutement et offres d'emploi à Chateaubriant (44)</h1>
-  </div>
+</div>
 
-  <div id="search-title">
+<div id="search-title">
     <div class="container">
-      <h2>Je cherche un job</h2>
+    <h2>Je cherche un job</h2>
     </div>
-  </div>
-  <div id="search-form">
+</div>
+<div id="search-form">
     <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-sm-8">
-          <div id="keyword">
-            <input type="text" placeholder="Mots-clés" name="keyword" />
-          </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-8">
+                <div id="keyword">
+                    <input type="text" autocomplete="on" placeholder="Mots-clés" name="keyword" />
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-4">
+                <div id="city">
+                    <input id="city1" type="text"  autocomplete="on" placeholder="Localisation" name="city" />
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-10">
+                <div id="type">
+                    <select>
+                        <option value="" disabled selected >Contrat</option>
+                        <option value="interim">Intérim</option>
+                        <option value="cdd">CDD</option>
+                        <option value="cdi">CDI</option>
+                    </select>
+                </div>
+            </div>
+             <div class="col-md-1 col-sm-2">
+                 <a class="btn btn-default search" type="submit"><i class="fa fa-search" aria-hidden="true"></i></a>
+            </div>
         </div>
-        <div class="col-md-5 col-sm-4">
-          <div id="city">
-            <input type="text" placeholder="Localisation" name="city" />
-          </div>
-        </div>
-        <div class="col-md-2 col-sm-10">
-          <div id="type">
-            <select>
-              <option value="" disabled selected >Contrat</option>
-              <option value="interim">Intérim</option>
-              <option value="cdd">CDD</option>
-              <option value="cdi">CDI</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-1 col-sm-2">
-          <a class="btn btn-default search" type="submit"><i class="fa fa-search" aria-hidden="true"></i></a>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <div id="offres">
+<div id="offres">
     <div class="container">
-      <div id="counter">
-        <div class="row">
-          <div class="col-lg-4 col-lg-offset-1 col-md-4 col-sm-6">
-            {% if available_offer / 100 >= 1 %}
-            <span class="chiffre jaune">{{ (available_offer / 100)|round(0, 'floor') }}</span>
-            {% else %}
-            <span class="chiffre jaune">0</span>
-            {% endif %}
+        <div id="counter">
+            <div class="row">
+              <div class="col-lg-4 col-lg-offset-1 col-md-4 col-sm-6">
+                {% if available_offer / 100 >= 1 %}
+                <span class="chiffre jaune">{{ (available_offer / 100)|round(0, 'floor') }}</span>
+                {% else %}
+                <span class="chiffre jaune">0</span>
+                {% endif %}
 
 
-            {% if available_offer / 100 >= 1 %}
-            <span class="chiffre bleu">{{ (available_offer / 10 % 10)|round(0, 'floor') }}</span>
-            {% elseif available_offer / 10 >= 1 %}
-            <span class="chiffre bleu">{{ (available_offer / 10)|round(0, 'floor') }}</span>
-            {% else %}
-            <span class="chiffre bleu">0</span>
-            {% endif %}
+                {% if available_offer / 100 >= 1 %}
+                <span class="chiffre bleu">{{ (available_offer / 10 % 10)|round(0, 'floor') }}</span>
+                {% elseif available_offer / 10 >= 1 %}
+                <span class="chiffre bleu">{{ (available_offer / 10)|round(0, 'floor') }}</span>
+                {% else %}
+                <span class="chiffre bleu">0</span>
+                {% endif %}
 
-            {% if available_offer / 100 >= 1 %}
-            <span class="chiffre jaune">{{ (available_offer % 100 % 10)|round(0, 'floor')}}</span>
-            {% elseif available_offer / 10 >= 1 %}
-            <span class="chiffre jaune">{{ (available_offer % 10)|round(0, 'floor')}}</span>
-            {% else %}
-            <span class="chiffre bleu">{{ available_offer }}</span>
-            {% endif %}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-5" id="arrow">
-            Offres<br /> à pourvoir
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-12">
-            <a class="btn btn-default" href="{{ path('list_offers') }}">Voir les offres</a>
-          </div>
-        </div>
-      </div>
-      <div id="last">
-        <h2>Consultez nos dernières offres</h2>
-        {% for offer in last_offers %}
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="annonce">
-              <a href="#">
-                <img src="{{  offer.img_src }}" class="img-responsive" />
-                <div class="box">
-                  <h3>{{ offer.title }}</h3>
-                  <p class="lieu">{{ offer.city }}</p>
-                  {% if offer.job_type %}
-                  <p class="type">TEMPS PLEIN</P>
-                    {% else %}
-                    <p class="type">INTERIM</p>
-                    {% endif %}
-                  </div>
-                </a>
+                {% if available_offer / 100 >= 1 %}
+                <span class="chiffre jaune">{{ (available_offer % 100 % 10)|round(0, 'floor')}}</span>
+                {% elseif available_offer / 10 >= 1 %}
+                <span class="chiffre jaune">{{ (available_offer % 10)|round(0, 'floor')}}</span>
+                {% else %}
+                <span class="chiffre bleu">{{ available_offer }}</span>
+                {% endif %}
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-5" id="arrow">
+                Offres<br /> à pourvoir
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-12">
+                <a class="btn btn-default" href="{{ path('list_offers') }}">Voir les offres</a>
               </div>
             </div>
-            {% endfor %}
-          </div>
         </div>
-      </div>
-    </div>
-
-    <div id="interimaires">
-      <div class="container">
-        <h2>Les intérimaires du mois</h2>
-        <div class="row">
-
-          {% for worker in month_workers %}
-          <div class="col-sm-4">
-            <div class="personne">
-              <a href="#">
-                <img src="{{ worker.img }}" class="img-responsive" />
-                <div class="box">
-                  <p class="name">{{ worker.firstname }} {{ worker.name }}</p>
-                  <p class="age">{{ worker.age }}</p>
+        <div id="last">
+            <h2>Consultez nos dernières offres</h2>
+            <div class="row">
+              {% for last_offer in last_offers %}
+                <div class="col-sm-4">
+                    <div class="annonce">
+                        <a href="{{ path('offer_details', {'id': last_offer.id} ) }}">
+                            <img src="{{ last_offer.img_src }}" class="img-responsive" />
+                            <div class="box">
+                            <h3>{{ last_offer.title }}</h3>
+                            <p class="lieu">{{ last_offer.city}}, {{ last_offer.department }}</p>
+                            <p class="type">INTERIM</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-              </a>
+                {% endfor %}
             </div>
-          </div>
-          {% endfor %}
         </div>
-      </div>
     </div>
+</div>
 
-    <div id="chiffres">
-      <div class="container">
+<div id="interimaires">
+    <div class="container">
+    <h2>Les intérimaires du mois</h2>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="personne">
+                    <a href="#">
+                        <img src="./images/photo-quentin.jpg" class="img-responsive" />
+                        <div class="box">
+                            <p class="name">Quentin Rousseau</p>
+                            <p class="age">26 ans</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+             <div class="col-sm-4">
+                 <div class="personne">
+                     <a href="#">
+                         <img src="./images/photo-sarah.jpg" class="img-responsive" />
+                         <div class="box">
+                             <p class="name">Sarah Leclerc</p>
+                             <p class="age">24 ans</p>
+                         </div>
+                     </a>
+                 </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="personne">
+                    <a href="#">
+                        <img src="./images/photo-marie.jpg" class="img-responsive" />
+                        <div class="box">
+                            <p class="name">Marie Tusseau</p>
+                                <p class="age">56 ans</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="chiffres">
+    <div class="container">
         <h2>Capa Intérim en quelques chiffres</h2>
         <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <div class="rond">
-              <span class="count">300</span>
-              <p>intérimaires</p>
+            <div class="col-md-3 col-sm-6">
+                <div class="rond">
+                    <span class="count">300</span>
+                    <p>intérimaires</p>
+                </div>
             </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="rond">
-              <span class="count">24</span>
-              <p>nouvelles offres<br />d'emploi<br />par mois</p>
+            <div class="col-md-3 col-sm-6">
+                <div class="rond">
+                    <span class="count">24</span>
+                    <p>nouvelles offres<br />d'emploi<br />par mois</p>
+                </div>
             </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="rond">
-              <span class="count">22</span>
-              <p>entreprises partenaires</p>
+            <div class="col-md-3 col-sm-6">
+                <div class="rond">
+                    <span class="count">22</span>
+                    <p>entreprises partenaires</p>
+                </div>
             </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="rond">
-              <span class="count pourcentage">100</span>
-              <p>de satisfaction</p>
+            <div class="col-md-3 col-sm-6">
+                <div class="rond">
+                    <span class="count pourcentage">100</span>
+                    <p>de satisfaction</p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <div id="partners">
-      <div class="container">
+<div id="partners">
+    <div class="container">
         <h2>Ils nous font confiance</h2>
         <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <div class="brand">
-              <a href="">
-                <img src="{{ asset('img/logo.jpg') }}"  class="img-responsive" />
-                <p class="desc">Transformation viandes</p>
-                <p class="city">Châteaubriant</p>
-              </a>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="brand">
-              <a href="">
-                <img src="{{ asset('img/logo.jpg') }}" class="img-responsive" />
-                <p class="desc">Entreprise de terrassement</p>
-                <p class="city">Vay</p>
-              </a>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="brand">
-              <a href="">
-                <img src="{{ asset('img/logo.jpg') }}" class="img-responsive" />
-                <p class="desc">Transporteur</p>
-                <p class="city">Montaigu</p>
-              </a>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="brand">
-              <a href="">
-                <img src="{{ asset('img/logo.jpg') }}"  class="img-responsive" />
-                <p class="desc">Traiteur</p>
-                <p class="city">Montaigu</p>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="team">
-      <div class="container">
-        <h2>Notre équipe</h2>
-        <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <div class="member">
-              <a href="">
-                <img src="{{ asset('img/thumb-equipe.jpg') }}" class="img-responsive bleu" />
-                <p class="name">Prénom Nom</p>
-                <p class="function">Fonction</p>
-              </a>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="member">
-              <a href="">
-                <img src="{{ asset('img/thumb-equipe.jpg') }}" class="img-responsive jaune" />
-                <p class="name">Prénom Nom</p>
-                <p class="function">Fonction</p>
-              </a>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="member">
-              <a href="">
-                <img src="{{ asset('img/thumb-equipe.jpg') }}" class="img-responsive bleu" />
-                <p class="name">Prénom Nom</p>
-                <p class="function">Fonction</p>
-              </a>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="member">
-              <a href="">
-                <img src="{{ asset('img/thumb-equipe.jpg') }}" class="img-responsive jaune" />
-                <p class="name">Prénom Nom</p>
-                <p class="function">Fonction</p>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div id="actus">
-      <div class="container">
-        <h2>Nos actualités</h2>
-        <div class="row">
-
-          {% for actuality in actualities %}
-          <div class="col-sm-4">
-            <div class="article">
-              <a href="#">
-                <img src="{{ actuality.img_name }}" class="img-responsive" />
-                <div class="box">
-                  <h3>{{ actuality.title }}</h3>
-                  <p class="date">{{ actuality.date|date('d') }} {{ actuality.date|date('F') }} {{ actuality.date|date('Y')}}</p>
-                  <a class="btn btn-default" href="#">En savoir plus</a>
+            <div class="col-md-3 col-sm-6">
+                <div class="brand">
+                    <a href="">
+                        <img src="./images/logo.jpg" class="img-responsive" />
+                        <p class="desc">Transformation viandes</p>
+                        <p class="city">Châteaubriant</p>
+                    </a>
                 </div>
-              </a>
             </div>
-          </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="brand">
+                    <a href="">
+                        <img src="./images/logo.jpg" class="img-responsive" />
+                        <p class="desc">Entreprise de terrassement</p>
+                        <p class="city">Vay</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="brand">
+                    <a href="">
+                        <img src="./images/logo.jpg" class="img-responsive" />
+                        <p class="desc">Transporteur</p>
+                        <p class="city">Montaigu</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="brand">
+                    <a href="">
+                        <img src="./images/logo.jpg" class="img-responsive" />
+                        <p class="desc">Traiteur</p>
+                        <p class="city">Montaigu</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div id="team">
+     <div class="container">
+         <h2>Notre équipe</h2>
+         <div class="row">
+             <div class="col-md-3 col-sm-6">
+                 <div class="member">
+                     <a href="">
+                         <img src="./images/thumb-equipe.jpg" class="img-responsive bleu" />
+                         <p class="name">Prénom Nom</p>
+                         <p class="function">Fonction</p>
+                     </a>
+                 </div>
+             </div>
+             <div class="col-md-3 col-sm-6">
+                 <div class="member">
+                     <a href="">
+                         <img src="./images/thumb-equipe.jpg" class="img-responsive jaune" />
+                         <p class="name">Prénom Nom</p>
+                         <p class="function">Fonction</p>
+                     </a>
+                 </div>
+             </div>
+             <div class="col-md-3 col-sm-6">
+                 <div class="member">
+                     <a href="">
+                         <img src="./images/thumb-equipe.jpg" class="img-responsive bleu" />
+                         <p class="name">Prénom Nom</p>
+                         <p class="function">Fonction</p>
+                     </a>
+                 </div>
+             </div>
+             <div class="col-md-3 col-sm-6">
+                 <div class="member">
+                     <a href="">
+                         <img src="./images/thumb-equipe.jpg" class="img-responsive jaune" />
+                         <p class="name">Prénom Nom</p>
+                         <p class="function">Fonction</p>
+                     </a>
+                 </div>
+             </div>
+
+         </div>
+     </div>
+</div>
+
+<div id="actus">
+    <div class="container">
+    <h2>Nos actualités</h2>
+        <div class="row">
+          {% for actuality in actualities %}
+            <div class="col-sm-4">
+                <div class="article">
+                    <a href="#">
+                        <img src="{{ actuality.img_name }}" class="img-responsive" />
+                        <div class="box">
+                            <h3>{{ actuality.title }}</h3>
+                            <p class="date">{{ actuality.date|date('d M Y') }}</p>
+                            <a class="btn btn-default" href="#">En savoir plus</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
           {% endfor %}
         </div>
-      </div>
     </div>
+</div>
 
-    <footer>
-      <div class="container">
-        <h2>Nous contacter</h2>
+<footer>
+<div id="agences-list">
+    <div class="container">
+        <h2>Nos agences</h2>
         <div class="row">
-          <div class="col-md-5">
-            <div id="contact-form">
-              <h4>Votre Message</h4>
-              <p>Prénom</p>
-              <input type="text" name="lname" placeholder="Ex: Rousseau">
-              <p>Nom</p>
-              <input type="text" name="fname" placeholder="Ex: Camille">
-              <p>E-mail</p>
-              <input type="email" name="email" placeholder="contact@orange.fr">
-              <p>Message</p>
-              <textarea rows="3" type="text" name="message" placeholder="Votre message"></textarea>
+          {% for agency in agencies %}
+            <div class="col-md-3 col-sm-6">
+                <div class="agence">
+                    <h3>{{ agency.name }}</h3>
+                    <a class="tel" href="tel:{{ agency.phone }}">02 40 87 86 86</a>
+                    <a class="adresse" href="https://goo.gl/maps/b1GQYLi9AYv"   target="_blank">{{ agency.address }}<br /> {{ agency.city }} </a>
+                </div>
             </div>
-            <a class="btn btn-default submit" type="submit">Envoyer</a>
-          </div>
-          <div class="col-md-7">
-            <div id="agences">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="agence">
-                    <h3>Agence Vay</h3>
-                    <a class="tel" href="tel:0240878686">02 40 87 86 86</a>
-                    <a class="adresse" href="https://goo.gl/maps/b1GQYLi9AYv" target="_blank">2 rue du stade<br />44170 Vay</a>
-                    <a class="email" href="#">Envoyer un email</a>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="agence">
-                    <h3>Agence Châteaubriant</h3>
-                    <a class="tel" href="tel:0240280593">02 40 28 05 93</a>
-                    <a class="adresse" href="https://goo.gl/maps/uNhxuXL4a6B2" target="_blank">14 Rue de Coueré<br />44110 Châteaubriant</a>
-                    <a class="email" href="#">Envoyer un email</a>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="agence">
-                    <h3>Agence Montaigu</h3>
-                    <a class="tel" href="tel:0251315747">02 51 31 57 47</a>
-                    <a class="adresse" href="https://goo.gl/maps/SmcspkqkJ512" target="_blank">12 Ter rue René Descartes<br />85600 Boufferé</a>
-                    <a class="email" href="#">Envoyer un email</a>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="agence">
-                    <h3>Agence Sablé-sur-Sarthe</h3>
-                    <a class="tel" href="tel:0243621420">02 43 62 14 20</a>
-                    <a class="adresse" href="https://goo.gl/maps/1UNxUvdrucG2" target="_blank">28 rue Haute St-Martin<br />72300 Sable-sur-Sarthe</a>
-                    <a class="email" href="#">Envoyer un email</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
-        <div id="social">
-          <ul>
-            <li><a href="" target="_blank" ><i class="fa fa-twitter" aria-hidden="true"></i>
-            </a></li>
-            <li><a href="http://www.facebook.com/capainterim/" target="_blank" ><i class="fa fa-facebook" aria-hidden="true"></i>
-            </a></li>
-            <li><a href="" target="_blank" ><i class="fa fa-linkedin" aria-hidden="true"></i>
-            </a></li>
-            <li><a href="" target="_blank" ><i class="fa fa-google-plus" aria-hidden="true"></i>
-            </a></li>
-          </ul>
-
-        </div>
-      </div>
-    </footer>
-    <div id="copyright">
-      <div class="container">
-        <p>Copyright © 2017 CAPA INTÉRIM | <a href="">Mentions légales</a></p>
-      </div>
     </div>
+</div>
+    </footer>
+ <div id="social" class="grey_bg">
+     <div class="container">
+         <ul>
+             <li><a href="" target="_blank" ><i class="fa fa-twitter" aria-hidden="true"></i>
+    </a></li>
+             <li><a href="http://www.facebook.com/capainterim/" target="_blank" ><i class="fa fa-facebook" aria-hidden="true"></i>
+    </a></li>
+             <li><a href="" target="_blank" ><i class="fa fa-linkedin" aria-hidden="true"></i>
+    </a></li>
+             <li><a href="" target="_blank" ><i class="fa fa-google-plus" aria-hidden="true"></i>
+    </a></li>
+         </ul>
+     </div>
+</div>
+<div id="copyright">
+    <div class="container">
+        <p>Copyright © 2017 CAPA INTÉRIM | <a href="">Mentions légales</a></p>
+    </div>
+</div>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="./js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
 
-    $(window).scroll(function() {
-      var hT = $('.rond').offset().top,
-      hH = $('.rond').outerHeight(),
-      wH = $(window).height(),
-      wS = $(this).scrollTop();
-      console.log((hT - wH), wS);
-      if (wS > (hT + hH - wH)) {
+        $(window).scroll(function() {
+    var hT = $('.rond').offset().top,
+        hH = $('.rond').outerHeight(),
+        wH = $(window).height(),
+        wS = $(this).scrollTop();
+    console.log((hT - wH), wS);
+    if (wS > (hT + hH - wH)) {
         $('.count').each(function() {
-          $(this).prop('Counter', 0).animate({
-            Counter: $(this).text()
-          }, {
-            duration: 900,
-            easing: 'swing',
-            step: function(now) {
-              $(this).text(Math.ceil(now));
-            }
-          });
+            $(this).prop('Counter', 0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 900,
+                easing: 'swing',
+                step: function(now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
         }); {
-          $('.count').removeClass('count').addClass('counted');
+            $('.count').removeClass('count').addClass('counted');
         };
-      }
-    });
-
+    }
+});
     </script>
 
-  </body>
+    </body>
 
 
 
-  </html>
+</html>

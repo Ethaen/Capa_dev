@@ -44,9 +44,15 @@ class AccountfrontController extends Controller
         $domains = $this->getDoctrine()->getRepository('EpiDevAdminBundle:Domain')->findAll();
         $jobs = $this->getDoctrine()->getRepository('EpiDevAdminBundle:Job')->findAll();
         $agencies = $this->getDoctrine()->getRepository('EpiDevAdminBundle:Agency')->findAll();
-
+        $cms = $em->getRepository('EpiDevAdminBundle:CMS')->findAll()[0]->getUrlName();
+        $query = $em->createQuery(
+            'SELECT p
+            FROM EpiDevAdminBundle:Offer p
+                        ORDER BY p.id DESC'
+        )->setMaxResults(4);
+        $last_offers = $query->getResult();
         return $this->render('AppBundle::personnal_space.html.twig', array('user_info' => $user_info, 'alerts' => $alerts, 'domains' => $domains
-                              , 'jobs' => $jobs, 'agencies' => $agencies));
+                              , 'jobs' => $jobs, 'agencies' => $agencies, 'recruteur' => $cms, 'last_offers' => $last_offers));
     }
 
     public function set_alertAction(Request $request)
