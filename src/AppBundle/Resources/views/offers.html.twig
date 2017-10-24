@@ -83,17 +83,17 @@
       <div id="search-form">
         <div class="col-md-3 col-sm-6">
           <div id="keyword">
-            <input type="text" placeholder="Mots-clés" name="keyword" />
+            <input id="keywordF" type="text" placeholder="Mots-clés" name="keyword" />
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
           <div id="city">
-            <input type="text" placeholder="Localisation" name="city" />
+            <input id="cityF" type="text" placeholder="Localisation" name="city" />
           </div>
         </div>
         <div class="col-md-2 col-sm-4">
           <div id="type">
-            <select>
+            <select id="typeF">
               <option value="" disabled selected >Contrat</option>
               <option value="interim">Intérim</option>
               <option value="cdd">CDD</option>
@@ -103,11 +103,17 @@
         </div>
         <div class="col-md-3 col-sm-6">
           <div id="activite">
-            <input type="text" placeholder="Secteur d'activité" name="activity" />
+            <input id="activityF" type="text" placeholder="Secteur d'activité" name="activity" />
           </div>
         </div>
         <div class="col-md-1 col-sm-2">
-          <a class="btn btn-default search" type="submit"><i class="fa fa-search" aria-hidden="true"></i></a>
+          <a class="btn btn-default search" onclick="_search()" type="submit"><i class="fa fa-search" aria-hidden="true"></i></a>
+          <script>
+          function _search()
+          {
+            moreOffer(true);
+          }
+          </script>
         </div>
         <div class="clearfix"></div>
       </div>
@@ -159,14 +165,24 @@
         {% set i = i + 1 %}
         {% endfor %}
       </div>
-      <a class="btn btn-default yellow" onclick="moreOffer()">Plus d'offres</a>
+      <a class="btn btn-default yellow" onclick="moreOffer(false)">Plus d'offres</a>
       <script>
-      function moreOffer()
+      var nodeSave = document.getElementsByClassName('annonce');
+      nodeSave = nodeSave[0].cloneNode(true);
+      function moreOffer(remove)
       {
         var div = document.getElementById('results');
+        var node = document.getElementsByClassName('annonce');
+
+        if (remove) {
+          while (div.firstChild) {
+            div.removeChild(div.firstChild);
+          }
+        }
         var length = document.getElementsByClassName('annonce').length;
 
-        for (var i = 0; i < 10; ++i)
+        var count = 0;
+        for (var i = 0; i < "{{ offers|length }}" && count < 10; ++i)
         {
           if (!(i+length >= "{{ offers|length }}")) {
             $.ajax({
@@ -177,15 +193,62 @@
                 'i': i+length
               },
               success: function(result) {
-                var node = document.getElementsByClassName('annonce');
-                node = node[0].cloneNode(true);
+                node = nodeSave.cloneNode(true);
                 result = jQuery.parseJSON(result);
                 node.querySelector('#title0').innerText = result.title;
                 node.querySelector('.btn').id = result.id;
                 node.querySelector('#description0').innerText = offerDescription($('<div/>').text(result.description).html());
-                div.appendChild(node);
+                if (checkFilter(result)) {
+                  div.appendChild(node);
+                  count++;
+                }
               }
             });
+          }
+        }
+      }
+
+      function checkFilter(offer)
+      {
+        var keyword = document.getElementById('keywordF').value;
+        var city = document.getElementById('cityF').value;
+        var type = document.getElementById('typeF').value;
+        var domain = document.getElementById('activityF').value;
+
+        console.log(type);
+        if (!keywordCheck(keyword, offer.title)) {
+          if (keyword) {
+            return false;
+          }
+        }
+        if (!(city && city.toLowerCase() == offer.city.toLowerCase())) {
+          if (city) {
+            return false;
+          }
+        }
+        if (!(type && ((offer.type == false && type == "cdi") || (offer.type == true && type != "cdi")))) {
+          if (type) {
+            return false;
+          }
+        }
+        if (!(domain && domain.toLowerCase() == offer.domain.toLowerCase())) {
+          if (domain) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function keywordCheck(keyword, title)
+      {
+        var keywords = keyword.split(' ');
+        var titleKeys = title.split(' ');
+
+        for (var i = 0; keyword && i < keywords.length; ++i) {
+          for (var t = 0; title && t < titleKeys.length; ++t) {
+            if ((keywords[i].toLowerCase() == titleKeys[t].toLowerCase())) {
+              return true;
+            }
           }
         }
       }
@@ -260,6 +323,8 @@
 
   <script src="./js/bootstrap.min.js"></script>
 
+  <script>
+  </script>
 </body>
 
 

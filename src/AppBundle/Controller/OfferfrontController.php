@@ -26,7 +26,11 @@ class OfferfrontController extends Controller
     $title = $offers[$i]->getTitle();
     $id = $offers[$i]->getId();
     $description = $offers[$i]->getDescription_txt();
-    return new Response(json_encode(array('title' => $title, 'description' => $description, 'id' => $id)));
+    $city = $offers[$i]->getCity();
+    $type = $offers[$i]->getJob_type();
+    $domain = $offers[$i]->getDomain();
+
+    return new Response(json_encode(array('title' => $title, 'description' => $description, 'id' => $id, 'city' => $city, 'type' => $type, 'domain' => $domain)));
   }
 
   public function detailsAction(Request $request)
