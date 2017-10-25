@@ -95,7 +95,7 @@
               <div class="box">
                 <h3>{{ actuality.title }}</h3>
                 <p class="date">{{ actuality.date|date('Y-m-d') }}</p>
-                <a class="btn btn-default" href="#">En savoir plus</a>
+                <a class="btn btn-default" href="{{ path('actuality_details', {'id': actuality.id}) }}">En savoir plus</a>
               </div>
             </a>
           </div>

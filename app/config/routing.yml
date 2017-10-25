@@ -227,6 +227,35 @@ update_candidate:
   path: /admin/update/candidate
   defaults:
     _controller: EpiDevAdminBundle:Candidate:update
+
+monthly_worker:
+  path: /admin/monthly_worker
+  defaults:
+    _controller: EpiDevAdminBundle:Monthly_worker:list
+modifyWorker:
+    path: /admin/modifyWorker
+    defaults:
+      _controller: EpiDevAdminBundle:Monthly_worker:modifyWorker
+saveWorker:
+    path: /admin/saveWorker
+    defaults:
+      _controller: EpiDevAdminBundle:Monthly_worker:saveWorker
+addWorker:
+    path: /admin/addWorker
+    defaults:
+      _controller: EpiDevAdminBundle:Monthly_worker:addWorker
+uploadWorker:
+    path: /admin/uploadWorker
+    defaults:
+      _controller: EpiDevAdminBundle:Monthly_worker:uploadWorker
+deleteWorker:
+    path: /admin/deleteWorker
+    defaults:
+      _controller: EpiDevAdminBundle:Monthly_worker:deleteWorker
+duplicateWorker:
+    path: /admin/duplicateWorker
+    defaults:
+      _controller: EpiDevAdminBundle:Monthly_worker:duplicateWorker
 # Public
 
 home:
@@ -252,6 +281,11 @@ list_actuality:
     path: /actuality
     defaults:
       _controller: AppBundle:Actualityfront:list
+
+actuality_details:
+  path: /actuality_details
+  defaults:
+    _controller: AppBundle:Actualityfront:details
 
 contact:
     path: /contact

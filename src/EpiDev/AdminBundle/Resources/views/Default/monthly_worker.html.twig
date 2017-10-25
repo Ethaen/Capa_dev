@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- Behavioral Meta Data -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="icon" type="image/png" href="img/actuality/small-logo-01.png">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,900,900italic,700italic,700,500italic,400italic,500,300italic,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href='css/style.css' rel='stylesheet' type='text/css'>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
+	<script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
+	<script type="text/javascript" src="js/jquery-animate-css-rotate-scale.js"></script>
+	<script type="text/javascript" src="js/fastclick.min.js"></script>
+	<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
+	<script type="text/javascript" src="js/jquery.animate-shadow-min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
+	</script>
+	<script type="text/javascript" class="init">
+
+
+	$(document).ready(function() {
+		$('#example').DataTable();
+	} );
+	</script>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Admin | Intérimaires du mois</title>
+	<link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+	<style type="text/css" class="init">
+
+	</style>
+</head>
+<body>
+
+	<!-- HEADER -->
+
+	<div id="wrapper-header">
+		<div id="main-header" class="object">
+			<div class="top-rated object" style="color:red">Intérimaires du mois</div>
+			<div id="stripes"></div>
+		</div>
+	</div>
+
+	<!-- HEADER -->
+
+	<!-- BUTTON -->
+	<br><br><br><br>
+	<center><button type="button" onclick="addActuality()">Ajouter un intérimaire</button></center>
+	<br>
+	<!-- BUTTON -->
+
+	<table id="example" class="display" cellspacing="0" width="100%">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Age</th>
+        <th>Options</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>Nom</th>
+				<th>Prénom</th>
+        <th>Age</th>
+				<th>Options</th>
+			</tr>
+		</tfoot>
+		<tbody>
+
+			{% for worker in workers %}
+			<tr>
+				<td><center>{{ worker.name }}</center></td>
+				<td><center>{{ worker.firstname }}</center></td>
+        <td><center>{{ worker.age }}</center></td>
+        <td><center>
+					<a href="{{ path('modifyWorker') ~ "?id=" ~ worker.id }}"> <img src="{{ asset( 'img/actuality/edit.png') }}"  alt="" style="width:20px; height:20px;"/></a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="{{ path('duplicateWorker') ~ "?id=" ~ worker.id }}"> <img src="{{ asset( 'img/actuality/duplicate.png') }}"  alt="" style="width:20px; height:20px;"/></a>
+					&nbsp;&nbsp;&nbsp;
+					<a href="{{ path('deleteWorker') ~ "?id=" ~ worker.id }}"> <img src="{{ asset( 'img/actuality/delete.jpg') }}"  alt="" style="width:20px; height:20px;"/></a>
+				</center></td>
+			</tr>
+			{% endfor %}
+			<!--
+			<tr>
+			<td>Aiger Nixon</td>
+			<td>System Architect</td>
+			<td>Edinburgh</td>
+			<td>61</td>
+			<td>2011/04/25</td>
+		</tr>
+	-->
+</tbody>
+</table>
+
+</body>
+
+<script>
+function addActuality()
+{
+	var path = "{{ path('addWorker') }}";
+
+	window.location.href = path;
+}
+</script>
