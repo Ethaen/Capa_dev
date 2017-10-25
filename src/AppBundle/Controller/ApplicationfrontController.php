@@ -10,7 +10,7 @@ class ApplicationfrontController extends Controller
 {
     public function indexAction(Request $request)
     {
-        return $this->render('AppBundle::spontaneous_application.html.twig');
+        return $this->render('AppBundle::application.html.twig');
     }
 
 }

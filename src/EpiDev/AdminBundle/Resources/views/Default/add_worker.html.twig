@@ -1,1 +1,124 @@
- 
+<html>
+<head>
+
+  <!-- Date picker -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $("#datepicker").datepicker({ dateFormat: "dd-mm-yy" }).val();
+  });
+  </script>
+
+</head>
+
+<body>
+
+  <center style="margin-bottom: 2%;">
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+    <br><br><br>HEADER<br><br><br>
+    <b>--------------------------------------------------------------------------------------------------------------------------------------------</b>
+  </center>
+
+  <div style="width: 60%;  margin-top: 2%;">
+    <p>Nom :</p>
+    <div id="name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+    </div>
+  </div>
+
+  <div style="width: 60%;  margin-top: 2%;">
+    <p>Prénom :</p>
+    <div id="firstname" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+    </div>
+  </div>
+
+  <div style="width: 60%;  margin-top: 2%;">
+    <p>Age :</p>
+    <div id="age" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+    </div>
+  </div>
+
+  <div style="width: 60%;  margin-top: 2%;">
+    <p>Descriptif :</p>
+    <div id="descriptif" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+    </div>
+  </div>
+
+  <div align="right">
+    <img id="image" src="" height="15%">
+    <div>
+      <input type="file" id="upload" accept="image/*" style="margin-top: 2%;">
+      <script>
+      file = "";
+      image_name = "";
+      image_id = "";
+      $('#upload').change(
+        function(event) {
+          file = event.target.files[0];
+          image_name = document.getElementById('upload').files[0].name;
+          extension = "."+image_name.split('.').pop();
+          $("#image").fadeIn("fast").attr('src', URL.createObjectURL(event.target.files[0]));
+        }
+      );
+      </script>
+    </div>
+  </div>
+
+  <div>
+    <button onclick="save()" style="margin-top: 2%;">Save</button>
+    <script type="text/javascript">
+    function save()
+    {
+      var name = document.getElementById('name').innerText;
+      var firstname = document.getElementById('firstname').innerText;
+      var age = document.getElementById('age').innerText;
+      var info = document.getElementById('descriptif').innerText;
+
+      if (file) {
+        var form_data = new FormData();
+        var image_id = makeId()+extension;
+        form_data.append('file', file);
+        form_data.append('name', image_id);
+        form_data.append('path', "img/");
+        $.ajax({
+          url: '/admin/upload.php',
+          dataType: 'text',
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data,
+          type: 'post',
+        });
+      }
+
+      $.ajax({
+        url: '{{ (path('uploadWorker')) }}',
+        type: "POST",
+        dataType: "text",
+        data: {
+          "name": name,
+          "firstname": firstname,
+          "age": age,
+          "image_name": image_id,
+          "info": info,
+        }
+      });
+      window.location.href = "{{ path('monthly_worker') }}";
+    }
+    function makeId()
+    {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random()*possible.length));
+
+      return text;
+    }
+
+    </script>
+  </div>
+
+</body>
+</html>

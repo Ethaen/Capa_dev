@@ -171,10 +171,10 @@
             <div class="col-sm-4">
                 <div class="personne">
                     <a href="#">
-                        <img src="./images/photo-quentin.jpg" class="img-responsive" />
+                        <center><img src="admin/{{ workers[0].img }}" class="img-responsive" style="height:300px; width:400px"/></center>
                         <div class="box">
-                            <p class="name">Quentin Rousseau</p>
-                            <p class="age">26 ans</p>
+                            <p class="name">{{ workers[0].firstname }} {{ workers[0].name }}</p>
+                            <p class="age">{{ workers[0].age }} ans</p>
                         </div>
                     </a>
                 </div>
@@ -182,10 +182,10 @@
              <div class="col-sm-4">
                  <div class="personne">
                      <a href="#">
-                         <img src="./images/photo-sarah.jpg" class="img-responsive" />
+                         <center><img src="./admin/{{ workers[1].img }}" class="img-responsive" style="height:300px; width:400px"/></center>
                          <div class="box">
-                             <p class="name">Sarah Leclerc</p>
-                             <p class="age">24 ans</p>
+                             <p class="name">{{ workers[1].firstname }} {{ workers[1].name }}</p>
+                             <p class="age">{{ workers[1].age }} ans</p>
                          </div>
                      </a>
                  </div>
@@ -193,10 +193,10 @@
             <div class="col-sm-4">
                 <div class="personne">
                     <a href="#">
-                        <img src="./images/photo-marie.jpg" class="img-responsive" />
+                        <center><img src="./admin/{{ workers[2].img }}" class="img-responsive" style="height:300px; width:400px"/></center>
                         <div class="box">
-                            <p class="name">Marie Tusseau</p>
-                                <p class="age">56 ans</p>
+                            <p class="name">{{ workers[2].firstname }} {{ workers[2].name }}</p>
+                                <p class="age">{{ workers[2].age }} ans</p>
                         </div>
                     </a>
                 </div>

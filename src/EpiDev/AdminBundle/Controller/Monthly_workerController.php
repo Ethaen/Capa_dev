@@ -42,8 +42,8 @@ class Monthly_workerController extends Controller
     $worker->setFirstname($request->request->get('firstname'));
     $worker->setAge($request->request->get('age'));
     $worker->setInfo($request->request->get('info'));
-    if ($request->request->get('image_id') && $request->request->get('image_name')) {
-      $worker->setImg($request->request->get('image_name'));
+    if ($request->request->get('image_name')) {
+      $worker->setImg('img/' . $request->request->get('image_name'));
     }
     $em->flush();
     return $this->redirectToRoute('monthly_worker');
@@ -58,8 +58,8 @@ class Monthly_workerController extends Controller
     $worker->setFirstname($request->request->get('firstname'));
     $worker->setAge($request->request->get('age'));
     $worker->setInfo($request->request->get('info'));
-    if ($request->request->get('image_id') && $request->request->get('image_name')) {
-      $worker->setImg($request->request->get('image_name'));
+    if ($request->request->get('image_name')) {
+      $worker->setImg('img/' . $request->request->get('image_name'));
     }
     else {
       $worker->setImg("");

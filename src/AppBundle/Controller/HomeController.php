@@ -29,6 +29,13 @@ class HomeController extends Controller
 
         $query = $em->createQuery(
             'SELECT p
+            FROM EpiDevAdminBundle:MonthlyWorker p
+                        ORDER BY p.id DESC'
+        )->setMaxResults(3);
+        $workers = $query->getResult();
+
+        $query = $em->createQuery(
+            'SELECT p
             FROM EpiDevAdminBundle:MonthlyWorker p'
         )->setMaxResults(3);
         $month_workers = $query->getResult();
@@ -44,7 +51,8 @@ class HomeController extends Controller
         $cms = $em->getRepository('EpiDevAdminBundle:CMS')->findAll()[0]->getUrlName();
         return $this->render('AppBundle::home.html.twig', array('available_offer' => $available_offer,
                              'last_offers' => $last_offers, 'month_workers' => $month_workers,
-                             'actualities' => $actualities, 'recruteur' => $cms, 'agencies' => $agencies) );
+                             'actualities' => $actualities, 'recruteur' => $cms, 'agencies' => $agencies,
+                              'workers' => $workers) );
     }
 
     public function loginAction(Request $request)
