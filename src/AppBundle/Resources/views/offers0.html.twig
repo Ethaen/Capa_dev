@@ -19,7 +19,7 @@
   <link href="./css/font-awesome.min.css" rel="stylesheet" >
 
   <link href="./css/style.css" rel="stylesheet">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 
 </head>
 
@@ -111,12 +111,7 @@
           <script>
           function _search()
           {
-            var keyword = document.getElementById('keywordF').value;
-            var city = document.getElementById('cityF').value;
-            var type = document.getElementById('typeF').value;
-            var domain = document.getElementById('activityF').value;
-
-            window.location.href = '{{ path('list_offers') }}'+"?keyword="+keyword+"&city="+city+"&type="+type+"&domain="+domain;
+            moreOffer(true);
           }
           </script>
         </div>
@@ -125,17 +120,39 @@
 
       <div id="results">
         <h2>Consultez nos dernières offres</h2>
+        {% set i = 0 %}
+        {% for offer in offers if (i % 10) or (i == 0) %}
         <div class="annonce">
           <div class="col-sm-4">
-            <h3 id="title"></h3>
+            <h3 id="title{{ i }}">{{ offer.title }}</h3>
           </div>
 
           <div class="col-md-7 col-sm-6" style="width: 665px; overflow: auto;">
-            <p id="description"></p>
+            <p id="description{{ i }}"></p>
+            <script>
+            document.getElementById("description"+"{{ i }}").innerText = offerDescription("{{ offer.description_txt }}");
+            function offerDescription(content)
+            {
+              var parser = new DOMParser;
+              var content = content;
+
+              content = parser.parseFromString(content, 'text/html').body.textContent;
+              content = content.replace(/<br>/g, '');
+              content = content.replace(/<div><div>/g, '\n');
+              content = content.replace(/<div>/g, '\n');
+              content = content.replace(/<\/div>/g, '');
+              var str = content.substring(0, 200);
+
+              if (content != str) {
+                str += "...";
+              }
+              return str;
+            }
+            </script>
           </div>
           <div class="col-md-1 col-sm-2 no-padding">
 
-            <a id="" class="btn btn-default more" onclick="seeDetails(this)"><i class="fa fa-plus" aria-hidden="true"></i>Voir plus</a>
+            <a id="{{ offer.id }}" class="btn btn-default more" onclick="seeDetails(this)"><i class="fa fa-plus" aria-hidden="true"></i>Voir plus</a>
             <script>
             function seeDetails(item)
             {
@@ -145,23 +162,26 @@
             </script>
           </div>
         </div>
+        {% set i = i + 1 %}
+        {% endfor %}
       </div>
-      <a class="btn btn-default yellow" onclick="addOffersDiv()">Plus d'offres</a>
+      <a class="btn btn-default yellow" onclick="moreOffer(false)">Plus d'offres</a>
       <script>
-      var offersDiv = document.getElementById('results');
       var nodeSave = document.getElementsByClassName('annonce');
-
       nodeSave = nodeSave[0].cloneNode(true);
-      while (offersDiv.firstChild) {
-        offersDiv.removeChild(offersDiv.firstChild);
-      }
-      addOffersDiv();
-
-      function addOffersDiv()
+      function moreOffer(remove)
       {
+        var div = document.getElementById('results');
+        var node = document.getElementsByClassName('annonce');
+
+        if (remove) {
+          while (div.firstChild) {
+            div.removeChild(div.firstChild);
+          }
+        }
         var length = document.getElementsByClassName('annonce').length;
 
-        for (var i = 0; i < 10; ++i)
+        for (var i = 0; i < "{{ offers|length }}"; ++i)
         {
           if (i+length < "{{ offers|length }}") {
             $.ajax({
@@ -174,32 +194,60 @@
               success: function(result) {
                 node = nodeSave.cloneNode(true);
                 result = jQuery.parseJSON(result);
-                node.querySelector('#title').innerText = result.title;
+                node.querySelector('#title0').innerText = result.title;
                 node.querySelector('.btn').id = result.id;
-                node.querySelector('#description').innerText = offerDescription($('<div/>').text(result.description).html());
-                offersDiv.appendChild(node);
+                node.querySelector('#description0').innerText = offerDescription($('<div/>').text(result.description).html());
+                if (checkFilter(result)) {
+                  div.appendChild(node);
+                }
               }
             });
           }
         }
       }
 
-      function offerDescription(content)
+      function checkFilter(offer)
       {
-        var parser = new DOMParser;
-        var content = content;
+        var keyword = document.getElementById('keywordF').value;
+        var city = document.getElementById('cityF').value;
+        var type = document.getElementById('typeF').value;
+        var domain = document.getElementById('activityF').value;
 
-        content = parser.parseFromString(content, 'text/html').body.textContent;
-        content = content.replace(/<br>/g, '');
-        content = content.replace(/<div><div>/g, '\n');
-        content = content.replace(/<div>/g, '\n');
-        content = content.replace(/<\/div>/g, '');
-        var str = content.substring(0, 200);
-
-        if (content != str) {
-          str += "...";
+        if (!keywordCheck(keyword, offer.title)) {
+          if (keyword) {
+            return false;
+          }
         }
-        return str;
+        if (!(city && city.toLowerCase() == offer.city.toLowerCase())) {
+          if (city) {
+            return false;
+          }
+        }
+        if (!(type && ((offer.type == false && type == "cdi") || (offer.type == true && type != "cdi")))) {
+          if (type) {
+            return false;
+          }
+        }
+        if (!(domain && domain.toLowerCase() == offer.domain.toLowerCase())) {
+          if (domain) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function keywordCheck(keyword, title)
+      {
+        var keywords = keyword.split(' ');
+        var titleKeys = title.split(' ');
+
+        for (var i = 0; keyword && i < keywords.length; ++i) {
+          for (var t = 0; title && t < titleKeys.length; ++t) {
+            if ((keywords[i].toLowerCase() == titleKeys[t].toLowerCase())) {
+              return true;
+            }
+          }
+        }
       }
       </script>
     </div>
