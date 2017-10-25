@@ -42,8 +42,11 @@ class OfferfrontController extends Controller
     $type = $request->query->get('type');
     $domain = $request->query->get('domain');
     $offers = $em->getRepository('EpiDevAdminBundle:Offer')->findAll();
+    $query = $em->createQuery('SELECT p FROM EpiDevAdminBundle:Offer p ORDER BY p.id DESC')->setMaxResults(4);
+    $last_offers = $query->getResult();
+    $cms = $em->getRepository('EpiDevAdminBundle:CMS')->findAll()[0]->getUrlName();
 
-    return $this->render('AppBundle::offers.html.twig', array('keyword' => $keyword, 'city' => $city, 'type' => $type, 'domain' => $domain));
+    return $this->render('AppBundle::offers.html.twig', array('keyword' => $keyword, 'city' => $city, 'type' => $type, 'domain' => $domain, 'last_offers' => $last_offers, 'recruteur' => $cms));
   }
 
   public function inc_i_offerAction(Request $request)
