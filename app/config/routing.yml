@@ -301,6 +301,11 @@ spontaneous_application:
     defaults:
       _controller: AppBundle:Applicationfront:index
 
+apply_offer:
+  path: /apply_offer
+  defaults:
+    _controller: AppBundle:Applicationfront:apply_offer
+
 personnal_space:
     path: /personnal_space
     defaults:

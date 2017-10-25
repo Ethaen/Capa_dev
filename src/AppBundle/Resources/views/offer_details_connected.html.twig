@@ -153,22 +153,17 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   <h4 class="modal-title" id="myModalLabel">Postulez à cette offre grâce à mon compte Capa Intérim</h4>
                 </div>
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <p>Se connecter à mon espace personnel</p>
-                      <input type="text" placeholder="Mon identifiant" name="id" id="login_email"/>
-                      <input type="text" placeholder="Mon mot de passe" name="password" id="login_password"/>
-                      <a href="#" class="btn btn-default" onclick="login()">Me connecter</a>
-                      <a href="{{ path('lost_password') }}" class="small pull-right">mot de passe oublié ?</a>
-                    </div>
-                    <div class="col-sm-6">
-                      <p>Je n'ai pas encore de compte</p>
-                      <p class="yellow">Créer mon compte en quelques clics</p>
-                      <a href="{{ path('login_register') }}" class="btn btn-default yellow">Créer mon compte</a>
-                    </div>
-                  </div>
-                </div>
+                <div class="modal-body" >
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                      <center><a href="#" class="btn btn-default yellow" onclick="apply()">Enregistrer</a></center>
+                                      <center><a href="#" class="btn btn-default" id="closemodal" onclick="closemodal()">Annuler</a></center>
+                                    </div>
+                                </div>
+
+
+                        <div class="clearfix"></div>
+                            </div>
               </div>
             </div>
           </div>
@@ -249,15 +244,19 @@
     $('#connexion').focus()
   })
 
-  function login()
-  {
-    var login_email = document.getElementById('login_email').value;
-    var login_password = document.getElementById('login_password').value;
-    var path = '{{path('login_register')}}' + '?login_email=' + login_email + '&login_password=' + login_password;
+  $('#closemodal').click(function() {
+    $('#monCompte').modal('hide');
+});
 
-    console.log(login_email);
-    console.log(login_password);
-    window.location.href = path;
+  function closemodal()
+  {
+
+  }
+
+  function apply()
+  {
+    var path = '{{ path('apply_offer', {'id': offer.id} )}}';
+    window.location.href=path;
   }
   </script>
 
