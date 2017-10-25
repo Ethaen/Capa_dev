@@ -159,13 +159,13 @@
                       <p>Se connecter à mon espace personnel</p>
                       <input type="text" placeholder="Mon identifiant" name="id" />
                       <input type="text" placeholder="Mon mot de passe" name="password" />
-                      <a href="./monespace.html" class="btn btn-default">Me connecter</a>
-                      <a href="./motdepasse.html" class="small pull-right">mot de passe oublié ?</a>
+                      <a href="{{ path('personnal_space') }}" class="btn btn-default">Me connecter</a>
+                      <a href="{{ path('lost_password') }}" class="small pull-right">mot de passe oublié ?</a>
                     </div>
                     <div class="col-sm-6">
                       <p>Je n'ai pas encore de compte</p>
                       <p class="yellow">Créer mon compte en quelques clics</p>
-                      <a href="./moncompte.html" class="btn btn-default yellow">Créer mon compte</a>
+                      <a href="{{ path('login_register') }}" class="btn btn-default yellow">Créer mon compte</a>
                     </div>
                   </div>
                 </div>

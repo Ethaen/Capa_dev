@@ -110,6 +110,10 @@ class OfferfrontController extends Controller
       )->setMaxResults(4);
       $last_offers = $query->getResult();
 
-      return $this->render('AppBundle::offer_details.html.twig', array('offer' => $offer, 'agencies' => $agencies, 'recruteur' => $cms, 'last_offers' => $last_offers));
+      $user = $this->getUser();
+      if (!($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) && !$user)
+        return $this->render('AppBundle::offer_details.html.twig', array('offer' => $offer, 'agencies' => $agencies, 'recruteur' => $cms, 'last_offers' => $last_offers));
+      else
+      return $this->render('AppBundle::offer_details_connected.html.twig', array('offer' => $offer, 'agencies' => $agencies, 'recruteur' => $cms, 'last_offers' => $last_offers));
     }
   }
