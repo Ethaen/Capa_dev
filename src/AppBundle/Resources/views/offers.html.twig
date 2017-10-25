@@ -151,6 +151,10 @@
       var offersDiv = document.getElementById('results');
       var nodeSave = document.getElementsByClassName('annonce');
 
+      document.getElementById('keywordF').value = "{{ keyword }}";
+      document.getElementById('cityF').value = "{{ city }}";
+      document.getElementById('typeF').value = "{{ type }}";
+      document.getElementById('activityF').value = "{{ domain }}";
       nodeSave = nodeSave[0].cloneNode(true);
       while (offersDiv.firstChild) {
         offersDiv.removeChild(offersDiv.firstChild);
@@ -163,24 +167,28 @@
 
         for (var i = 0; i < 10; ++i)
         {
-          if (i+length < "{{ offers|length }}") {
-            $.ajax({
-              url: '{{ path('inc_i_offer') }}',
-              type: "POST",
-              dataType: 'text',
-              data: {
-                'i': i+length
-              },
-              success: function(result) {
-                node = nodeSave.cloneNode(true);
-                result = jQuery.parseJSON(result);
-                node.querySelector('#title').innerText = result.title;
-                node.querySelector('.btn').id = result.id;
-                node.querySelector('#description').innerText = offerDescription($('<div/>').text(result.description).html());
+          $.ajax({
+            url: '{{ path('inc_i_offer') }}',
+            type: "POST",
+            dataType: 'text',
+            data: {
+              'i': i+length,
+              'keyword': "{{ keyword }}",
+              'city': "{{ city }}",
+              'type': "{{ type }}",
+              'domain': "{{ domain }}"
+            },
+            success: function(result) {
+              node = nodeSave.cloneNode(true);
+              result = jQuery.parseJSON(result);
+              node.querySelector('#title').innerText = result.title;
+              node.querySelector('.btn').id = result.id;
+              node.querySelector('#description').innerText = offerDescription($('<div/>').text(result.description).html());
+              if (!result.ko) {
                 offersDiv.appendChild(node);
               }
-            });
-          }
+            }
+          });
         }
       }
 
