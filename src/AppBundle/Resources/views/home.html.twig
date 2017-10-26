@@ -81,17 +81,17 @@
         <div class="row">
             <div class="col-md-4 col-sm-8">
                 <div id="keyword">
-                    <input type="text" autocomplete="on" placeholder="Mots-clés" name="keyword" />
+                    <input id="keywordF" type="text" autocomplete="on" placeholder="Mots-clés" name="keyword" />
                 </div>
             </div>
             <div class="col-md-5 col-sm-4">
                 <div id="city">
-                    <input id="city1" type="text"  autocomplete="on" placeholder="Localisation" name="city" />
+                    <input id="cityF" type="text"  autocomplete="on" placeholder="Localisation" name="city" />
                 </div>
             </div>
             <div class="col-md-2 col-sm-10">
                 <div id="type">
-                    <select>
+                    <select id="typeF">
                         <option value="" disabled selected >Contrat</option>
                         <option value="interim">Intérim</option>
                         <option value="cdd">CDD</option>
@@ -100,7 +100,17 @@
                 </div>
             </div>
              <div class="col-md-1 col-sm-2">
-                 <a class="btn btn-default search" type="submit"><i class="fa fa-search" aria-hidden="true"></i></a>
+                 <a class="btn btn-default search" type="submit" onclick="_search()"><i class="fa fa-search" aria-hidden="true"></i></a>
+                 <script>
+                 function _search()
+                 {
+                   var keyword = document.getElementById('keywordF').value;
+                   var city = document.getElementById('cityF').value;
+                   var type = document.getElementById('typeF').value;
+
+                   window.location.href = '{{ path('list_offers') }}'+"?keyword="+keyword+"&city="+city+"&type="+type+"&domain=";
+                 }
+                 </script>
             </div>
         </div>
     </div>
