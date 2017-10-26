@@ -47,7 +47,7 @@ class AccountfrontController extends Controller
         $cms = $em->getRepository('EpiDevAdminBundle:CMS')->findAll()[0]->getUrlName();
         $query = $em->createQuery(
             'SELECT p
-            FROM EpiDevAdminBundle:Offer p
+            FROM EpiDevAdminBundle:Offer p WHERE p.active = 1
                         ORDER BY p.id DESC'
         )->setMaxResults(4);
         $last_offers = $query->getResult();

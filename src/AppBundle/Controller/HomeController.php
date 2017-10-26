@@ -22,7 +22,7 @@ class HomeController extends Controller
         }
         $query = $em->createQuery(
             'SELECT p
-            FROM EpiDevAdminBundle:Offer p
+            FROM EpiDevAdminBundle:Offer p  WHERE p.active = 1
                         ORDER BY p.id DESC'
         )->setMaxResults(3);
         $last_offers = $query->getResult();

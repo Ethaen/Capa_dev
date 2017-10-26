@@ -112,6 +112,8 @@ $(document).ready(function() {
 						<a href="{{ path('duplicate_candidate') ~ "?id=" ~ user_info.id }}"> <img src="{{ asset( 'img/offer/duplicate.png') }}"  alt="" style="width:20px; height:20px;"/></a>
 						&nbsp;&nbsp;&nbsp;
 						<a href="{{ path('delete_candidate') ~ "?id=" ~ user_info.id }}"> <img src="{{ asset( 'img/offer/delete.jpg') }}"  alt="" style="width:20px; height:20px;"/></a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="{{path('get_cv_admin', {'user_cv': user_info.cv_generated_name, 'id': user_info.id } ) }}"><img src="{{ asset( 'img/offer/download.png') }}"  alt="" style="width:20px; height:20px;"/></a>
 						</center>
 					</td>
 

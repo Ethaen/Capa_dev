@@ -42,7 +42,7 @@ class OfferfrontController extends Controller
     $type = $request->query->get('type');
     $domain = $request->query->get('domain');
     $offers = $em->getRepository('EpiDevAdminBundle:Offer')->findAll();
-    $query = $em->createQuery('SELECT p FROM EpiDevAdminBundle:Offer p ORDER BY p.id DESC')->setMaxResults(4);
+    $query = $em->createQuery('SELECT p FROM EpiDevAdminBundle:Offer p WHERE p.active = 1 ORDER BY p.id DESC')->setMaxResults(4);
     $last_offers = $query->getResult();
     $cms = $em->getRepository('EpiDevAdminBundle:CMS')->findAll()[0]->getUrlName();
 
@@ -93,6 +93,9 @@ class OfferfrontController extends Controller
       $title = $offers[$current]->getTitle();
       $id = $offers[$current]->getId();
       $description = $offers[$current]->getDescription_txt();
+      if (!$offers[$current]->getActive()) {
+        $ko = 1;
+      }
     }
     else {
       $ko = 1;

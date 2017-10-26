@@ -215,6 +215,10 @@ add_candidate:
   path: /admin/add/candidate
   defaults:
     _controller: EpiDevAdminBundle:Candidate:add
+get_cv_admin:
+  path: /admin/add/get_cv_admin
+  defaults:
+    _controller: EpiDevAdminBundle:Candidate:get_cv_admin
 upload_candidate:
   path: /admin/upload/candidate
   defaults:
