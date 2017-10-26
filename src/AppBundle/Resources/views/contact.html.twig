@@ -12,13 +12,13 @@
 
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-  <link href="css/font.css" rel="stylesheet">
+  <link href="{{ asset('css/font.css') }}" rel="stylesheet">
 
 
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet" >
+  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" >
 
-  <link href="css/style.css" rel="stylesheet">
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 
 </head>
@@ -38,7 +38,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="./">
-              <img alt="Logo Capa Intérim" src="images/logo-capa-interim.png" class="img-responsive">
+              <img alt="Logo Capa Intérim" src="{{ asset('images/logo-capa-interim.png') }}" class="img-responsive">
             </a>
           </div>
 
@@ -233,7 +233,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-  <script src="js/bootstrap.min.js"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 </body>
 
