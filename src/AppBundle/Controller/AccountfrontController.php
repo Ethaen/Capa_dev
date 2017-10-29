@@ -51,8 +51,15 @@ class AccountfrontController extends Controller
                         ORDER BY p.id DESC'
         )->setMaxResults(4);
         $last_offers = $query->getResult();
+
+        $query = $em->createQuery(
+            'SELECT p
+            FROM EpiDevAdminBundle:Application p
+            WHERE p.userId LIKE :id'
+        )->setParameters(array('id' => $user_info[0]->getId()));
+        $applications = $query->getResult();
         return $this->render('AppBundle::personnal_space.html.twig', array('user_info' => $user_info, 'alerts' => $alerts, 'domains' => $domains
-                              , 'jobs' => $jobs, 'agencies' => $agencies, 'recruteur' => $cms, 'last_offers' => $last_offers));
+                              , 'jobs' => $jobs, 'agencies' => $agencies, 'recruteur' => $cms, 'last_offers' => $last_offers, 'applications' => $applications));
     }
 
     public function set_alertAction(Request $request)

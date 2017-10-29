@@ -317,24 +317,26 @@
                     <div id="candidatures" class="tab-pane fade">
                         <h3>Mes candidatures</h3>
                         <div class="line"></div>
+                        {% for app in applications %}
                         <div class="alerte">
                             <div class="col-sm-3">
-                                <p><strong>Intitulé du poste</strong></p>
+                                <p><strong>{{ app.offerName }}</strong></p>
                             </div>
                             <div class="col-sm-3">
                                 <p class="metier">Métier :</p>
-                                <p>Métier 1</p>
+                                <p>{{ app.offerJob }}</p>
                             </div>
                             <div class="col-sm-3">
                                 <p class="ville">Localisation :</p>
-                                <p>XXXXX Ville</p>
+                                <p>{{ app.offerCity }}</p>
                             </div>
                             <div class="col-sm-3">
                                 <p class="date">Date d'envoi :</p>
-                                <p>15 Octobre 2017</p>
+                                <p>{{ app.applicationDate|date('d/m/Y') }}</p>
                             </div>
                             <div class="clearfix"></div>
                             </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

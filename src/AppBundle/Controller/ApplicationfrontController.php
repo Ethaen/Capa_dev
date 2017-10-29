@@ -20,6 +20,7 @@ class ApplicationfrontController extends Controller
       $em = $this->getDoctrine()->getManager();
       $offer = $em->getRepository('EpiDevAdminBundle:Offer')->find($request->query->get('id'));
       $application = new Application;
+      $is_addable = true;
       $user = $this->getUser();
       $query = $em->createQuery(
           'SELECT p
@@ -28,12 +29,31 @@ class ApplicationfrontController extends Controller
       )->setParameters(array('id' => $user->getId()));
       $user_info = $query->getResult();
 
+      $query = $em->createQuery(
+          'SELECT p
+          FROM EpiDevAdminBundle:Application p
+          WHERE p.userId LIKE :id'
+      )->setParameters(array('id' => $user_info[0]->getId()));
+      $applications = $query->getResult();
 
-      $application->setName($user_info[0]->getName());
-      $application->setFirstname($user_info[0]->getFirstname());
-      $application->setOfferName($offer->getTitle());
-      $application->setApplicationDate(new \DateTime);
-      $em->persist($application);
+      // Check if application already exist
+      foreach ($applications as $app)
+      {
+        if ($app->getOffer_id() == $request->query->get('id'))
+          $is_addable = false;
+      }
+      if ($is_addable)
+      {
+        $application->setName($user_info[0]->getName());
+        $application->setFirstname($user_info[0]->getFirstname());
+        $application->setOfferName($offer->getTitle());
+        $application->setApplicationDate(new \DateTime);
+        $application->setOffer_id($offer->getId());
+        $application->setOfferJob($offer->getJob());
+        $application->setOfferCity($offer->getCity());
+        $application->setUserId($user_info[0]->getId());
+        $em->persist($application);
+      }
       $em->flush();
 
       return $this->redirectToRoute('list_offers');
