@@ -59,13 +59,11 @@ $(document).ready(function() {
 
 
 <!-- BUTTON -->
-<!--
 <br><br><br><br>
-<center><button type="button" onclick="Addoffer()">Ajouter une offre</button></center>
-<br>-->
+<center><button type="button" onclick="addApplication()">Ajouter une candidature</button></center>
+<br>
 <!-- BUTTON -->
 
-<br><br><br><br><br><br>
 <table id="example" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -113,7 +111,7 @@ $(document).ready(function() {
 	</body>
 
 <script>
-function Addapplication()
+function addApplication()
 {
 	var path = "{{ path('add_application') }}";
 

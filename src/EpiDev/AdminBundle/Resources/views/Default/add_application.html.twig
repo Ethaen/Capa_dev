@@ -19,41 +19,37 @@
   <div style="width: 60%; margin-top: 2%;">
     <p>Nom :</p>
     <div id="name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
-      {{ application.name }}
     </div>
   </div>
 
   <div style="width: 60%; margin-top: 2%;">
     <p>Prénom :</p>
     <div id="firstname" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
-      {{ application.firstname }}
     </div>
   </div>
 
   <div style="width: 60%; margin-top: 2%;">
     <p>Nom de l'offre :</p>
     <div id="offer_name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
-      {{ application.offerName }}
     </div>
   </div>
 
-  <button onclick="save()" style="margin-top: 2%;">Save</button>
+  <button onclick="add()" style="margin-top: 2%;">Ajouter</button>
   <script type="text/javascript">
-  function save()
+  function add()
   {
     var name = document.getElementById('name').innerText;
     var firstname = document.getElementById('firstname').innerText;
     var offer_name = document.getElementById('offer_name').innerText;
 
     $.ajax({
-      url: '{{ (path('save_application')) }}',
+      url: '{{ (path('upload_application')) }}',
       type: "POST",
       dataType: "text",
       data: {
         "name": name,
         "firstname": firstname,
-        "offer_name": offer_name,
-        "id": "{{ application.id }}"
+        "offer_name": offer_name
       }
     });
     window.location.href = "{{ path('application') }}";
