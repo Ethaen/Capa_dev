@@ -182,6 +182,14 @@ add_application:
   path: /admin/add_application
   defaults:
     _controller: EpiDevAdminBundle:Application:add
+save_application:
+  path: /admin/save_application
+  defaults:
+    _controller: EpiDevAdminBundle:Application:save
+upload_application:
+  path: /admin/upload_application
+  defaults:
+    _controller: EpiDevAdminBundle:Application:upload
 edit_application:
   path: /admin/edit_application
   defaults:
