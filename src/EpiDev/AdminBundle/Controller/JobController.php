@@ -38,8 +38,9 @@ class JobController extends Controller
   public function edit_domainAction(Request $request)
   {
     $domain = $this->getDoctrine()->getManager()->getRepository('EpiDevAdminBundle:Domain')->find($request->query->get('id'));
+    $domains = $this->getDoctrine()->getManager()->getRepository('EpiDevAdminBundle:Domain')->findAll();
 
-    return $this->render('EpiDevAdminBundle:Default:edit_domain.html.twig', array('domain' => $domain));
+    return $this->render('EpiDevAdminBundle:Default:edit_domain.html.twig', array('domain' => $domain, 'domains' => $domains));
   }
 
   public function upload_jobAction(Request $request)

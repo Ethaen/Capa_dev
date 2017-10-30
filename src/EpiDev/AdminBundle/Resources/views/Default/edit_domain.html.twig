@@ -43,6 +43,9 @@
   $(document).ready(function() {
     $('#example').DataTable();
   } );
+  $(document).ready(function() {
+    $('#example2').DataTable();
+  } );
   </script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -209,46 +212,40 @@
     <div class="content-wrapper">
 
 
-
       <div style="width: 60%; margin-top: 2%;">
-        <p>Nom :</p>
-        <div id="name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+        <p>Secteur d'activité :</p>
+        <div id="domain" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
+          {{ domain.name }}
         </div>
       </div>
 
-      <div style="width: 60%; margin-top: 2%;">
-        <p>Prénom :</p>
-        <div id="firstname" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
-        </div>
-      </div>
+      <div>
+        <button onclick="save()" style="margin-top: 2%;">Sauvegarder</button>
+        <script type="text/javascript">
+        function save()
+        {
+          var domain = document.getElementById('domain').innerText;
 
-      <div style="width: 60%; margin-top: 2%;">
-        <p>Nom de l'offre :</p>
-        <div id="offer_name" contenteditable="true" style="height: 5%; border-style: solid; border-width: 1px; border-color: #c9c9c9;">
-        </div>
-      </div>
-
-      <button onclick="add()" style="margin-top: 2%;">Ajouter</button>
-      <script type="text/javascript">
-      function add()
-      {
-        var name = document.getElementById('name').innerText;
-        var firstname = document.getElementById('firstname').innerText;
-        var offer_name = document.getElementById('offer_name').innerText;
-
-        $.ajax({
-          url: '{{ (path('upload_application')) }}',
-          type: "POST",
-          dataType: "text",
-          data: {
-            "name": name,
-            "firstname": firstname,
-            "offer_name": offer_name
+          "{% for _domain in domains %}"
+          if (domain == "{{ _domain.name }}" && "{{ domain.id }}" != "{{ _domain.id }}")
+          {
+            alert("Secteur d'activité déjà existant");
+            return;
           }
-        });
-        window.location.href = "{{ path('application') }}";
-      }
-      </script>
+          "{% endfor %}"
+
+          $.ajax({
+            url: '{{ (path('save_domain')) }}',
+            type: "POST",
+            dataType: "text",
+            data: {
+              "domain": domain,
+              "id": "{{ domain.id }}"
+            }
+          });
+          window.location.href = "{{ path('job') }}";
+        }
+        </script>
       </div>
 
 
