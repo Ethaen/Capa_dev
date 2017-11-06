@@ -24,7 +24,7 @@
 
 	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
 	</script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
+	<script type="text/javascript" language="javascript" src="{{ asset('admin/js/dataTables.min.js') }}">
 	</script>
 	<script type="text/javascript" class="init">
 
@@ -122,7 +122,7 @@ $(document).ready(function() {
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview">
+        <li class="treeview menu-open">
           <a href="#">
             <i class="fa fa-share"></i> <span>Pages d'administration</span>
             <span class="pull-right-container">
@@ -130,7 +130,7 @@ $(document).ready(function() {
             </span>
           </a>
 
-          <ul class="treeview-menu">
+          <ul class="treeview-menu" style="display: block;">
 
             <li class="treeview">
               <a href="#"><i class="fa fa-circle-o"></i> Actualités
