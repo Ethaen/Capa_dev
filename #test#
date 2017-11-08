@@ -1,2 +1,0 @@
-$content = strip_tags($html, '<div>><br>');
-{{ content|raw }}
