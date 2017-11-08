@@ -40,7 +40,7 @@ class ActualityController extends Controller
     $actuality->setTexte($request->request->get('content'));
     $actuality->setDate(new \DateTime($request->request->get('date')));
     if ($request->request->get('image_id') && $request->request->get('image_name')) {
-      $actuality->setImg_id("/admin/img/actuality/upload/".$request->request->get('image_id'));
+      $actuality->setImg_id("admin/img/actuality/upload/".$request->request->get('image_id'));
       $actuality->setImg_name($request->request->get('image_name'));
     }
     $em->flush();
@@ -56,7 +56,7 @@ class ActualityController extends Controller
     $actuality->setTexte($request->request->get('content'));
     $actuality->setDate(new \DateTime($request->request->get('date')));
     if ($request->request->get('image_id') && $request->request->get('image_name')) {
-      $actuality->setImg_id("/admin/img/actuality/upload/".$request->request->get('image_id'));
+      $actuality->setImg_id("admin/img/actuality/upload/".$request->request->get('image_id'));
       $actuality->setImg_name($request->request->get('image_name'));
     }
     else {
