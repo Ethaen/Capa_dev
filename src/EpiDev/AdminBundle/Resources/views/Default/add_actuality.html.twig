@@ -256,7 +256,7 @@
         var title = document.getElementById('title').innerText;
         var content = $('#content_area').find('.nicEdit-main').html();
         var date = document.getElementById('datepicker').value;
-        var path = "{{ asset('img/actuality/upload/') }}";
+        var path = "{{ asset('img/actuality/upload') }}";
         var up_path = "{{ asset('admin/upload.php') }}";
 
 
@@ -291,7 +291,7 @@
             "image_name": image_name
           }
         });
-//        window.location.href = "{{ path('actuality') }}";
+        //window.location.href = "{{ path('actuality') }}";
       }
       function makeId()
       {
