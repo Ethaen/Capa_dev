@@ -252,6 +252,7 @@
         var title = document.getElementById('title').innerText;
         var content = $('#content_area').find('.nicEdit-main').html();
         var date = document.getElementById('datepicker').value;
+        var up_path = "{{ asset('admin/upload.php') }}";
 
         if (file) {
           var form_data = new FormData();
@@ -260,7 +261,7 @@
           form_data.append('name', image_id);
           form_data.append('path', "img/actuality/upload/");
           $.ajax({
-            url: '/admin/upload.php',
+            url: up_path,
             dataType: 'text',
             cache: false,
             contentType: false,

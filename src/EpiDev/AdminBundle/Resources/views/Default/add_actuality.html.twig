@@ -256,15 +256,20 @@
         var title = document.getElementById('title').innerText;
         var content = $('#content_area').find('.nicEdit-main').html();
         var date = document.getElementById('datepicker').value;
+        var path = "{{ asset('img/actuality/upload/') }}";
+        var up_path = "{{ asset('admin/upload.php') }}";
 
+
+        console.log(path);
+        console.log(up_path);
         if (file) {
           var form_data = new FormData();
           var image_id = makeId()+extension;
           form_data.append('file', file);
           form_data.append('name', image_id);
-          form_data.append('path', "{{ asset('admin/img/actuality/upload/') }}");
+          form_data.append('path', "img/actuality/upload/");
           $.ajax({
-            url: '{{ asset('admin/upload.php') }}',
+            url: up_path,
             dataType: 'text',
             cache: false,
             contentType: false,
@@ -286,7 +291,7 @@
             "image_name": image_name
           }
         });
-        window.location.href = "{{ path('actuality') }}";
+//        window.location.href = "{{ path('actuality') }}";
       }
       function makeId()
       {
