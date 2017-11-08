@@ -262,9 +262,9 @@
           var image_id = makeId()+extension;
           form_data.append('file', file);
           form_data.append('name', image_id);
-          form_data.append('path', "img/actuality/upload/");
+          form_data.append('path', "{{ asset('admin/img/actuality/upload/') }}");
           $.ajax({
-            url: '/admin/upload.php',
+            url: '{{ asset('/admin/upload.php') }}',
             dataType: 'text',
             cache: false,
             contentType: false,
