@@ -37,7 +37,7 @@
   <script type="text/javascript" src="{{ asset( 'admin/js/jquery.animate-shadow-min.js') }}"></script>
   <script type="text/javascript" src="{{ asset( 'admin/js/main.js') }}"></script>
   <script type="text/javascript" language="javascript" src="{{ asset('admin/js/dataTables.min.js') }}">
-</script>
+  </script>
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
   <script>
@@ -201,6 +201,18 @@
                 </ul>
               </li>
 
+              <li class="treeview">
+                <a href="#"><i class="fa fa-circle-o"></i> Emails
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{{ path('email') }}"><i class="fa fa-circle-o"></i> Liste des emails</a></li>
+                  <li><a href="{{ path('addEmail') }}"><i class="fa fa-circle-o"></i> Ajouter un email</a></li>
+                </ul>
+              </li>
+
             </ul>
           </li>
         </ul>
@@ -247,14 +259,14 @@
               <a href="{{ path('delete_job') ~ "?id=" ~ job.id }}"> <img src="{{ asset( 'img/job/delete.jpg') }}"  alt="" style="width:20px; height:20px;"/></a>
             </center></td>
             <script>
-						var domainId = document.getElementById("domainId{{ i }}");
+            var domainId = document.getElementById("domainId{{ i }}");
 
-						"{% for domain in domains %}"
-						if ("{{ job.domain }}" == "{{ domain.id }}") {
-							domainId.innerHTML = "{{ domain.name }}"
-						}
-						"{% endfor %}"
-						</script>
+            "{% for domain in domains %}"
+            if ("{{ job.domain }}" == "{{ domain.id }}") {
+              domainId.innerHTML = "{{ domain.name }}"
+            }
+            "{% endfor %}"
+            </script>
           </tr>
           {% set i = i + 1 %}
           {% endfor %}
