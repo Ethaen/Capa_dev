@@ -85,16 +85,16 @@ class UserInfo
     private $city;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="domain", type="string", length=255, unique=false)
+     * @ORM\Column(name="domain", type="integer", unique=false)
      */
     private $domain;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="job", type="string", length=255, unique=false)
+     * @ORM\Column(name="job", type="integer", unique=false)
      */
     private $job;
 
@@ -133,9 +133,9 @@ class UserInfo
      */
 
      /**
-      * @var string
+      * @var int
       *
-      * @ORM\Column(name="agency", type="string", length=255)
+      * @ORM\Column(name="agency", type="integer")
       */
      private $agency;
 
@@ -394,7 +394,7 @@ class UserInfo
     /**
      * Set domain
      *
-     * @param string $domain
+     * @param int $domain
      *
      * @return UserInfo
      */
@@ -408,7 +408,7 @@ class UserInfo
     /**
      * Get domain
      *
-     * @return string
+     * @return int
      */
     public function getDomain()
     {
@@ -514,7 +514,7 @@ class UserInfo
 /**
  * Set agency
  *
- * @param string $agency
+ * @param int $agency
  *
  * @return UserInfo
  */
@@ -528,7 +528,7 @@ public function setAgency($agency)
 /**
  * Get agency
  *
- * @return string
+ * @return int
  */
 public function getAgency()
 {

@@ -236,16 +236,27 @@
         </tfoot>
         <tbody>
 
+          {% set i = 0 %}
           {% for job in jobs %}
           <tr>
             <td><center>{{ job.name }}</center></td>
-            <td><center>{{ job.domain }}</center></td>
+            <td><center id="domainId{{ i }}"></center></td>
             <td><center>
               <a href="{{ path('edit_job') ~ "?id=" ~ job.id }}"> <img src="{{ asset( 'img/job/edit.png') }}"  alt="" style="width:20px; height:20px;"/></a>
               &nbsp;&nbsp;&nbsp;
               <a href="{{ path('delete_job') ~ "?id=" ~ job.id }}"> <img src="{{ asset( 'img/job/delete.jpg') }}"  alt="" style="width:20px; height:20px;"/></a>
             </center></td>
+            <script>
+						var domainId = document.getElementById("domainId{{ i }}");
+
+						"{% for domain in domains %}"
+						if ("{{ job.domain }}" == "{{ domain.id }}") {
+							domainId.innerHTML = "{{ domain.name }}"
+						}
+						"{% endfor %}"
+						</script>
           </tr>
+          {% set i = i + 1 %}
           {% endfor %}
           <!--
           <tr>

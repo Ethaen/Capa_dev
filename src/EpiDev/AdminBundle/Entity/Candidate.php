@@ -99,9 +99,9 @@ class Candidate
     private $activityDomain;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="agency", type="string", length=255)
+     * @ORM\Column(name="agency", type="integer")
      */
     private $agency;
 
@@ -404,7 +404,7 @@ class Candidate
     /**
      * Set agency
      *
-     * @param string $agency
+     * @param int $agency
      *
      * @return Candidate
      */
@@ -418,7 +418,7 @@ class Candidate
     /**
      * Get agency
      *
-     * @return string
+     * @return int
      */
     public function getAgency()
     {
@@ -497,4 +497,3 @@ class Candidate
         return $this->cv;
     }
 }
-

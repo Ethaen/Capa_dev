@@ -96,13 +96,27 @@
             <p class="title ville">Localisation</p>
             <p>{{ offer.city }}</p>
             <p class="title activite">Secteur d'activité</p>
-            <p>{{ offer.domain }}</p>
+            <p id="domainId"></p>
             <p class="title metier">Métier</p>
-            <p>{{ offer.job }}</p>
+            <p id="jobId"></p>
             <p class="title type">Type de contrat</p>
             <p id="jobType2">lorem</p>
             <script>
             document.getElementById('jobType2').innerText = !parseInt({{ offer.job_type }}) ? "Temp plein" : "Temp partiel"
+
+            var domainId = document.getElementById("domainId");
+            var jobId = document.getElementById("jobId");
+
+            "{% for domain in domains %}"
+            if ("{{ offer.domain }}" == "{{ domain.id }}") {
+              domainId.innerHTML = "{{ domain.name }}"
+            }
+            "{% endfor %}"
+            "{% for job in jobs %}"
+            if ("{{ offer.job }}" == "{{ job.id }}") {
+              jobId.innerHTML = "{{ job.name }}"
+            }
+            "{% endfor %}"
             </script>
             <p class="title debut">Date de début</p>
             <p>{{ offer.begin|date('Y-m-d') }}</p>

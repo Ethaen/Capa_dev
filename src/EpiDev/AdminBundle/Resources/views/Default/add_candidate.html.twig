@@ -279,7 +279,7 @@
         <p>Agence :</p>
         <select id="agency" style="width:200px; height:40px;">
           {% for agency in agencies %}
-          <option value="{{ agency.name }}">{{ agency.name }}</option>
+          <option value="{{ agency.id }}">{{ agency.name }}</option>
           {% endfor %}
         </select>
       </div>
@@ -288,7 +288,7 @@
         <p>Secteur d'activité :</p>
         <select id="domain" style="width:200px; height:40px;">
           {% for domain in domains %}
-          <option value="{{ domain.name }}">{{ domain.name }}</option>
+          <option value="{{ domain.id }}">{{ domain.name }}</option>
           {% endfor %}
         </select>
       </div>
@@ -297,7 +297,7 @@
         <p>Métier :</p>
         <select id="job" style="width:200px; height:40px;">
           {% for job in jobs %}
-          <option value="{{ job.name }}">{{ job.name }}</option>
+          <option value="{{ job.id }}">{{ job.name }}</option>
           {% endfor %}
         </select>
       </div>

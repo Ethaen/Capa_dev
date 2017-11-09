@@ -71,9 +71,9 @@ class Offer
     private $city;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="Agency", type="string", length=255)
+     * @ORM\Column(name="Agency", type="integer")
      */
     private $agency;
 
@@ -321,7 +321,7 @@ class Offer
     /**
      * Set agency
      *
-     * @param string $agency
+     * @param int $agency
      *
      * @return Offer
      */
@@ -335,7 +335,7 @@ class Offer
     /**
      * Get agency
      *
-     * @return string
+     * @return int
      */
     public function getAgency()
     {

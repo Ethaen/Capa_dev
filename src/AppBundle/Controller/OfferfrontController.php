@@ -108,6 +108,8 @@ class OfferfrontController extends Controller
     $em = $this->getDoctrine()->getManager();
     $offer = $em->getRepository('EpiDevAdminBundle:Offer')->find($request->query->get('id'));
     $agencies = $em->getRepository('EpiDevAdminBundle:Agency')->findAll();
+    $domains = $em->getRepository('EpiDevAdminBundle:Domain')->findAll();
+    $jobs = $em->getRepository('EpiDevAdminBundle:Job')->findAll();
     $cms = $em->getRepository('EpiDevAdminBundle:CMS')->findAll()[0]->getUrlName();
     $query = $em->createQuery(
       'SELECT p
@@ -120,6 +122,6 @@ class OfferfrontController extends Controller
       if (!($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) && !$user)
         return $this->render('AppBundle::offer_details.html.twig', array('offer' => $offer, 'agencies' => $agencies, 'recruteur' => $cms, 'last_offers' => $last_offers));
       else
-      return $this->render('AppBundle::offer_details_connected.html.twig', array('offer' => $offer, 'agencies' => $agencies, 'recruteur' => $cms, 'last_offers' => $last_offers));
+      return $this->render('AppBundle::offer_details_connected.html.twig', array('offer' => $offer, 'agencies' => $agencies, 'recruteur' => $cms, 'last_offers' => $last_offers, 'domains' => $domains, 'jobs' => $jobs));
     }
   }

@@ -278,12 +278,22 @@ $(document).ready(function() {
 	        <tbody>
 
 
+						{% set i = 0 %}
 						{% for offer in offers %}
 						<tr>
 
 						<td><center>{{ offer.title }}</center></td>
 						<td><center>{{ offer.begin|date('Y-m-d') }}</center></td>
-						<td><center>{{ offer.agency }}</center></td>
+						<td><center id="agencyId{{ i }}"></center></td>
+						<script>
+						var agencyId = document.getElementById("agencyId{{ i }}");
+
+						"{% for agency in agencies %}"
+						if ("{{ offer.agency }}" == "{{ agency.id }}") {
+							agencyId.innerHTML = "{{ agency.name }}"
+						}
+						"{% endfor %}"
+						</script>
 
 						{% if offer.active %}
 							<td><center>Active</center></td>
@@ -301,6 +311,7 @@ $(document).ready(function() {
 						</td>
 
 					</tr>
+					{% set i = i + 1 %}
 				{% endfor %}
 	    	</tbody>
 	    </table>

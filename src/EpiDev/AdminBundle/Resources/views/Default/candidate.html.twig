@@ -256,13 +256,23 @@
 			        <tbody>
 
 
+                {% set i = 0 %}
 								{% for user_info in user_infos %}
 								<tr>
 
 								<td><center>{{ user_info.email }}</center></td>
 								<td><center>{{ user_info.name }}</center></td>
 								<td><center>{{ user_info.firstname }}</center></td>
-			          <td><center>{{ user_info.agency }}</center></td>
+			          <td><center id="agencyId{{ i }}"></center></td>
+                <script>
+                var agencyId = document.getElementById("agencyId{{ i }}");
+
+                "{% for agency in agencies %}"
+                if ("{{ user_info.agency }}" == "{{ agency.id }}") {
+                  agencyId.innerHTML = "{{ agency.name }}"
+                }
+                "{% endfor %}"
+                </script>
 								<td>
 									<center>
 									<a href="{{ path('edit_candidate') ~ "?id=" ~ user_info.id }}"> <img src="{{ asset( 'img/offer/edit.png') }}"  alt="" style="width:20px; height:20px;"/></a>
@@ -276,6 +286,7 @@
 								</td>
 
 							</tr>
+              {% set i = i + 1 %}
 						{% endfor %}
 			    	</tbody>
 			    </table>

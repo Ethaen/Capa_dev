@@ -290,37 +290,43 @@
       <div style="margin-top: 2%;">
         <p>Agence :</p>
         <select id="agency" style="width:200px; height:40px;">
-          <option value="{{user_infos.agency }}">{{user_infos.agency }}</option>
           {% for agency in agencies %}
           {% if user_infos.agency != agency.name %}
-          <option value="{{ agency.name }}">{{ agency.name }}</option>
+          <option value="{{ agency.id }}">{{ agency.name }}</option>
         {% endif %}
           {% endfor %}
         </select>
+        <script>
+        document.getElementById("agency").value = "{{ user_infos.agency }}";
+        </script>
       </div>
 
       <div style="margin-top: 2%;">
         <p>Secteur d'activité :</p>
         <select id="domain" style="width:200px; height:40px;">
-            <option value="{{ user_infos.domain }}">{{ user_infos.domain }}</option>
           {% for domain in domains %}
           {% if user_infos.domain != domain.name %}
-          <option value="{{ domain.name }}">{{ domain.name }}</option>
+          <option value="{{ domain.id }}">{{ domain.name }}</option>
           {% endif %}
           {% endfor %}
         </select>
+        <script>
+        document.getElementById("domain").value = "{{ user_infos.domain }}";
+        </script>
       </div>
 
       <div style="margin-top: 2%;">
         <p>Métier :</p>
         <select id="job" style="width:200px; height:40px;">
-          <option value="{{ user_infos.job }}">{{ user_infos.job }}</option>
           {% for job in jobs %}
           {% if user_infos.job != job.name %}
-          <option value="{{ job.name }}">{{ job.name }}</option>
+          <option value="{{ job.id }}">{{ job.name }}</option>
           {% endif %}
           {% endfor %}
         </select>
+        <script>
+        document.getElementById("job").value = "{{ user_infos.job }}";
+        </script>
       </div>
 
       <div style="margin-top: 2%;">

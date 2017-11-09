@@ -30,9 +30,9 @@ class Job
 
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="domain", type="string", length=255)
+     * @ORM\Column(name="domain", type="integer")
      */
     private $domain;
 
@@ -73,7 +73,7 @@ class Job
     /**
      * Set domain
      *
-     * @param string $domain
+     * @param int $domain
      *
      * @return Job
      */
@@ -87,7 +87,7 @@ class Job
     /**
      * Get domain
      *
-     * @return string
+     * @return int
      */
     public function getDomain()
     {
