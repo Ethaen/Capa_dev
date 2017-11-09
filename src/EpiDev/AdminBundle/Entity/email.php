@@ -29,9 +29,9 @@ class email
     private $mail;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="agency", type="string", length=255)
+     * @ORM\Column(name="agency", type="integer")
      */
      private $agency;
 
@@ -72,7 +72,7 @@ class email
     /**
      * Set agency
      *
-     * @param string $agency
+     * @param int $agency
      *
      * @return agency
      */
@@ -86,7 +86,7 @@ class email
     /**
      * Get agency
      *
-     * @return string
+     * @return int
      */
     public function getAgency()
     {
