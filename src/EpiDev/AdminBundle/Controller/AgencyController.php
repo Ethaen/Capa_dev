@@ -67,9 +67,13 @@ class AgencyController extends Controller
 
   public function editAction(Request $request)
   {
-    $agency = $this->getDoctrine()->getManager()->getRepository('EpiDevAdminBundle:Agency')->find($request->query->get("id"));
+    $id = $request->query->get("id");
+    $em = $this->getDoctrine()->getManager();
+    $agency = $em->getRepository('EpiDevAdminBundle:Agency')->find($id);
+    $query = $em->createQuery('SELECT p FROM EpiDevAdminBundle:email p WHERE p.agency = :id')->setParameters(array('id' => $id));
+    $emails = $query->getResult();
 
-    return $this->render('EpiDevAdminBundle:Default:edit_agency.html.twig', array('agency' => $agency));
+    return $this->render('EpiDevAdminBundle:Default:edit_agency.html.twig', array('agency' => $agency, 'emails' => $emails));
   }
 
   public function saveAction(Request $request)
@@ -81,6 +85,8 @@ class AgencyController extends Controller
     $agency->setAddress($request->request->get('address'));
     $agency->setCity($request->request->get('city'));
     $agency->setPhone($request->request->get('phone'));
+    $agency->setEmail($request->request->get('mail'));
+
     $em->flush();
     return $this->redirectToRoute('agency');
   }

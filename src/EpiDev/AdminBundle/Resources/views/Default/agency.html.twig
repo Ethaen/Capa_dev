@@ -264,7 +264,7 @@
 						<center>
 							<select id="agency_emails" style="width:200px; height:40px;">
 								{% for email in emails %}
-								{% if email.agency == agency.city %}
+								{% if email.agency == agency.id %}
 								<option value="email" align="center">{{ email.mail }}</option>
 								{% endif %}
 								{% endfor %}

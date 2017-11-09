@@ -159,12 +159,20 @@
             var message = document.getElementById('message').value;
             var agency = document.getElementById('agency').value;
             var agency_email = "";
+            var emailId;
+
+            "{% for agency in agencies %}"
+            if ({{ agency.id }} == agency) {
+              emailId = {{ agency.email }};
+            }
+            "{% endfor %}"
 
             "{% for email in emails %}"
-            if ("{{ email.agency }}" == agency) {
+            if ("{{ email.id }}" == emailId) {
               agency_email = "{{ email.mail }}";
             }
             "{% endfor %}"
+
             $.ajax({
               url: '{{ (path('sendEmail')) }}',
               type: "POST",
