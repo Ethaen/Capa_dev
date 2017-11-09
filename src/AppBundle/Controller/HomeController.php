@@ -14,6 +14,7 @@ class HomeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $available_offer = 0;
         $offers = $em->getRepository('EpiDevAdminBundle:Offer')->findAll();
+        $emails = $em->getRepository('EpiDevAdminBundle:email')->findAll();
 
         foreach ($offers as $offer)
         {
@@ -52,7 +53,7 @@ class HomeController extends Controller
         return $this->render('AppBundle::home.html.twig', array('available_offer' => $available_offer,
                              'last_offers' => $last_offers, 'month_workers' => $month_workers,
                              'actualities' => $actualities, 'recruteur' => $cms, 'agencies' => $agencies,
-                              'workers' => $workers) );
+                              'workers' => $workers, 'emails' => $emails) );
     }
 
     public function loginAction(Request $request)

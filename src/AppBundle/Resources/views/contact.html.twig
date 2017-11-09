@@ -144,7 +144,7 @@
               <p>Agence</p>
               <select id="agency" style="width:100%; margin-bottom: 2%;">
                 {% for agency in agencies %}
-                <option value="{{ agency.name }}">{{ agency.name }}</option>
+                <option value="{{ agency.id }}">{{ agency.name }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -194,6 +194,13 @@
                   <h3>{{ agency.name }}</h3>
                   <a class="tel" href="tel:{{ agency.phone }}".replace(/\s/g, '');>{{ agency.phone }}</a>
                   <a class="adresse" href="https://goo.gl/maps/uNhxuXL4a6B2" target="_blank">{{ agency.address }}<br/>{{ agency.city }}</a>
+                  <a class="email" href="#agency" onclick="fillMail({{ agency.id }})">Envoyer un email</a>
+                  <script>
+                  function fillMail(id)
+                  {
+                    document.getElementById("agency").value = id;
+                  }
+                  </script>
                 </div>
               </div>
 

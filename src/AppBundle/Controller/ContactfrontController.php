@@ -25,7 +25,7 @@ class ContactfrontController extends Controller
     $fname = $request->request->get('fname');
     $message = (new \Swift_Message('Message utilisateur'))
     ->setFrom($request->request->get('user_email'))
-    ->setTo($request->request->get('user_agency'))
+    ->setTo($request->request->get('agency_email'))
     ->setBody(
       $this->renderView(
         'Emails/send_user_email.html.twig',
