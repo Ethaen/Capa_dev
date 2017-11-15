@@ -49,7 +49,7 @@ doctrine:
         port:     '3306'
         dbname:   'Capa'
         user:     'root'
-        password: 'dffro78c'
+        password: 'rootpwd'
         charset:  UTF8
 
     orm:
