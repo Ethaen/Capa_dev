@@ -236,13 +236,15 @@
     </div>
   </div>
 
-  <div>
+  <div style="width: 60%; margin-top: 2%;">
     <p>Contenu :</p>
-    <textarea id="content" contenteditable="true" style="width: 60%; height: 20%; border-style: solid; border-width: 1px; border-color: #c9c9c9;"></textarea>
-    <script>
-    var content = "{{ page.content }}".replace(/\({ret}\)/g, '\n');
-    document.getElementById("content").innerHTML = content;
+    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+    <script type="text/javascript">
+    bkLib.onDomLoaded(function() { nicEditors.allTextAreas({buttonList : ['fontSize','bold','italic','underline','left','center','right']}) });
     </script>
+    <form id="content_area">
+      <textarea style="width: 100%; height: 30%;">{{ page.content }}</textarea>
+    </form>
   </div>
 
   <br><br><b>Référencement</b>
@@ -281,14 +283,13 @@
     {
       var name = document.getElementById('name').innerText;
       var article_title = document.getElementById('article_title').innerText;
-      var content = document.getElementById('content').value;
+      var content = $('#content_area').find('.nicEdit-main').html();
       var url_name = document.getElementById('url_name').innerText;
       var meta_title = document.getElementById('meta_title').innerText;
       var meta_description = document.getElementById('meta_description').innerText;
       var indexed = document.getElementById('indexed').checked ? 1 : 0;
       var id = "{{ page.id }}";
 
-      content = content.replace(/(?:\r\n|\r|\n)/g, '({ret})');
       $.ajax({
         url: '{{ (path('saveCms')) }}',
         type: "POST",
